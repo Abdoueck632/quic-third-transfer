@@ -1,13 +1,15 @@
 package main
 
 import (
-	"fmt"
-	//"log"
+
 	"io"
 	"os"
 	"strconv"
 	"strings"
 	"time"
+	"log"
+	"bufio"
+	"fmt"
 
 	utils "./utils"
 	config "./config"
@@ -15,7 +17,8 @@ import (
 )
 
 const addr = "0.0.0.0:" + config.PORT
- 
+var FILENAME=""
+var NUMBERFILE=0
 func main() {
 
 	savePath := os.Args[1]
@@ -28,14 +31,25 @@ func main() {
 	fmt.Println("Attaching to: ", addr)
 	listener, err := quic.ListenAddr(addr, utils.GenerateTLSConfig(), quicConfig)
 	utils.HandleError(err)
-        for{
+    for{
 		fmt.Println("Server started! Waiting for streams from client...")
 
 		sess, err := listener.Accept()
-		utils.HandleError(err)
+		if err != nil {
+			log.Println(err)
+			continue
+		}
+ 
+		// If you want, you can increment a counter here and inject to handleClientRequest below as client identifier
+		go receiveFile(sess,savePath)
 
-		fmt.Println("session created: ", sess.RemoteAddr())
-
+		
+	}
+}
+func receiveFile(sess quic.Session, savePath string){
+		//defer sess.Close()
+	    fmt.Println("session created: ", sess.RemoteAddr())
+		
 		stream, err := sess.AcceptStream()
 		fmt.Println("--------- the ReadPosInFrame",stream.ReadPosInFrame())
 		utils.HandleError(err)
@@ -56,7 +70,15 @@ func main() {
 		fileName := strings.Trim(string(bufferFileName), ":")
 
 		fmt.Println("file name received: ", fileName)
+		
+		if  NUMBERFILE==0{
 
+
+			stream.Close()
+			stream.Close()
+			
+			
+		}
 		newFile, err := os.Create(savePath + "/" + fileName)
 		utils.HandleError(err)
 
@@ -74,7 +96,12 @@ func main() {
 				stream.Read(make([]byte, (receivedBytes + config.BUFFERSIZE) - fileSize))
 				receivedBytes += recv
 				fmt.Printf("\033[2K\rReceived: %d / %d", receivedBytes, fileSize)
-
+				NUMBERFILE++
+				if NUMBERFILE==2 {
+					//Join(fileName,2)
+					fmt.Println("ŒŒŒŒŒŒŒŒŒŒ Bravo SECK :)")
+					NUMBERFILE=0
+				}
 				break
 			}
 			_, err := io.CopyN(newFile, stream, config.BUFFERSIZE)
@@ -92,5 +119,42 @@ func main() {
 		stream.Close()
 		stream.Close()
 		fmt.Println("\n\nReceived file completely!")
+}
+func Join(startFileName string, numberParts int) {
+	a := len(startFileName)
+	b := a // pat defaut -4
+	iFileName := startFileName[:b]
+	fmt.Println("--- FileName ",iFileName)
+	_, err := os.Create(iFileName)
+	jointFile, err := os.OpenFile(iFileName, os.O_APPEND|os.O_WRONLY, os.ModeAppend)
+	if err != nil {
+		log.Fatal(err)
 	}
+	i := 1
+	for i <= numberParts {
+		partFileName := iFileName + ".pt" + strconv.Itoa(i)
+		fmt.Println("Processing file:", partFileName)
+		pfile, _ := os.Open(partFileName)
+		pfileinfo, err := pfile.Stat()
+		if err != nil {
+			log.Fatal(err)
+		}
+		pfilesize := pfileinfo.Size()
+		pfileBytes := make([]byte, pfilesize)
+		readSrc := bufio.NewReader(pfile)
+		_, err = readSrc.Read(pfileBytes)
+		if err != nil {
+			log.Fatal(err)
+		}
+		_, err = jointFile.Write(pfileBytes)
+		if err != nil {
+			log.Fatal(err)
+		}
+		pfile.Close()
+		jointFile.Sync()
+		pfileBytes = nil
+		i++
+	}
+	jointFile.Close()
+	fmt.Printf("Combined successfully!")
 }

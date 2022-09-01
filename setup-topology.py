@@ -14,7 +14,7 @@ if '__main__' == __name__:
     p = Popen("sysctl -w %s=%s" % (key, value),
             shell=True, stdout=PIPE, stderr=PIPE)
     stdout, stderr = p.communicate()
-    print "stdout=", stdout, "stderr=", stderr
+    print ("stdout=", stdout, "stderr=", stderr)
     
     
     c0 = net.addController("controller")
@@ -26,6 +26,7 @@ if '__main__' == __name__:
     
     h1 = net.addHost('h1')
     h2 = net.addHost('h2')
+    h4 = net.addHost('h4')
     h3 = net.addHost('h3')
     r1 = net.addHost('r1')
     linkopt = {'bw': 10}
@@ -39,24 +40,37 @@ if '__main__' == __name__:
     net.addLink(s1, h1, cls=TCLink, **linkopt)
     net.addLink(s2, h1, cls=TCLink, **linkopt)
     net.addLink(s3, h2, cls=TCLink, **linkopt)
+    net.addLink(s3, h4, cls=TCLink, **linkopt)
     net.addLink(s4, h3, cls=TCLink, **linkopt2)
     net.build()
     r1.cmd("ifconfig r1-eth0 0")
     r1.cmd("ifconfig r1-eth1 0")
     r1.cmd("ifconfig r1-eth2 0")
+
     h1.cmd("ifconfig h1-eth0 0")
     h1.cmd("ifconfig h1-eth1 0")
+    
     h2.cmd("ifconfig h2-eth0 0")
+    
+    h4.cmd("ifconfig h4-eth0 0")
+
     h3.cmd("ifconfig h3-eth0 0")
+    
     r1.cmd("echo 1 > /proc/sys/net/ipv4/ip_forward")
     r1.cmd("ifconfig r1-eth0 10.0.0.1 netmask 255.255.255.0")
     r1.cmd("ifconfig r1-eth1 10.0.1.1 netmask 255.255.255.0")
     r1.cmd("ifconfig r1-eth2 10.0.2.1 netmask 255.255.255.0")
     r1.cmd("ifconfig r1-eth3 10.0.3.1 netmask 255.255.255.0")
+    
     h1.cmd("ifconfig h1-eth0 10.0.0.2 netmask 255.255.255.0")
     h1.cmd("ifconfig h1-eth1 10.0.1.2 netmask 255.255.255.0")
+    
     h2.cmd("ifconfig h2-eth0 10.0.2.2 netmask 255.255.255.0")
+
+    h4.cmd("ifconfig h4-eth0 10.0.2.3 netmask 255.255.255.0")
+    
     h3.cmd("ifconfig h3-eth0 10.0.3.2 netmask 255.255.255.0")
+    
     h1.cmd("ip rule add from 10.0.0.2 table 1")
     h1.cmd("ip rule add from 10.0.1.2 table 2")
     h1.cmd("ip route add 10.0.0.0/24 dev h1-eth0 scope link table 1")
@@ -64,10 +78,17 @@ if '__main__' == __name__:
     h1.cmd("ip route add 10.0.1.0/24 dev h1-eth1 scope link table 2")
     h1.cmd("ip route add default via 10.0.1.1 dev h1-eth1 table 2")
     h1.cmd("ip route add default scope global nexthop via 10.0.0.1 dev h1-eth0")
+    
     h2.cmd("ip rule add from 10.0.2.2 table 1")
     h2.cmd("ip route add 10.0.2.0/24 dev h2-eth0 scope link table 1")
     h2.cmd("ip route add default via 10.0.2.1 dev h2-eth0 table 1")
     h2.cmd("ip route add default scope global nexthop via 10.0.2.1 dev h2-eth0")
+
+    h4.cmd("ip rule add from 10.0.2.3 table 1")
+    h4.cmd("ip route add 10.0.2.0/24 dev h4-eth0 scope link table 1")
+    h4.cmd("ip route add default via 10.0.2.1 dev h4-eth0 table 1")
+    h4.cmd("ip route add default scope global nexthop via 10.0.2.1 dev h4-eth0")
+    
     h3.cmd("ip rule add from 10.0.3.2 table 1")
     h3.cmd("ip route add 10.0.3.0/24 dev h3-eth0 scope link table 1")
     h3.cmd("ip route add default via 10.0.3.1 dev h3-eth0 table 1")
