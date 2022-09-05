@@ -37,13 +37,13 @@ func main() {
     fmt.Println("Sending File: ", fileToSend)
     
     fmt.Println("Trying to connect to: ", addr)
-    
+    Split(fileToSend,64)
     //fmt.Print("----------------la taille de filename est :",len(stream))
-
+    
     SendAll(addr, fileToSend,false)
     
-    go sendRelayData(addrServer[0],fileToSend+".pt1",addr)
-    go sendRelayData(addrServer[1],fileToSend+".pt2",addr)
+    sendRelayData(addrServer[0],fileToSend+".pt1",addr)
+    sendRelayData(addrServer[1],fileToSend+".pt2",addr)
     
 }
 

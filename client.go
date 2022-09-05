@@ -18,12 +18,12 @@ import (
 
 const addr = "0.0.0.0:" + config.PORT
 var FILENAME=""
-var NUMBERFILE=0
+var NUMBERFILE=-1
 func main() {
 
 	savePath := os.Args[1]
 	fmt.Println("Saving file to: ", savePath)
-
+	serverAddr:="10.0.0.2"
 	quicConfig := &quic.Config{
 		CreatePaths: true,
 	}
@@ -41,15 +41,16 @@ func main() {
 		}
  
 		// If you want, you can increment a counter here and inject to handleClientRequest below as client identifier
-		go receiveFile(sess,savePath)
+		go receiveFile(sess,savePath,serverAddr)
 
 		
 	}
 }
-func receiveFile(sess quic.Session, savePath string){
+func receiveFile(sess quic.Session, savePath string,serverAddr string){
 		//defer sess.Close()
 	    fmt.Println("session created: ", sess.RemoteAddr())
-		
+		server:=fmt.Sprintf("%v",sess.RemoteAddr())
+		server=strings.Split(server, ":")[0]
 		stream, err := sess.AcceptStream()
 		fmt.Println("--------- the ReadPosInFrame",stream.ReadPosInFrame())
 		utils.HandleError(err)
@@ -71,54 +72,61 @@ func receiveFile(sess quic.Session, savePath string){
 
 		fmt.Println("file name received: ", fileName)
 		
-		if  NUMBERFILE==0{
+		if  server==serverAddr{
 
-
+			NUMBERFILE=0
+			FILENAME=fileName
 			stream.Close()
 			stream.Close()
 			
 			
-		}
-		newFile, err := os.Create(savePath + "/" + fileName)
-		utils.HandleError(err)
+		} else{
+		
 
-		defer newFile.Close()
-		var receivedBytes int64
-		start := time.Now()
-
-		for {
-			if (fileSize - receivedBytes) < config.BUFFERSIZE {
-			// fmt.Println("\nlast chunk of file.")
-
-				recv, err := io.CopyN(newFile, stream, (fileSize - receivedBytes))
-				utils.HandleError(err)
-
-				stream.Read(make([]byte, (receivedBytes + config.BUFFERSIZE) - fileSize))
-				receivedBytes += recv
-				fmt.Printf("\033[2K\rReceived: %d / %d", receivedBytes, fileSize)
-				NUMBERFILE++
-				if NUMBERFILE==2 {
-					//Join(fileName,2)
-					fmt.Println("ŒŒŒŒŒŒŒŒŒŒ Bravo SECK :)")
-					NUMBERFILE=0
-				}
-				break
-			}
-			_, err := io.CopyN(newFile, stream, config.BUFFERSIZE)
+		
+			newFile, err := os.Create(savePath + "/" + fileName)
 			utils.HandleError(err)
 
-			receivedBytes += config.BUFFERSIZE
+			defer newFile.Close()
+			var receivedBytes int64
+			start := time.Now()
 
-			fmt.Printf("\033[2K\rReceived: %d / %d", receivedBytes, fileSize)
+			for {
+				if (fileSize - receivedBytes) < config.BUFFERSIZE {
+				// fmt.Println("\nlast chunk of file.")
+
+					recv, err := io.CopyN(newFile, stream, (fileSize - receivedBytes))
+					utils.HandleError(err)
+
+					stream.Read(make([]byte, (receivedBytes + config.BUFFERSIZE) - fileSize))
+					receivedBytes += recv
+					fmt.Printf("\033[2K\rReceived: %d / %d", receivedBytes, fileSize)
+					
+					break
+				}
+				_, err := io.CopyN(newFile, stream, config.BUFFERSIZE)
+				utils.HandleError(err)
+
+				receivedBytes += config.BUFFERSIZE
+
+				fmt.Printf("\033[2K\rReceived: %d / %d", receivedBytes, fileSize)
+			}
+			elapsed := time.Since(start)
+			fmt.Println("\nTransfer took: ", elapsed)
+			NUMBERFILE++
+			if NUMBERFILE==2 {
+				FILENAME=savePath + FILENAME
+				Join(FILENAME,2)
+				fmt.Println("ŒŒŒŒŒŒŒŒŒŒ Bravo SECK :)",FILENAME)
+				NUMBERFILE=0
+			}
+			
+				
+			//time.Sleep(2 * time.Second)
+			stream.Close()
+			stream.Close()
+			fmt.Println("\n\nReceived file completely!")
 		}
-		elapsed := time.Since(start)
-		fmt.Println("\nTransfer took: ", elapsed)
-         
-        	
-		//time.Sleep(2 * time.Second)
-		stream.Close()
-		stream.Close()
-		fmt.Println("\n\nReceived file completely!")
 }
 func Join(startFileName string, numberParts int) {
 	a := len(startFileName)
