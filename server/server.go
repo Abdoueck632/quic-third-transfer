@@ -11,13 +11,12 @@ import (
 	"fmt"
 	"math" 
     "log"
-    //"strings"
-    "encoding/json"
+    "strings"
+   
     
     
-    
-    utils "./utils"
-    config "./config"
+    utils "../utils"
+    config "../config"
     quic "github.com/lucas-clemente/quic-go"
    
 )
@@ -30,53 +29,25 @@ var quicConfig = &quic.Config{
 }
 var addrServer = [2]string{"10.0.2.2:4242","10.0.2.3:4242"}
 
-func main() {
-
-    
-   
-    
+func main() {  
     
     fmt.Println(len(os.Args))
 
-    
     //addrClient := "10.0.3.2:4242"
     //sendRelayData(addrServer[0],"go.zip.pt1",nil)
     _,sess:=WaitClientRequest()
-   
+
     //Split(fileToSend,64)
-    fmt.Println("----------------le filename est :",sess)
-    
-    path:=sess.GetPaths()
-    _= sess.SendPing(path[0])
-
-    _,packer,crypto:=sess.GetIdConnAndpacker()
-    
-	fmt.Printf("\n packer : %+v", packer)
-	fmt.Printf("\n crypto : %+v", crypto)
-    a,b,c,d,e,f,g:=crypto.GetCrypto()
-
-    fmt.Printf("\n --- : %+v", a)
-    fmt.Printf("\n --- : %+v", b)
-    fmt.Printf("\n --- : %+v", c)
-    fmt.Printf("\n --- : %+v", d())
-    fmt.Printf("\n --- : %+v", e)
-    fmt.Printf("\n --- : %+v", f)
-    fmt.Printf("\n --- : %+v", g)   
-    
-    
-    
-     /*sendRelayData(addrServer[0],fileToSend+".pt1",addrClient,sess,sfcg,idc)
-    
-   sendRelayData(addrServer[1],fileToSend+".pt2",addrClient,sess,sfcg,idc)*/
-    //SendAll(fileToSend,sess) 
+  
+   
     fmt.Printf("---------------- %+v",sess)
     
 }
 func WaitClientRequest() (string,quic.Session){
 
-    listener,kex, err := quic.ListenAddr(addr, utils.GenerateTLSConfig(), quicConfig)
+    listener, err := quic.ListenAddr(addr, utils.GenerateTLSConfig(), quicConfig)
 	utils.HandleError(err)
-    fmt.Println(kex)
+    
     fmt.Println("Server started! Waiting for streams from client...")
 
     sess, err := listener.Accept()
@@ -85,42 +56,17 @@ func WaitClientRequest() (string,quic.Session){
     utils.HandleError(err)
     
     fmt.Println("session created: ", sess.RemoteAddr())
-    
-    fileToSend:="go.zip"
-    
-   
-    sendRelayData(addrServer[0],fileToSend+".pt1",sess)
-
-    stream.Close()
-    stream.Close()
-
-    //SendAll(fileToSend, sess)
-    //sendRelayData(addrServer[1],fileToSend+".pt2",addres,sess,addres,idc)
-   /*  stream, err := sess.AcceptStream()
-    utils.HandleError(err)
-    fmt.Println("stream created: ", stream.StreamID())
-
-   
-    fmt.Println("Connected to client, start receiving the file name ")
     filename := make([]byte,64)
-    
-    // var quic1 quic.Stream
     stream.Read(filename)
     filename1 := strings.Trim(string(filename), ":")
-    path:=sess.GetPaths()
-    _= sess.SendPing(path[0])
-    //SendAll(filename1,sess)
-    
-    /*stream.Write(filename)
-    
-    fmt.Printf("\n %+s\n", sess)
-    fmt.Println(sess.GetIdConn())*/
-    //idc:=fmt.Sprintf("%v", sess.GetIdConn())
-    
+
+    sendRelayData(addrServer[0],filename1,sess)
     
 
-    
-    return fileToSend,sess
+    stream.Close()
+    stream.Close()
+
+    return filename1,sess
         
 }
 
@@ -130,25 +76,18 @@ func sendRelayData(relayaddr string,filename string,sess quic.Session){
     utils.HandleError(err)
 
     fmt.Println("session created with secondary server: ", sessServer.RemoteAddr())
-    idcon,_,_:=sess.GetIdConnAndpacker()
-    mystruct:=sess.InitializeMyStrut(idcon,sess.RemoteAddr())
-    castStruct:= sess.ToGOB64(mystruct)
+   
     streamServer, err := sessServer.OpenStream()
     utils.HandleError(err)
     
-    b, err := json.Marshal(mystruct)
-    if err != nil {
-        fmt.Println(err)
-        return
-    }
-    fmt.Println("-------> ",string(b))
-    
-    fmt.Printf("----  my struct: %s\n", castStruct)
+   
 
    
     ipadd:=fmt.Sprintf("%s",sess.RemoteAddr())
+    
+    ipadd="10.0.3.2:4242"
     ipadre:=utils.FillString(ipadd, 20)
-    idconn:=utils.FillString(string(b), 500)
+    
     fileName := utils.FillString(filename, 64) // par defaut fileInfo.Name()import socket
 
     fmt.Println("session created: ", sessServer.RemoteAddr())
@@ -158,7 +97,7 @@ func sendRelayData(relayaddr string,filename string,sess quic.Session){
    
     streamServer.Write([]byte(fileName))
     
-    streamServer.Write([]byte(idconn))
+   
     streamServer.Write([]byte(ipadre))
     streamServer.Close()
     streamServer.Close()
@@ -171,20 +110,6 @@ func SendAll(fileToSend string,sess quic.Session) {
     
    
 
-    //fmt.Println("Size file : ",fileInfo.Size())
-
-    
-
-    /*sess, err := quic.DialAddr(addr, &tls.Config{InsecureSkipVerify: true}, quicConfig)
-    utils.HandleError(err)
-    fmt.Printf("\n struct server: %+v \n", sess)
-    fmt.Println("--------------------------")
-    
-    paths:=sess.GetPaths()
-    for index := range paths  {
-		fmt.Println("Le path de ", index, "est", *paths[index])
-	}
-    */
     stream, err := sess.OpenStream()
     utils.HandleError(err) 
     fmt.Println("A client has connected!")
@@ -213,8 +138,8 @@ func SendAll(fileToSend string,sess quic.Session) {
     SendData(stream,fileToSend,fileInfo.Size())
 
     
-    /*stream.Close()
-    stream.Close()*/
+    stream.Close()
+    stream.Close()
     
     
 }

@@ -12,8 +12,8 @@ import (
 	"fmt"
 	
 
-	utils "./utils"
-	config "./config"
+	utils "../utils"
+	config "../config"
 	quic "github.com/lucas-clemente/quic-go"
 )
 
@@ -32,31 +32,19 @@ func main() {
 	
 
 	fmt.Println("Attaching to: ", addr)
-	sess:=SendfileName(serverAddr, fileToReceive) 
-	fmt.Printf("\n %+v\n", sess)
+	SendfileName(serverAddr, fileToReceive) 
+	listener, err := quic.ListenAddr(addr, utils.GenerateTLSConfig(), quicConfig)
+	utils.HandleError(err)
 
-	path:=sess.GetPaths()
-    _= sess.SendPing(path[0])
+	fmt.Println("Server started! Waiting for streams from client...")
 
-	_,packer,crypto:=sess.GetIdConnAndpacker()
-    
-	fmt.Printf("\n packer : %+v", packer)
-	fmt.Printf("\n packer : %+v", crypto)
-	// If you want, you can increment a counter here and inject to handleClientRequest below as client identifier
-	//sess.SetIPAddress("10.0.2.2:4242")
-	receiveFile(sess,savePath)
+	sess, err := listener.Accept()
+	receiveFile(sess, savePath)
 
-		
 	
 }
 func receiveFile(sess quic.Session, savePath string){
 	//defer sess.Close()
-	//fmt.Println("session created: ", sess.RemoteAddr())
-	/*server:=fmt.Sprintf("%v",sess.RemoteAddr())
-	server=strings.Split(server, ":")[0]
-	stream, err := sess.AcceptStream()
-	utils.HandleError(err)*/
-	//fmt.Println("--------- the ReadPosInFrame",stream.ReadPosInFrame())
 	
 	
 	stream, err := sess.AcceptStream()
@@ -130,7 +118,7 @@ func receiveFile(sess quic.Session, savePath string){
 }
 
 
-func SendfileName(addr string, fileToSend string) quic.Session{
+func SendfileName(addr string, fileToSend string) {
         
 
     sess, err := quic.DialAddr(addr, &tls.Config{InsecureSkipVerify: true}, quicConfig)
@@ -142,20 +130,14 @@ func SendfileName(addr string, fileToSend string) quic.Session{
     fmt.Println("A server has connected!")
     
     fileName := utils.FillString(fileToSend, 64)
-
+	stream.Write([]byte(fileName))
     fmt.Println("Sending filename to the server! with filename ",fileName)
     
-    //stream.Write([]byte(fileName))
-   
-    
-   	/*stream.Close()
-	stream.Close()
-
-	path:=sess.GetPaths()
-    _= sess.SendPing(path[0])*/
+ 
 	stream.Close()
     stream.Close()
-	return sess
+	
+	
     
     
 }
