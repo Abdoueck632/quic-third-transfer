@@ -13,7 +13,7 @@ import (
 	"strings"
 	"time"
 
-	quic "github.com/lucas-clemente/quic-go"
+	quic "github.com/Abdoueck632/mp-quic"
 )
 
 var FILENAME = ""
