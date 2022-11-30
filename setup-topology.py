@@ -9,12 +9,12 @@ from mininet.topo import Topo
 if '__main__' == __name__:
     setLogLevel('info')
     net = Mininet(link=TCLink)
-    key = "net.mptcp.mptcp_enabled"
-    value = 1
-    p = Popen("sysctl -w %s=%s" % (key, value),
-            shell=True, stdout=PIPE, stderr=PIPE)
-    stdout, stderr = p.communicate()
-    print ("stdout=", stdout, "stderr=", stderr)
+   # key = "net.mptcp.mptcp_enabled"
+    #value = 1
+    #p = Popen("sysctl -w %s=%s" % (key, value),
+     #       shell=True, stdout=PIPE, stderr=PIPE)
+    #stdout, stderr = p.communicate()
+    #print ("stdout=", stdout, "stderr=", stderr)
     
     
     c0 = net.addController("controller")
