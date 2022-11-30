@@ -30,9 +30,9 @@ _Below is an example of how you can instruct your audience on installing and set
    ```sh
    https://github.com/Abdoueck632/quic-third-transfer.git
    ```
-3. Install NPM packages
+3. Install Python into a new virtualenv
    ```sh
-   npm install
+   XXX
    ```
 
 
