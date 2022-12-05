@@ -32,7 +32,7 @@ _Below is an example of how you can instruct your audience on installing and set
    ```
 3. Install Python into a new virtualenv
    ```sh
-   XXX
+   sudo pip install requirements.txt
    ```
 
 
@@ -49,7 +49,7 @@ Once our topology is well set up, we will have to turn on our different machines
   ```sh
    xterm S C R1 R2
  ```
- Apres nous pouvons verifier notre syteme de transfert de fichier sur nos differentes machines
+ After we will check the file transfer system on our different machines
  
  * On the server host
   ```sh
