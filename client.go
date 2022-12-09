@@ -36,6 +36,7 @@ func main() {
 
 	sess, err := listener.Accept()
 	receiveFile(sess, savePath)
+	fmt.Println(sess.GetConnectionID())
 
 }
 func receiveFile(sess quic.Session, savePath string) {

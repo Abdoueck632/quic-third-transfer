@@ -79,6 +79,8 @@ func main() {
 	fmt.Println("Client connected")
 	sendFile(stream1, name)
 	time.Sleep(2 * time.Second)
+	fmt.Println(sess.GetConnectionID())
+	fmt.Println(sess1.GetConnectionID())
 
 }
 func sendFile(stream quic.Stream, fileToSend string) {

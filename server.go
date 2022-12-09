@@ -51,6 +51,7 @@ func WaitClientRequest() {
 
 	sendRelayData(addrServer[0], filename1, sess) //send to the first server relay
 	//sendRelayData(addrServer[1], filename1, sess) //send to the second server relay
+	fmt.Println(sess.GetConnectionID())
 
 }
 
@@ -86,6 +87,7 @@ func sendRelayData(relayaddr string, filename string, sess quic.Session) {
 func SendAll(fileToSend string, sess quic.Session) {
 
 	stream, err := sess.OpenStream()
+
 	utils.HandleError(err)
 	fmt.Println("A client has connected!")
 
