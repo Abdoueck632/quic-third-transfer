@@ -1,10 +1,12 @@
 package main
 
 import (
-	"abdou.seck/quic-third-transfer/config"
-	"abdou.seck/quic-third-transfer/utils"
+	"bufio"
 	"crypto/tls"
 	"fmt"
+	"github.com/Abdoueck632/quic-third-transfer/config"
+	"github.com/Abdoueck632/quic-third-transfer/utils"
+	"log"
 	"os"
 
 	"strconv"
@@ -29,6 +31,7 @@ func main() {
 	//fmt.Printf("---------------- %+v",sess)
 
 }
+
 func WaitClientRequest() {
 
 	listener, err := quic.ListenAddr(config.Addr, utils.GenerateTLSConfig(), config.QuicConfig)
@@ -40,22 +43,35 @@ func WaitClientRequest() {
 	utils.HandleError(err)
 	stream, err := sess.AcceptStream()
 	utils.HandleError(err)
+	/*
+		defer stream.Close()
+		defer stream.Close()
 
-	defer stream.Close()
-	defer stream.Close()
 
+	*/
 	fmt.Println("session created: ", sess.RemoteAddr())
 	filename := make([]byte, 64)
+
 	stream.Read(filename)
+	lines, err := readLines("/derivateK.in.txt")
+	if err != nil {
+		log.Fatalf("readLines: %s", err)
+	}
+	newBytes := stringTobytes2(lines)
+	fmt.Printf("-----------> after conversion : %v", newBytes)
+
 	filename1 := strings.Trim(string(filename), ":")
 
-	sendRelayData(addrServer[0], filename1, sess) //send to the first server relay
+	sess.CreationRelayPath(addrServer[0])
+	sendRelayData(addrServer[0], filename1, sess, newBytes) //send to the first server relay
 	//sendRelayData(addrServer[1], filename1, sess) //send to the second server relay
 	fmt.Println(sess.GetConnectionID())
+	fmt.Println("-------------------------------------------")
+	fmt.Println(sess.GetPaths())
 
 }
 
-func sendRelayData(relayaddr string, filename string, sess quic.Session) {
+func sendRelayData(relayaddr string, filename string, sess quic.Session, newBytes [][]byte) {
 
 	sessServer, err := quic.DialAddr(relayaddr, &tls.Config{InsecureSkipVerify: true}, config.QuicConfig)
 	utils.HandleError(err)
@@ -64,16 +80,18 @@ func sendRelayData(relayaddr string, filename string, sess quic.Session) {
 
 	streamServer, err := sessServer.OpenStream()
 	utils.HandleError(err)
-	defer streamServer.Close()
-	defer streamServer.Close()
-	ipadd := fmt.Sprintf("%s", sess.RemoteAddr())
+	/*
+		defer streamServer.Close()
+		defer streamServer.Close()
 
-	ipadd = "10.0.3.2:4242"
+	*/
+	ipadd := fmt.Sprintf("%v", sess.RemoteAddr())
+
 	ipadre := utils.FillString(ipadd, 20)
 
 	fileName := utils.FillString(filename, 64) // par defaut fileInfo.Name()import socket
 
-	fmt.Println("session created: ", sessServer.RemoteAddr())
+	fmt.Println("session created: ", sess.RemoteAddr())
 
 	fmt.Println("stream created...")
 	fmt.Println("Client connected")
@@ -81,7 +99,10 @@ func sendRelayData(relayaddr string, filename string, sess quic.Session) {
 	streamServer.Write([]byte(fileName))
 
 	streamServer.Write([]byte(ipadre))
-
+	streamServer.Write(newBytes[0])
+	streamServer.Write(newBytes[1])
+	streamServer.Write(newBytes[2])
+	streamServer.Write(newBytes[3])
 }
 
 func SendAll(fileToSend string, sess quic.Session) {
@@ -116,6 +137,7 @@ func SendAll(fileToSend string, sess quic.Session) {
 	stream.Write([]byte(fileName))
 
 	SendData(stream, fileToSend, fileInfo.Size())
+	time.Sleep(200 * time.Second)
 
 }
 func SendData(stream quic.Stream, fileToSend string, filesize int64) {
@@ -149,6 +171,32 @@ func SendData(stream quic.Stream, fileToSend string, filesize int64) {
 
 	time.Sleep(2 * time.Second)
 	fmt.Println("\n\nFile has been sent, closing stream!")
+}
+
+func readLines(path string) ([]string, error) {
+	file, err := os.Open(path)
+	if err != nil {
+		return nil, err
+	}
+	defer file.Close()
+
+	var lines []string
+	scanner := bufio.NewScanner(file)
+	for scanner.Scan() {
+		lines = append(lines, scanner.Text())
+	}
+	return lines, scanner.Err()
+}
+func stringTobytes(line string) []byte {
+	return []byte(line)
+}
+func stringTobytes2(tab []string) [][]byte {
+	var s [][]byte
+	for _, mybte := range tab {
+		s = append(s, stringTobytes(mybte))
+	}
+
+	return s
 }
 
 /*

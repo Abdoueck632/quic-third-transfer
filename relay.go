@@ -1,10 +1,9 @@
 package main
 
 import (
-	"abdou.seck/quic-third-transfer/config"
-	"abdou.seck/quic-third-transfer/utils"
-	"crypto/tls"
 	"fmt"
+	"github.com/Abdoueck632/quic-third-transfer/config"
+	"github.com/Abdoueck632/quic-third-transfer/utils"
 	"os"
 
 	quic "github.com/Abdoueck632/mp-quic"
@@ -38,11 +37,27 @@ func main() {
 	fmt.Println("Connected to server, start receiving the file name and file size")
 	filename := make([]byte, 64)
 	addrClient := make([]byte, 20)
+	newBytes16 := make([]byte, 16)
+	newBytes4 := make([]byte, 4)
+	newBytes16_2 := make([]byte, 16)
+	newBytes4_2 := make([]byte, 4)
+	var newBytes [][]byte
+
 	//stream2 :=make([]byte,64)
 
 	// var quic1 quic.Stream
 	stream.Read(filename)
 	stream.Read(addrClient)
+	stream.Read(newBytes16)
+	newBytes = append(newBytes, newBytes16)
+	stream.Read(newBytes16_2)
+	newBytes = append(newBytes, newBytes16_2)
+	stream.Read(newBytes4)
+	newBytes = append(newBytes, newBytes4)
+	stream.Read(newBytes4_2)
+	newBytes = append(newBytes, newBytes4_2)
+	sess.SetDerivateKey(newBytes[0], newBytes[1], newBytes[2], newBytes[3])
+	fmt.Printf("___________________________________________%v", newBytes)
 	//stream.Read(stream2)
 	// quic1:= quic.Stream(stream2)
 
@@ -67,25 +82,34 @@ func main() {
 	file.Close()
 
 	fmt.Println("Trying to connect to: ", addrclient1, "Filename ", filename1)
-	sess1, err := quic.DialAddr(addrclient1, &tls.Config{InsecureSkipVerify: true}, config.QuicConfig)
-	utils.HandleError(err)
+	//use the first session with the client and this server
+	/*
+		sess1, err := quic.DialAddr(addrclient1, &tls.Config{InsecureSkipVerify: true}, config.QuicConfig)
+		utils.HandleError(err)
 
+	*/
+	// call SetIPAddress to modify the remote address in this session
+	sess.SetIPAddress(addrclient1)
+	//sess.CreationRelayPath(addrclient1)
 	fmt.Println("session created: ", sess.RemoteAddr())
-
-	stream1, err := sess1.OpenStream()
+	/*stream1, err := sess.OpenStream()
 	utils.HandleError(err)
+	defer stream1.Close()
+
+	*/
 
 	fmt.Println("stream created...")
 	fmt.Println("Client connected")
-	sendFile(stream1, name)
+	sendFile(stream, name)
 	time.Sleep(2 * time.Second)
 	fmt.Println(sess.GetConnectionID())
-	fmt.Println(sess1.GetConnectionID())
+
+	fmt.Println("-------------------------------------------")
+	fmt.Println(sess.GetPaths())
 
 }
 func sendFile(stream quic.Stream, fileToSend string) {
 	fmt.Println("A client has connected!")
-	defer stream.Close()
 
 	file, err := os.Open(fileToSend)
 	utils.HandleError(err)

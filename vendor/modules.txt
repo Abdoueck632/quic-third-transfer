@@ -1,0 +1,40 @@
+# github.com/Abdoueck632/mp-quic v0.0.0-20230115233529-bed576a97f0d
+## explicit; go 1.19
+github.com/Abdoueck632/mp-quic
+github.com/Abdoueck632/mp-quic/ackhandler
+github.com/Abdoueck632/mp-quic/congestion
+github.com/Abdoueck632/mp-quic/internal/crypto
+github.com/Abdoueck632/mp-quic/internal/flowcontrol
+github.com/Abdoueck632/mp-quic/internal/handshake
+github.com/Abdoueck632/mp-quic/internal/protocol
+github.com/Abdoueck632/mp-quic/internal/utils
+github.com/Abdoueck632/mp-quic/internal/wire
+github.com/Abdoueck632/mp-quic/qerr
+# github.com/bifurcation/mint v0.0.0-20171208133358-a6080d464fb5
+## explicit
+github.com/bifurcation/mint
+github.com/bifurcation/mint/syntax
+# github.com/golang/mock v1.6.0
+## explicit; go 1.11
+# github.com/hashicorp/golang-lru v0.5.3
+## explicit; go 1.12
+github.com/hashicorp/golang-lru
+github.com/hashicorp/golang-lru/simplelru
+# github.com/lucas-clemente/aes12 v0.0.0-20171027163421-cd47fb39b79f
+## explicit
+github.com/lucas-clemente/aes12
+# github.com/lucas-clemente/fnv128a v0.0.0-20160504152609-393af48d3916
+## explicit
+github.com/lucas-clemente/fnv128a
+# github.com/lucas-clemente/quic-go-certificates v0.0.0-20160823095156-d2f86524cced
+## explicit
+github.com/lucas-clemente/quic-go-certificates
+# github.com/onsi/ginkgo v1.16.5
+## explicit; go 1.16
+# github.com/onsi/gomega v1.24.2
+## explicit; go 1.18
+# golang.org/x/crypto v0.0.0-20210513164829-c07d793c2f9a
+## explicit; go 1.17
+golang.org/x/crypto/curve25519
+golang.org/x/crypto/curve25519/internal/field
+golang.org/x/crypto/hkdf
