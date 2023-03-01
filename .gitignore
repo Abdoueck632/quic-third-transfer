@@ -9,3 +9,6 @@ client-multipath-backup.go
 init~
 test.pdf
 new-setup-topology.py
+vendor/
+download/
+download 2/

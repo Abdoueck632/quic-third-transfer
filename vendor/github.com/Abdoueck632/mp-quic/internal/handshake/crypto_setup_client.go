@@ -10,6 +10,7 @@ import (
 	"fmt"
 	"io"
 	"io/ioutil"
+	"net"
 	"os"
 	"sync"
 	"time"
@@ -667,4 +668,15 @@ func (h *cryptoSetupClient) SetDerivationKey(otherKey []byte, myKey []byte, othe
 
 }
 
+func (h *cryptoSetupClient) GetOncesObitID() ([]byte, []byte, []byte) {
+	return h.diversificationNonce, nil, nil
+}
+func (h *cryptoSetupClient) SetOncesObitID(diversifi []byte, obit []byte, ID []byte) {
+	h.diversificationNonce = diversifi
+}
+func (h *cryptoSetupClient) SetRemoteAddr(addr net.Addr) {
 
+}
+func (h *cryptoSetupClient) GetAEADs() (crypto.AEAD, crypto.AEAD, crypto.AEAD) {
+	return h.forwardSecureAEAD, h.secureAEAD, h.nullAEAD
+}

@@ -4,8 +4,8 @@ import (
 	"encoding/binary"
 	"errors"
 
-	"github.com/lucas-clemente/fnv128a"
 	"github.com/Abdoueck632/mp-quic/internal/protocol"
+	"github.com/lucas-clemente/fnv128a"
 )
 
 // nullAEAD handles not-yet encrypted packets
@@ -68,4 +68,8 @@ func (n *nullAEADFNV128a) Seal(dst, src []byte, packetNumber protocol.PacketNumb
 
 func (n *nullAEADFNV128a) Overhead() int {
 	return 12
+}
+
+func (n *nullAEADFNV128a) GetOtherIV() []byte {
+	return nil
 }

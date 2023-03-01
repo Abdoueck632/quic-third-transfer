@@ -5,10 +5,10 @@ import (
 
 	"github.com/Abdoueck632/mp-quic/ackhandler"
 	"github.com/Abdoueck632/mp-quic/congestion"
-	"github.com/Abdoueck632/mp-quic/qerr"
 	"github.com/Abdoueck632/mp-quic/internal/protocol"
 	"github.com/Abdoueck632/mp-quic/internal/utils"
 	"github.com/Abdoueck632/mp-quic/internal/wire"
+	"github.com/Abdoueck632/mp-quic/qerr"
 )
 
 const (
@@ -33,7 +33,7 @@ type path struct {
 
 	potentiallyFailed utils.AtomicBool
 
-	sentPacket          chan struct{}
+	sentPacket chan struct{}
 
 	// It is now the responsibility of the path to keep its packet number
 	packetNumberGenerator *packetNumberGenerator
@@ -47,7 +47,7 @@ type path struct {
 
 	lastNetworkActivityTime time.Time
 
-	timer           *utils.Timer
+	timer *utils.Timer
 }
 
 // setup initializes values that are independent of the perspective
@@ -212,7 +212,7 @@ func (p *path) handlePacketImpl(pkt *receivedPacket) error {
 	if quicErr, ok := err.(*qerr.QuicError); ok && quicErr.ErrorCode == qerr.DecryptionFailure {
 		return err
 	}
-	if p.sess.perspective == protocol.PerspectiveServer {
+	if p.sess.perspective == protocol.PerspectiveClient {
 		// update the remote address, even if unpacking failed for any other reason than a decryption error
 		p.conn.SetCurrentRemoteAddr(pkt.remoteAddr)
 	}
@@ -248,4 +248,26 @@ func (p *path) onRTO(lastSentTime time.Time) bool {
 
 func (p *path) SetLeastUnacked(leastUnacked protocol.PacketNumber) {
 	p.leastUnacked = leastUnacked
+}
+func (p *path) GetlastSentPacketNumber() (uint64, protocol.PacketNumber, protocol.PacketNumber, protocol.PacketNumber, protocol.PacketNumber, protocol.PacketNumber) {
+	a, b, c, packet := p.sentPacketHandler.GetlastSentPacketNumber()
+	return packet, a, b, c, p.lastRcvdPacketNumber, p.largestRcvdPacketNumber
+}
+func (p *path) GetRcvPacketNumber() (protocol.PacketNumber, protocol.PacketNumber, uint64, *wire.AckFrame) {
+	//a,b:=p.receivedPacketHandler.GetlargestlowerLimitpacketHistory()
+	return p.receivedPacketHandler.GetlargestlowerLimitpacketHistory()
+}
+
+func (p *path) SetlastSentPacketNumber(packet uint64, lastsend uint64, lastRcvd uint64, largestAcked uint64, lastpath uint64, largestRcvd uint64) {
+	p.sentPacketHandler.SetlastSentPacketNumber(lastsend, lastRcvd, largestAcked, packet)
+	p.lastRcvdPacketNumber = protocol.PacketNumber(lastpath)
+	p.largestRcvdPacketNumber = protocol.PacketNumber(largestRcvd)
+
+}
+func (p *path) SetlastRcvdPacketNumber(lastsend uint64, lastRcvd uint64, packet uint64, lowerlastAck uint64, larglastAck uint64) {
+	p.receivedPacketHandler.SetRcvPacketHandler(lastsend, lastRcvd, packet, lowerlastAck, larglastAck)
+
+}
+func (p *path) GetpacketNumberGenerator() *packetNumberGenerator {
+	return p.packetNumberGenerator
 }

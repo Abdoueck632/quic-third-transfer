@@ -55,6 +55,10 @@ type Stream interface {
 	GetBytesSent() (protocol.ByteCount, error)
 	// GetBytesRetrans returns the number of bytes of the stream that were retransmitted to the peer
 	GetBytesRetrans() (protocol.ByteCount, error)
+	GetReadPosInFrame() (int, uint64, uint64)
+	SetReadPosInFrame(readPosInFrame int)
+	SetReadOffset(readOffset uint64)
+	Setuint64(writeOffset uint64)
 }
 
 // A Session is a QUIC connection between two peers.
@@ -88,6 +92,14 @@ type Session interface {
 
 	//Set the derivateKey in client session
 	SetDerivateKey(otherKey []byte, myKey []byte, otherIV []byte, myIV []byte)
+	//get the crypto setup
+	GetCryptoSetup() handshake.CryptoSetup
+	//get the path to set the packetnumber for the server relay
+	GetpathsAndLen() *path
+	//Get for perspective attribut
+	GetPerspectives() protocol.Perspective
+	SetPerspectives(int)
+	WaitUntilHandshakeComplete() error
 }
 
 // A NonFWSession is a QUIC connection between two peers half-way through the handshake.

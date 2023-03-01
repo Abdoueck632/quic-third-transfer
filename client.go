@@ -4,6 +4,7 @@ import (
 	"bufio"
 	"crypto/tls"
 	"fmt"
+	quic "github.com/Abdoueck632/mp-quic"
 	"github.com/Abdoueck632/quic-third-transfer/config"
 	"github.com/Abdoueck632/quic-third-transfer/utils"
 	"io"
@@ -11,9 +12,6 @@ import (
 	"os"
 	"strconv"
 	"strings"
-	"time"
-
-	quic "github.com/Abdoueck632/mp-quic"
 )
 
 var FILENAME = ""
@@ -30,41 +28,19 @@ func main() {
 	fmt.Println("Attaching to: ", config.Addr)
 	sess, stream := SendfileName(serverAddr, fileToReceive)
 
-	/*
-				listener, err := quic.ListenAddr(config.Addr, utils.GenerateTLSConfig(), config.QuicConfig)
-				utils.HandleError(err)
+	receiveFile(stream, savePath, sess)
 
-				fmt.Println("Server started! Waiting for streams from client...")
-
-				sess, err := listener.Accept()
-		//Get the number of paths un order to see the creation of the path
-
-	*/
-	time.Sleep(2 * time.Second)
-	//sess.CreationRelayPath("10.0.2.2:4242")
-	sess.SetIPAddress("10.0.2.2:4242")
-	fmt.Println("The IPAddress is changing")
-	//sess.CreationRelayPath("10.0.2.2:4242")
-	receiveFile(sess, stream, savePath)
-
+	fmt.Printf(" \n Perspective %+v \n ", sess.GetPerspectives())
 }
-func receiveFile(sess quic.Session, stream quic.Stream, savePath string) {
-	//defer sess.Close()
+func receiveFile(stream quic.Stream, savePath string, sess quic.Session) {
 
-	/*stream, err := sess.AcceptStream()
-	if err != nil {
-		fmt.Println("The problem is here :)")
-	}
-	defer stream.Close()
+	//stream, err := sess.AcceptStream()
 
-
-	*/
-	//fmt.Println("stream created: ", stream.StreamID())
-	//fmt.Println("session created: ", sess.RemoteAddr())
-	time.Sleep(2 * time.Second)
 	fmt.Println("Connected to server, start receiving the file name and file size")
+
 	bufferFileName := make([]byte, 64)
 	bufferFileSize := make([]byte, 10)
+
 	stream.Read(bufferFileSize)
 	stream.Read(bufferFileName)
 
@@ -81,7 +57,7 @@ func receiveFile(sess quic.Session, stream quic.Stream, savePath string) {
 
 	defer newFile.Close()
 	var receivedBytes int64
-	start := time.Now()
+	//start := time.Now()
 	for {
 		if (fileSize - receivedBytes) < config.BUFFERSIZE {
 
@@ -94,27 +70,14 @@ func receiveFile(sess quic.Session, stream quic.Stream, savePath string) {
 
 			break
 		}
-		_, err := io.CopyN(newFile, stream, config.BUFFERSIZE)
+		recv, err := io.CopyN(newFile, stream, config.BUFFERSIZE)
+		receivedBytes += recv
 		utils.HandleError(err)
 
-		receivedBytes += config.BUFFERSIZE
-
-		fmt.Printf("\033[2K\rReceived: %d / %d", receivedBytes, fileSize)
+		fmt.Printf("\033[2K\rReceived: %d / %d --> %s", receivedBytes, fileSize)
 	}
-	elapsed := time.Since(start)
-	fmt.Println("\nTransfer took: ", elapsed)
-	NUMBERFILE++
-	if NUMBERFILE == 100 {
-		FILENAME = savePath + FILENAME
-		Join(FILENAME, 2)
-		fmt.Println("ŒŒŒŒŒŒŒŒŒŒ Bravo SECK :)", FILENAME)
-		NUMBERFILE = 0
-	}
-	time.Sleep(2 * time.Second)
 
 	fmt.Println("\n\nReceived file completely!")
-	fmt.Println("session created: ", sess.RemoteAddr())
-
 }
 
 func SendfileName(addr string, fileToSend string) (quic.Session, quic.Stream) {
@@ -123,7 +86,7 @@ func SendfileName(addr string, fileToSend string) (quic.Session, quic.Stream) {
 	utils.HandleError(err)
 
 	stream, err1 := sess.OpenStream()
-	defer stream.Close()
+
 	utils.HandleError(err1)
 	fmt.Println("A server has connected!")
 
@@ -133,7 +96,6 @@ func SendfileName(addr string, fileToSend string) (quic.Session, quic.Stream) {
 	return sess, stream
 
 }
-
 func Join(startFileName string, numberParts int) {
 	a := len(startFileName)
 	b := a // pat defaut -4

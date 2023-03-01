@@ -2,7 +2,7 @@ module github.com/Abdoueck632/quic-third-transfer
 
 go 1.19
 
-require github.com/Abdoueck632/mp-quic v0.0.0-20230115233529-bed576a97f0d
+require github.com/Abdoueck632/mp-quic v0.0.0-20230301020404-509406db4a81
 
 require (
 	github.com/bifurcation/mint v0.0.0-20171208133358-a6080d464fb5 // indirect

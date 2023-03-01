@@ -2,38 +2,31 @@ package main
 
 import (
 	"bufio"
+	"bytes"
+	"crypto/sha256"
 	"crypto/tls"
+	"encoding/hex"
+	"encoding/json"
 	"fmt"
 	"github.com/Abdoueck632/quic-third-transfer/config"
 	"github.com/Abdoueck632/quic-third-transfer/utils"
+	"io"
 	"log"
+	"math"
 	"os"
-
-	"strconv"
 	"strings"
-	"time"
 
 	quic "github.com/Abdoueck632/mp-quic"
+	"strconv"
 )
 
 var CLIENTADDR = "10.0.3.2:4242"
 
-var addrServer = [2]string{"10.0.2.2:4242", "10.0.2.3:4242"}
+var AddrServer = [2]string{"10.0.2.2:4242", "10.0.2.3:4242"}
 
 func main() {
-
-	//addrClient := "10.0.3.2:4242"
-	//sendRelayData(addrServer[0],"go.zip.pt1",nil)
-	WaitClientRequest()
-
-	//Split(fileToSend,64)
-
-	//fmt.Printf("---------------- %+v",sess)
-
-}
-
-func WaitClientRequest() {
-
+	dataMigration := config.DataMigration{}
+	filename := make([]byte, 64)
 	listener, err := quic.ListenAddr(config.Addr, utils.GenerateTLSConfig(), config.QuicConfig)
 	utils.HandleError(err)
 
@@ -41,37 +34,40 @@ func WaitClientRequest() {
 
 	sess, err := listener.Accept()
 	utils.HandleError(err)
+
 	stream, err := sess.AcceptStream()
 	utils.HandleError(err)
-	/*
-		defer stream.Close()
-		defer stream.Close()
 
-
-	*/
 	fmt.Println("session created: ", sess.RemoteAddr())
-	filename := make([]byte, 64)
 
+	dataMigration.IpAddr = fmt.Sprintf("%v", sess.RemoteAddr())
+
+	//read filename of the client
 	stream.Read(filename)
+	dataMigration.FileName = strings.Trim(string(filename), ":")
+	//lecture du fichier de sauvegarde pour les clés
 	lines, err := readLines("/derivateK.in.txt")
 	if err != nil {
 		log.Fatalf("readLines: %s", err)
 	}
-	newBytes := stringTobytes2(lines)
-	fmt.Printf("-----------> after conversion : %v", newBytes)
+	//recupération des clés dans un tableau de bytes à 2 dimensions
+	dataMigration.CrytoKey = stringTobytes2(lines)
+	fmt.Printf("-----------> after conversion : %v", dataMigration.CrytoKey)
 
-	filename1 := strings.Trim(string(filename), ":")
+	//Récupération des des clés once obiet et id du serveur pour les envoyés au relay
+	dataMigration.Once, dataMigration.Obit, dataMigration.Id = sess.GetCryptoSetup().GetOncesObitID()
+	//send to the first server relay
+	SendRelayData(AddrServer[0], dataMigration)
 
-	sess.CreationRelayPath(addrServer[0])
-	sendRelayData(addrServer[0], filename1, sess, newBytes) //send to the first server relay
-	//sendRelayData(addrServer[1], filename1, sess) //send to the second server relay
-	fmt.Println(sess.GetConnectionID())
-	fmt.Println("-------------------------------------------")
-	fmt.Println(sess.GetPaths())
+	/*time.Sleep(10 * time.Second)
+	send to the second server relay
+	sendRelayData(addrServer[1], filename1+".pt2", ipadd, newBytes)
+	*/
 
+	fmt.Printf("\n %+v \n ", dataMigration)
 }
 
-func sendRelayData(relayaddr string, filename string, sess quic.Session, newBytes [][]byte) {
+func SendRelayData(relayaddr string, dataMigration config.DataMigration) {
 
 	sessServer, err := quic.DialAddr(relayaddr, &tls.Config{InsecureSkipVerify: true}, config.QuicConfig)
 	utils.HandleError(err)
@@ -80,99 +76,36 @@ func sendRelayData(relayaddr string, filename string, sess quic.Session, newByte
 
 	streamServer, err := sessServer.OpenStream()
 	utils.HandleError(err)
-	/*
-		defer streamServer.Close()
-		defer streamServer.Close()
 
-	*/
-	ipadd := fmt.Sprintf("%v", sess.RemoteAddr())
+	dataMigration.IpAddr = utils.FillString(dataMigration.IpAddr, 20)
 
-	ipadre := utils.FillString(ipadd, 20)
+	dataMigration.FileName = utils.FillString(dataMigration.FileName, 64) // par defaut fileInfo.Name()import socket
 
-	fileName := utils.FillString(filename, 64) // par defaut fileInfo.Name()import socket
-
-	fmt.Println("session created: ", sess.RemoteAddr())
+	//fmt.Println("session created: ", sess.RemoteAddr())
 
 	fmt.Println("stream created...")
 	fmt.Println("Client connected")
 
-	streamServer.Write([]byte(fileName))
-
-	streamServer.Write([]byte(ipadre))
-	streamServer.Write(newBytes[0])
-	streamServer.Write(newBytes[1])
-	streamServer.Write(newBytes[2])
-	streamServer.Write(newBytes[3])
-}
-
-func SendAll(fileToSend string, sess quic.Session) {
-
-	stream, err := sess.OpenStream()
-
-	utils.HandleError(err)
-	fmt.Println("A client has connected!")
-
-	defer stream.Close()
-	defer stream.Close()
-
-	file, err := os.Open(fileToSend)
-	utils.HandleError(err)
-
-	fileInfo, err := file.Stat()
-	utils.HandleError(err)
-	defer file.Close()
-
-	if fileInfo.Size() <= config.Threshold {
-		//config.QuicConfig.CreatePaths = false
-		fmt.Println("File is small, using single path only.")
-	} else {
-		fmt.Println("file is large, using multipath now.")
+	if verifyOrder(sessServer, dataMigration.CrytoKey[2]) == true {
+		dataMigration.CrytoKey[0], dataMigration.CrytoKey[2] = inverseByte(dataMigration.CrytoKey[0], dataMigration.CrytoKey[2])
+		dataMigration.CrytoKey[1], dataMigration.CrytoKey[3] = inverseByte(dataMigration.CrytoKey[1], dataMigration.CrytoKey[3])
 	}
-
-	fileSize := utils.FillString(strconv.FormatInt(fileInfo.Size(), 10), 10)
-	fileName := utils.FillString(fileInfo.Name(), 64)
-
-	fmt.Println("Sending filename and filesize!")
-	stream.Write([]byte(fileSize))
-	stream.Write([]byte(fileName))
-
-	SendData(stream, fileToSend, fileInfo.Size())
-	time.Sleep(200 * time.Second)
-
-}
-func SendData(stream quic.Stream, fileToSend string, filesize int64) {
-	defer stream.Close()
-
-	file, err := os.Open(fileToSend)
-	utils.HandleError(err)
-
-	sendBuffer := make([]byte, config.BUFFERSIZE)
-	fmt.Println("Start sending file!   with buffersize = ", config.BUFFERSIZE, " \n")
-
-	var sentBytes int64
-	start := time.Now()
-
-	for {
-		sentSize, err := file.Read(sendBuffer)
-		if err != nil {
-			break
-		}
-
-		stream.Write(sendBuffer)
-		if err != nil {
-			break
-		}
-
-		sentBytes += int64(sentSize)
-		fmt.Printf("\033[2K\rSent: %d / %d", sentBytes, filesize)
+	dataByte, err := json.Marshal(dataMigration)
+	if err != nil {
+		log.Fatal(err)
 	}
-	elapsed := time.Since(start)
-	fmt.Println("\nTransfer took: ", elapsed)
-
-	time.Sleep(2 * time.Second)
-	fmt.Println("\n\nFile has been sent, closing stream!")
+	streamServer.Write([]byte(utils.FillString(string(dataByte), 1000)))
 }
-
+func verifyOrder(sess quic.Session, otherIV []byte) bool {
+	forw, _, _ := sess.GetCryptoSetup().GetAEADs()
+	if bytes.Equal(forw.GetOtherIV(), otherIV) == true {
+		return true
+	}
+	return false
+}
+func inverseByte(first, second []byte) ([]byte, []byte) {
+	return second, first
+}
 func readLines(path string) ([]string, error) {
 	file, err := os.Open(path)
 	if err != nil {
@@ -199,7 +132,6 @@ func stringTobytes2(tab []string) [][]byte {
 	return s
 }
 
-/*
 func Hasher(filename string) string {
 	file, err := os.Open(filename)
 	if err != nil {
@@ -255,4 +187,3 @@ func Split(filename string, splitsize int) {
 	hashFile.Close()
 	fmt.Printf("Splitted successfully! Find the individual file hashes in %s", hashFileName)
 }
-*/

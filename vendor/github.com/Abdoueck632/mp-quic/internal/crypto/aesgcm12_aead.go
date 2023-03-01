@@ -71,3 +71,6 @@ func (aead *aeadAESGCM12) makeNonce(iv []byte, packetNumber protocol.PacketNumbe
 func (aead *aeadAESGCM12) Overhead() int {
 	return aead.encrypter.Overhead()
 }
+func (aead *aeadAESGCM12) GetOtherIV() []byte {
+	return aead.otherIV
+}

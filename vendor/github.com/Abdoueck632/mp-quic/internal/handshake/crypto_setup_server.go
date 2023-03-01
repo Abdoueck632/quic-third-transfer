@@ -471,7 +471,7 @@ func (h *cryptoSetupServer) SetDerivationKey(otherKey []byte, myKey []byte, othe
 	// Display keyDerivation
 	utils.Infof("--> keyDerivation %+v", h.keyDerivation)
 	// Display nullAEAD
-	utils.Infof("--> nullAEAD %+v", h.nullAEAD)
+	utils.Infof("--> secureAEAD %+v", h.secureAEAD)
 	// Display keyExchange
 	utils.Infof("--> nullAEAD %+v", h.keyExchange)
 
@@ -486,4 +486,19 @@ func (h *cryptoSetupServer) SetDerivationKey(otherKey []byte, myKey []byte, othe
 
 		return crypto.NewAEADAESGCM12(myKey, otherKey, myIV, otherIV)
 	}
+}
+func (h *cryptoSetupServer) GetOncesObitID() ([]byte, []byte, []byte) {
+	return h.diversificationNonce, h.scfg.obit, h.scfg.ID
+}
+
+func (h *cryptoSetupServer) SetOncesObitID(diversifi []byte, obit []byte, ID []byte) {
+	h.diversificationNonce = diversifi
+	h.scfg.obit = obit
+	h.scfg.ID = ID
+}
+func (h *cryptoSetupServer) SetRemoteAddr(addr net.Addr) {
+	h.remoteAddr = addr
+}
+func (h *cryptoSetupServer) GetAEADs() (crypto.AEAD, crypto.AEAD, crypto.AEAD) {
+	return h.forwardSecureAEAD, h.secureAEAD, h.nullAEAD
 }

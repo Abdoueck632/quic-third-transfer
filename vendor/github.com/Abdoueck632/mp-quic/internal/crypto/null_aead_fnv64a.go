@@ -48,3 +48,6 @@ func (n *nullAEADFNV64a) Seal(dst, src []byte, packetNumber protocol.PacketNumbe
 func (n *nullAEADFNV64a) Overhead() int {
 	return 8
 }
+func (n *nullAEADFNV64a) GetOtherIV() []byte {
+	return nil
+}

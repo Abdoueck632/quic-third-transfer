@@ -982,3 +982,18 @@ func (s *session) CreationRelayPath(addr string) {
 func (s *session) SetDerivateKey(otherKey []byte, myKey []byte, otherIV []byte, myIV []byte) {
 	s.cryptoSetup.SetDerivationKey(otherKey, myKey, otherIV, myIV)
 }
+
+// getcrypto setup
+func (s *session) GetCryptoSetup() handshake.CryptoSetup {
+	return s.cryptoSetup
+}
+func (s *session) GetpathsAndLen() *path {
+	return s.paths[0]
+}
+
+func (s *session) GetPerspectives() protocol.Perspective {
+	return s.perspective
+}
+func (s *session) SetPerspectives(perspective int) {
+	s.perspective = protocol.Perspective(perspective)
+}

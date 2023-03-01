@@ -67,3 +67,7 @@ func (p *packetNumberGenerator) getRandomNumber() (uint16, error) {
 	num := uint16(b[0])<<8 + uint16(b[1])
 	return num, nil
 }
+
+func (p *packetNumberGenerator) SetPacketNumber(lastsend uint64) {
+	p.next = protocol.PacketNumber(lastsend)
+}

@@ -34,6 +34,16 @@ type AckFrame struct {
 	DelayTime          time.Duration
 }
 
+func (f *AckFrame) GetAckedFrame() (protocol.PacketNumber, protocol.PacketNumber, []AckRange) {
+	return f.LargestAcked, f.LowestAcked, f.AckRanges
+}
+
+func (f *AckFrame) SetAckedFrame(largestAcked protocol.PacketNumber, lowestAcked protocol.PacketNumber) {
+
+	f.LargestAcked = largestAcked
+	f.LowestAcked = lowestAcked
+}
+
 // ParseAckFrame reads an ACK frame
 func ParseAckFrame(r *bytes.Reader, version protocol.VersionNumber) (*AckFrame, error) {
 	frame := &AckFrame{}
@@ -59,7 +69,7 @@ func ParseAckFrame(r *bytes.Reader, version protocol.VersionNumber) (*AckFrame, 
 	}
 
 	// U bit used to indicate that the ACK contains PathID
-	if typeByte & 0x10 == 0x10 {
+	if typeByte&0x10 == 0x10 {
 		pathID, err := r.ReadByte()
 		if err != nil {
 			return nil, err
