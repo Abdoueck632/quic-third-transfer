@@ -476,15 +476,15 @@ func (h *cryptoSetupServer) SetDerivationKey(otherKey []byte, myKey []byte, othe
 	utils.Infof("--> nullAEAD %+v", h.keyExchange)
 
 	// I try to cheat to have this type of function. So it's a bit of a do-it-yourself
-	h.forwardSecureAEAD, _ = crypto.NewAEADAESGCM12(myKey, otherKey, myIV, otherIV)
-	h.secureAEAD, _ = crypto.NewAEADAESGCM12(myKey, otherKey, myIV, otherIV)
+	h.forwardSecureAEAD, _ = crypto.NewAEADAESGCM12(otherKey, myKey, otherIV, myIV)
+	h.secureAEAD, _ = crypto.NewAEADAESGCM12(otherKey, myKey, otherIV, myIV)
 	// I try to cheat to have this type of function. So it's a bit of a do-it-yourself
 	h.keyDerivation = func(forwardSecure bool, sharedSecret, nonces []byte, connID protocol.ConnectionID, chlo []byte, scfg []byte, cert []byte, divNonce []byte, pers protocol.Perspective) (
 		crypto.AEAD,
 		error,
 	) {
 
-		return crypto.NewAEADAESGCM12(myKey, otherKey, myIV, otherIV)
+		return crypto.NewAEADAESGCM12(otherKey, myKey, otherIV, myIV)
 	}
 }
 func (h *cryptoSetupServer) GetOncesObitID() ([]byte, []byte, []byte) {

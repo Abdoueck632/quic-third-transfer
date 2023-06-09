@@ -74,7 +74,7 @@ func receiveFile(stream quic.Stream, savePath string, sess quic.Session) {
 		receivedBytes += recv
 		utils.HandleError(err)
 
-		fmt.Printf("\033[2K\rReceived: %d / %d --> %s", receivedBytes, fileSize)
+		fmt.Printf("\033[2K\rReceived: %d / %d \n", receivedBytes, fileSize)
 	}
 
 	fmt.Println("\n\nReceived file completely!")

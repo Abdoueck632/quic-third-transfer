@@ -148,11 +148,13 @@ func (pm *pathManager) createPath(locAddr net.UDPAddr, remAddr net.UDPAddr) erro
 		sess:   pm.sess,
 		conn:   &conn{pconn: pm.pconnMgr.pconns[locAddr.String()], currentAddr: &remAddr},
 	}
+	pm.nbPaths++
 	pth.setup(pm.oliaSenders)
 	pm.sess.paths[pm.nxtPathID] = pth
 	if utils.Debug() {
 		utils.Debugf("Created path %x on %s to %s", pm.nxtPathID, locAddr.String(), remAddr.String())
 	}
+
 	pm.nxtPathID += 2
 	// Send a PING frame to get latency info about the new path and informing the
 	// peer of its existence
@@ -191,6 +193,7 @@ func (pm *pathManager) createPaths() error {
 			}
 		}
 	}
+
 	pm.sess.schedulePathsFrame()
 	return nil
 }
@@ -278,11 +281,29 @@ func (pm *pathManager) closePaths() {
 	}
 	pm.sess.pathsLock.RUnlock()
 }
-func (pm *pathManager) AddPaths(addr string) {
-	udp, _ := net.ResolveUDPAddr("udp", addr)
-	addrFrame := wire.AddAddressFrame{4, *udp}
-	//pm.remoteAddrs4[len(pm.remoteAddrs4)] = *udp
-	pm.handleAddAddressFrame(&addrFrame)
-	//pm.createPaths()
+func (pm *pathManager) AddPaths(remoteaddr, localAddr string, pthId int) error {
+	remote, _ := net.ResolveUDPAddr("udp", remoteaddr)
 
+	local, _ := net.ResolveUDPAddr("udp", localAddr)
+	//pconn, err := net.ListenUDP("udp", remote)
+	pm.nxtPathID = protocol.PathID(pthId)
+	pm.pconnMgr.pconns[local.String()] = pm.sess.paths[protocol.PathID(1)].conn.GetPconn()
+
+	err := pm.createPath(*local, *remote)
+
+	return err
+}
+func (pm *pathManager) AdvertiseRelayAddresses(ipaddr string) {
+	pm.pconnMgr.mutex.Lock()
+	defer pm.pconnMgr.mutex.Unlock()
+	remote, _ := net.ResolveUDPAddr("udp", ipaddr)
+
+	//version := getIPVersion(locAddr.IP)
+	pm.sess.streamFramer.AddAddressForTransmission(uint8(4), *remote)
+	//pm.advertisedLocAddrs[locAddr.String()] = true
+
+}
+
+func (pm *pathManager) ClosePath(pthID int) error {
+	return pm.closePath(protocol.PathID(pthID))
 }

@@ -20,26 +20,26 @@ if '__main__' == __name__:
     Relay2 = net.addHost('R2')
     Client = net.addHost('C')
     router = net.addHost('router')
-    linkopt = {'bw': 1000}
-    linkopt2 = {'bw': 1000}
+    #linkopt = {'bw': 1000}
+    #linkopt2 = {'bw': 100}
     
-    net.addLink(router, sw1, cls=TCLink, **linkopt)
-    net.addLink(router, sw2, cls=TCLink, **linkopt)
-    net.addLink(router, sw3, cls=TCLink, **linkopt)
-    net.addLink(router, sw4, cls=TCLink, **linkopt2)
+    net.addLink(router, sw1, cls=TCLink)
+    net.addLink(router, sw2, cls=TCLink)
+    net.addLink(router, sw3, cls=TCLink)
+    net.addLink(router, sw4, cls=TCLink)
 
-    net.addLink(sw1, Server, cls=TCLink, **linkopt)
-    net.addLink(sw2, Server, cls=TCLink, **linkopt)
-    net.addLink(sw3, Relay1, cls=TCLink, **linkopt)
-    net.addLink(sw3, Relay2, cls=TCLink, **linkopt)
-    net.addLink(sw4, Client, cls=TCLink, **linkopt2)
+    net.addLink(sw1, Server, cls=TCLink)
+    net.addLink(sw2, Server, cls=TCLink)
+    net.addLink(sw3, Relay1, cls=TCLink)
+    net.addLink(sw3, Relay2, cls=TCLink)
+    net.addLink(sw4, Client, cls=TCLink)
     net.build()
     router.cmd("ifconfig router-eth0 0")
     router.cmd("ifconfig router-eth1 0")
     router.cmd( "ifconfig router-eth2 0")
 
     Server.cmd("ifconfig S-eth0 0")
-    Server.cmd("ifconfig S-eth1 0")
+   # Server.cmd("ifconfig S-eth1 0")
     
     Relay1.cmd("ifconfig R1-eth0 0")
     
@@ -54,7 +54,7 @@ if '__main__' == __name__:
     router.cmd("ifconfig router-eth3 10.0.3.1 netmask 255.255.255.0")
     
     Server.cmd("ifconfig S-eth0 10.0.0.2 netmask 255.255.255.0")
-    Server.cmd("ifconfig S-eth1 10.0.1.2 netmask 255.255.255.0")
+    #Server.cmd("ifconfig S-eth1 10.0.1.2 netmask 255.255.255.0")
     
     Relay1.cmd("ifconfig R1-eth0 10.0.2.2 netmask 255.255.255.0")
 
@@ -63,11 +63,11 @@ if '__main__' == __name__:
     Client.cmd("ifconfig C-eth0 10.0.3.2 netmask 255.255.255.0")
     
     Server.cmd("ip rule add from 10.0.0.2 table 1")
-    Server.cmd("ip rule add from 10.0.1.2 table 2")
+    #Server.cmd("ip rule add from 10.0.1.2 table 2")
     Server.cmd("ip route add 10.0.0.0/24 dev S-eth0 scope link table 1")
     Server.cmd("ip route add default via 10.0.0.1 dev S-eth0 table 1")
-    Server.cmd("ip route add 10.0.1.0/24 dev S-eth1 scope link table 2")
-    Server.cmd("ip route add default via 10.0.1.1 dev S-eth1 table 2")
+    #Server.cmd("ip route add 10.0.1.0/24 dev S-eth1 scope link table 2")
+    #Server.cmd("ip route add default via 10.0.1.1 dev S-eth1 table 2")
     Server.cmd("ip route add default scope global nexthop via 10.0.0.1 dev S-eth0")
     
     Relay1.cmd("ip rule add from 10.0.2.2 table 1")

@@ -1,23 +1,23 @@
 package main
 
 import (
-	"bufio"
 	"bytes"
 	"crypto/sha256"
 	"crypto/tls"
 	"encoding/hex"
 	"encoding/json"
 	"fmt"
+	quic "github.com/Abdoueck632/mp-quic"
 	"github.com/Abdoueck632/quic-third-transfer/config"
 	"github.com/Abdoueck632/quic-third-transfer/utils"
 	"io"
+	"io/ioutil"
 	"log"
 	"math"
 	"os"
-	"strings"
-
-	quic "github.com/Abdoueck632/mp-quic"
 	"strconv"
+	"strings"
+	"unicode/utf8"
 )
 
 var CLIENTADDR = "10.0.3.2:4242"
@@ -29,6 +29,12 @@ func main() {
 	filename := make([]byte, 64)
 	listener, err := quic.ListenAddr(config.Addr, utils.GenerateTLSConfig(), config.QuicConfig)
 	utils.HandleError(err)
+	f, err := os.Create("serveur_SSLKEYLOGFILE.bin")
+	if err != nil {
+		utils.HandleError(err)
+	} else {
+		defer f.Close()
+	}
 
 	fmt.Println("Server started! Waiting for streams from client...")
 
@@ -40,34 +46,47 @@ func main() {
 
 	fmt.Println("session created: ", sess.RemoteAddr())
 
-	dataMigration.IpAddr = fmt.Sprintf("%v", sess.RemoteAddr())
-
 	//read filename of the client
 	stream.Read(filename)
-	dataMigration.FileName = strings.Trim(string(filename), ":")
-	//lecture du fichier de sauvegarde pour les clés
-	lines, err := readLines("/derivateK.in.txt")
-	if err != nil {
-		log.Fatalf("readLines: %s", err)
-	}
-	//recupération des clés dans un tableau de bytes à 2 dimensions
-	dataMigration.CrytoKey = stringTobytes2(lines)
-	fmt.Printf("-----------> after conversion : %v", dataMigration.CrytoKey)
+	//sess.ClosePath(0)
 
-	//Récupération des des clés once obiet et id du serveur pour les envoyés au relay
-	dataMigration.Once, dataMigration.Obit, dataMigration.Id = sess.GetCryptoSetup().GetOncesObitID()
+	dataMigration.FileName = strings.Trim(string(filename), ":")
+
+	if err != nil {
+		log.Fatalf("loadDerivedKeys: %s", err)
+	}
+	//time.Sleep(10 * time.Second)
 	//send to the first server relay
-	SendRelayData(AddrServer[0], dataMigration)
+	for {
+		if sess.GetLenPaths() == 2 {
+			break
+		}
+	}
+	lines, err := loadDerivedKeys("/derivateK.in.json")
+	dataMigration.CrytoKey = lines
+
+	SendRelayData(AddrServer[0], dataMigration, sess)
+	//dataMigration.StartAt = int64(1700000)
+	//SendRelayData(AddrServer[1], dataMigration, sess)
+	//sess.ClosePath(0)
+	//	sess.AdvertiseAddress(AddrServer[0])
+
+	//time.Sleep(2 * time.Second)
 
 	/*time.Sleep(10 * time.Second)
 	send to the second server relay
 	sendRelayData(addrServer[1], filename1+".pt2", ipadd, newBytes)
 	*/
 
-	fmt.Printf("\n %+v \n ", dataMigration)
+	fmt.Println("la taille du path", sess.GetLenPaths())
+
 }
 
-func SendRelayData(relayaddr string, dataMigration config.DataMigration) {
+func SendRelayData(relayaddr string, dataMigration config.DataMigration, sess quic.Session) {
+
+	dataMigration.IpAddr = fmt.Sprintf("%v", sess.RemoteAddrById(1))
+
+	dataMigration.Once, dataMigration.Obit, dataMigration.Id = sess.GetCryptoSetup().GetOncesObitID()
 
 	sessServer, err := quic.DialAddr(relayaddr, &tls.Config{InsecureSkipVerify: true}, config.QuicConfig)
 	utils.HandleError(err)
@@ -86,15 +105,20 @@ func SendRelayData(relayaddr string, dataMigration config.DataMigration) {
 	fmt.Println("stream created...")
 	fmt.Println("Client connected")
 
-	if verifyOrder(sessServer, dataMigration.CrytoKey[2]) == true {
-		dataMigration.CrytoKey[0], dataMigration.CrytoKey[2] = inverseByte(dataMigration.CrytoKey[0], dataMigration.CrytoKey[2])
-		dataMigration.CrytoKey[1], dataMigration.CrytoKey[3] = inverseByte(dataMigration.CrytoKey[1], dataMigration.CrytoKey[3])
+	if verifyOrder(sess, dataMigration.CrytoKey[2]) != true {
+		fmt.Println("False in verification")
+		dataMigration.CrytoKey[0], dataMigration.CrytoKey[1] = inverseByte(dataMigration.CrytoKey[0], dataMigration.CrytoKey[1])
+		dataMigration.CrytoKey[2], dataMigration.CrytoKey[3] = inverseByte(dataMigration.CrytoKey[2], dataMigration.CrytoKey[3])
 	}
+
 	dataByte, err := json.Marshal(dataMigration)
 	if err != nil {
 		log.Fatal(err)
 	}
+
 	streamServer.Write([]byte(utils.FillString(string(dataByte), 1000)))
+	fmt.Println("%+v", dataMigration)
+
 }
 func verifyOrder(sess quic.Session, otherIV []byte) bool {
 	forw, _, _ := sess.GetCryptoSetup().GetAEADs()
@@ -102,23 +126,43 @@ func verifyOrder(sess quic.Session, otherIV []byte) bool {
 		return true
 	}
 	return false
+
 }
 func inverseByte(first, second []byte) ([]byte, []byte) {
 	return second, first
 }
-func readLines(path string) ([]string, error) {
-	file, err := os.Open(path)
+
+// writeLines writes the lines to the given file.
+func saveDerivedKeys(data [][]byte, path string) error {
+	file, err := os.Create(path)
 	if err != nil {
-		return nil, err
+		return err
 	}
 	defer file.Close()
 
-	var lines []string
-	scanner := bufio.NewScanner(file)
-	for scanner.Scan() {
-		lines = append(lines, scanner.Text())
+	// Parcourt le tableau et écrit chaque élément dans le fichier
+	dataByte, err := json.Marshal(data)
+	if err != nil {
+		log.Fatal(err)
 	}
-	return lines, scanner.Err()
+	_, err = file.Write(dataByte)
+
+	return err
+}
+
+func loadDerivedKeys(path string) ([][]byte, error) {
+	datas, err := ioutil.ReadFile(path)
+	if err != nil {
+		return nil, err
+	}
+	//defer datas.Close()
+
+	// Sépare le fichier en lignes
+	var derivedKeys [][]byte
+	json.Unmarshal(datas, &derivedKeys)
+
+	fmt.Printf("%v\n", derivedKeys)
+	return derivedKeys, nil
 }
 func stringTobytes(line string) []byte {
 	return []byte(line)
@@ -128,10 +172,22 @@ func stringTobytes2(tab []string) [][]byte {
 	for _, mybte := range tab {
 		s = append(s, stringTobytes(mybte))
 	}
-
+	fmt.Println(s)
 	return s
 }
-
+func convertStringSliceToByteSliceSlice(s []string) [][]byte {
+	var result [][]byte
+	for _, str := range s {
+		var bytes []byte
+		for _, r := range []rune(str) {
+			buf := make([]byte, utf8.RuneLen(r))
+			utf8.EncodeRune(buf, r)
+			bytes = append(bytes, buf...)
+		}
+		result = append(result, bytes)
+	}
+	return result
+}
 func Hasher(filename string) string {
 	file, err := os.Open(filename)
 	if err != nil {

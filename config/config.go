@@ -6,7 +6,7 @@ import (
 
 // BUFFERSIZE is the
 // size of max packet size
-const BUFFERSIZE = 5
+const BUFFERSIZE = 5000
 
 // PORT the default port for communication
 const PORT = "4242"
@@ -15,8 +15,17 @@ const PORT = "4242"
 const Addr = "0.0.0.0:" + PORT
 const Threshold = 5 * 1024 // 1KB
 var QuicConfig = &quic.Config{
-	CreatePaths: false,
+	CreatePaths: true,
+	//	CacheHandshake: true,
+	//IdleTimeout:      10000 * time.Hour,
+	//HandshakeTimeout: 10000 * time.Hour,
 }
+
+//var QuicConfigServer = &quic.Config{
+//	CreatePaths:    true,
+//	CacheHandshake: false,
+//	IdleTimeout:    10000 * time.Hour,
+//}
 
 type DataMigration struct {
 	CrytoKey     [][]byte

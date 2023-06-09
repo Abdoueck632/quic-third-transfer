@@ -1,0 +1,6 @@
+Saving file to:  ./storage-server/
+Attaching to:  0.0.0.0:4242
+2023/03/30 16:47:28 Created pconn_manager, any on [::]:4242
+2023/03/30 16:47:28 Listening for udp connections on [::]:4242
+Server started! Waiting for streams from client...
+signal: interrupt

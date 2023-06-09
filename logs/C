@@ -1,0 +1,1749 @@
+Saving file to:  ./download
+Attaching to:  0.0.0.0:4242
+2023/05/17 17:53:47 Created pconn_manager, any on [::]:43077
+2023/05/17 17:53:47 Starting new connection to 10.0.0.2 ([::]:43077 -> 10.0.0.2:4242), connectionID 3dc6f636f8281bf5, version 512
+2023/05/17 17:53:47 Sending CHLO:
+	SNI : "10.0.0.2"
+	VER : "Q512"
+	CCS : "\x01\xe8\x81`\x92\x92\x1a\xe8~퀆\xa2\x15\x82\x91"
+	MSPC: "d\x00\x00\x00"
+	PDMD: "X509"
+	ICSL: "\x00Q%\x02"
+	MIDS: "d\x00\x00\x00"
+	CFCW: "\x00\xc0\x00\x00"
+	SFCW: "\x00\x80\x00\x00"
+	PAD : (900 bytes)
+2023/05/17 17:53:47 -> Sending packet 0x1 (1069 bytes) for connection 3dc6f636f8281bf5 on path 0, unencrypted
+2023/05/17 17:53:47 	-> &wire.StreamFrame{StreamID: 1, FinBit: false, Offset: 0x0, Data length: 0x410, Offset + Data length: 0x410}
+2023/05/17 17:53:47 Created pconn on 10.0.3.2:59387
+2023/05/17 17:53:47 <- Reading packet 0x1 (29 bytes) for connection 3dc6f636f8281bf5 on path 0, unencrypted
+2023/05/17 17:53:47 	<- &wire.AckFrame{PathID: 0x0, LargestAcked: 0x1, LowestAcked: 0x1, AckRanges: []wire.AckRange(nil), DelayTime: 42µs}
+2023/05/17 17:53:47 -> Sending packet 0x2 (36 bytes) for connection 3dc6f636f8281bf5 on path 0, unencrypted
+2023/05/17 17:53:47 	-> &wire.StopWaitingFrame{LeastUnacked: 0x2, PacketNumberLen: 0x2}
+2023/05/17 17:53:47 	-> &wire.AckFrame{PathID: 0x0, LargestAcked: 0x1, LowestAcked: 0x1, AckRanges: []wire.AckRange(nil), DelayTime: 44.581µs}
+2023/05/17 17:53:47 <- Reading packet 0x2 (254 bytes) for connection 3dc6f636f8281bf5 on path 0, unencrypted
+2023/05/17 17:53:47 	<- &wire.StreamFrame{StreamID: 1, FinBit: false, Offset: 0x0, Data length: 0xe5, Offset + Data length: 0xe5}
+2023/05/17 17:53:47 Got REJ :
+	STK : "\xb1\x99^\x8côDVKo\xad\xa3\x99\xdb\xff\x8dbi\xfc\x1f\xf4߳\xddcR\x16\x12\x11\xf9,\x90_O\xcbH\xa3\x1c\xc5]\xfe\xderF3h\xd6G\x94\xd4~\xc4\x03zݧA\"\x11"
+	SVID: "quic-go"
+	SCFG: "SCFG\x06\x00\x00\x00AEAD\x04\x00\x00\x00SCID\x14\x00\x00\x00PUBS7\x00\x00\x00KEXS;\x00\x00\x00OBITC\x00\x00\x00EXPYK\x00\x00\x00AESG\x00\xc80\"ls\xd5Q0\a\v\xef\x10\xae\xf6\xb5 \x00\x00䣑\x17gM:\xf3\xc2\t\x04q\xe2OP\x10i\xb2\xeb?n'\x1e\x04fC\xac\xa0od@DC255\xafs\rN,\xdf|\xa7\xff\xff\xff\xff\xff\xff\xff\xff"
+2023/05/17 17:53:47 Sending CHLO:
+	SNI : "10.0.0.2"
+	STK : "\xb1\x99^\x8côDVKo\xad\xa3\x99\xdb\xff\x8dbi\xfc\x1f\xf4߳\xddcR\x16\x12\x11\xf9,\x90_O\xcbH\xa3\x1c\xc5]\xfe\xderF3h\xd6G\x94\xd4~\xc4\x03zݧA\"\x11"
+	VER : "Q512"
+	CCS : "\x01\xe8\x81`\x92\x92\x1a\xe8~퀆\xa2\x15\x82\x91"
+	MSPC: "d\x00\x00\x00"
+	SCID: "\x00\xc80\"ls\xd5Q0\a\v\xef\x10\xae\xf6\xb5"
+	PDMD: "X509"
+	ICSL: "\x00Q%\x02"
+	MIDS: "d\x00\x00\x00"
+	CFCW: "\x00\xc0\x00\x00"
+	SFCW: "\x00\x80\x00\x00"
+	PAD : (809 bytes)
+2023/05/17 17:53:47 -> Sending packet 0x3 (1071 bytes) for connection 3dc6f636f8281bf5 on path 0, unencrypted
+2023/05/17 17:53:47 	-> &wire.StreamFrame{StreamID: 1, FinBit: false, Offset: 0x410, Data length: 0x410, Offset + Data length: 0x820}
+2023/05/17 17:53:47 <- Reading packet 0x3 (29 bytes) for connection 3dc6f636f8281bf5 on path 0, unencrypted
+2023/05/17 17:53:47 	<- &wire.AckFrame{PathID: 0x0, LargestAcked: 0x3, LowestAcked: 0x2, AckRanges: []wire.AckRange(nil), DelayTime: 19µs}
+2023/05/17 17:53:47 <- Reading packet 0x4 (760 bytes) for connection 3dc6f636f8281bf5 on path 0, unencrypted
+2023/05/17 17:53:47 	<- &wire.StreamFrame{StreamID: 1, FinBit: false, Offset: 0xe5, Data length: 0x2dd, Offset + Data length: 0x3c2}
+2023/05/17 17:53:47 -> Sending packet 0x4 (36 bytes) for connection 3dc6f636f8281bf5 on path 0, unencrypted
+2023/05/17 17:53:47 	-> &wire.StopWaitingFrame{LeastUnacked: 0x4, PacketNumberLen: 0x2}
+2023/05/17 17:53:47 	-> &wire.AckFrame{PathID: 0x0, LargestAcked: 0x4, LowestAcked: 0x1, AckRanges: []wire.AckRange(nil), DelayTime: 23.324µs}
+2023/05/17 17:53:47 Got REJ :
+	STK : "#=\xb0\xeav\xf4~[\xa3\x06p\xd2\xeb\x118ۗ\x9eG`\x9f\xb8\x8f\x11?\x9d \x8d\xf7\x93>\xbdvu\n\xf2B\xea\xf9f3X\x0fp\x9b\xc1\xbbo\xdf\xd0\x068\x93\x82\x97\u074c\xb1\xc4"
+	SVID: "quic-go"
+	PROF: "T\xd5\xe1\xec\xc0sB\x91noF\x17\x1b}P\x9a\x0e\xe1\x96Ӥ:\x10\x0e\x1d\x99;\xc0\xf8Ŗ>`ʄ\x90\x8f\x88\xe9a\x17k\xaa87\xf7\x9f\x01\x8f\xd19ȱ\xb9\xa0!\a\v\xdeb\x0e\x9fa\x8b!@\xeatNe$\x93\xf0\x19o\xaff\xa7\xfa\xffyπ\xb9h\x80\xe6/\x1d\xa4\xec\x1c\x8e\xbd|\xbb!U\x8f\n\x89\x00\xf5E!\x8d\xbb\x89\x8f\x0fPG\x1d\xb1\xe7C0\xd4_e\x81\x9d\x97\x1c\x86\x9e\xab\xc5"
+	SCFG: "SCFG\x06\x00\x00\x00AEAD\x04\x00\x00\x00SCID\x14\x00\x00\x00PUBS7\x00\x00\x00KEXS;\x00\x00\x00OBITC\x00\x00\x00EXPYK\x00\x00\x00AESG\x00\xc80\"ls\xd5Q0\a\v\xef\x10\xae\xf6\xb5 \x00\x00䣑\x17gM:\xf3\xc2\t\x04q\xe2OP\x10i\xb2\xeb?n'\x1e\x04fC\xac\xa0od@DC255\xafs\rN,\xdf|\xa7\xff\xff\xff\xff\xff\xff\xff\xff"
+	CRT�: "\x01\x00\x7f\x01\x00\x00x\xf9\"Q~\xb1\xaafd\x00\x95\\\xe5\x06\x8d\x0f\x17031211\xa2\x14Cܬ\f\x06\f\x06J\x12\xfc\x06\x06\x06\x86`\b\xc9\x03\x18\x02\x06\f\x06\x8d\xf3ы\xc5\xc6^\x06\x83\xc6N\xa6\xc6F\x86\xa5\xccw\x1eN\x92\xdb:\x91\xcfk\x89\xdc2c\xd3/|\x1d\xdaVb\x1e\xea\xa1\xee\r\xab\xa6+0\xab_\xe3εe\xba\xb9~\xe5\xd27\xbf\xcd\xff\x1b\xbb\xaaqj\xb6\xfdR\xd1\xe9y\xb5bۉߊ\xfb\x0e\v<s\x92\xba\xb5p\x8e\xfb\xe7<\x8d\xe0\x1bK\xb4Rg\xfb\n\xbfc\xab\xf7ʺ\xd7c\x9b\xb0:\xd9\x7f\xd3\xcdK\xae\xc1!\xbe\xbfom\xfbX\xb2\xabYe_\xfb\xe7#\xeb\xdf\xe7\xfa\xfb\xff\x9e,\xa8\xd3,x\xacv\xba\xe5a&fF\x06t\x8f1762\x14\x8b\x97\xb8p1y\xcc>\x90\xfc`\xea\x12\xd1\x7fS\x18\x97\u07fcj\xbc\xcbI=\xc0/a\"\xdf\x7f\xad\x93\xff\xd3\xc26\xa9Ī\xcf=T\x1b7\xa9\xf0\xf4\xa3\xb7\xc1\x86^Y\x067\xb6\x99\xe5>\x89z\x9bX\xd4\xd52g\xe9w\xe6IQJ\x93\xfeh\xe4\xff\xfd\xf0ByǼ\x12\xfd\xa4\xd5W\x944%\x8fN\x9e\xb0\xbc\xe9x\xf7g\x85֪\x8e\xeb\xd7\xdex\xacz\xe5\xfc\xeb\xf7\xe5ǧN\xdf/\xcb\xe9\x9b\xce\xeb\xa0u\x9e/\xe0\\\xdbm@\x00\x00\x00\xff\xff\xd1(\x9a'"
+2023/05/17 17:53:47 Sending CHLO:
+	SNI : "10.0.0.2"
+	STK : "#=\xb0\xeav\xf4~[\xa3\x06p\xd2\xeb\x118ۗ\x9eG`\x9f\xb8\x8f\x11?\x9d \x8d\xf7\x93>\xbdvu\n\xf2B\xea\xf9f3X\x0fp\x9b\xc1\xbbo\xdf\xd0\x068\x93\x82\x97\u074c\xb1\xc4"
+	VER : "Q512"
+	CCS : "\x01\xe8\x81`\x92\x92\x1a\xe8~퀆\xa2\x15\x82\x91"
+	NONC: "dd\xf8\x8b\xafs\rN,\xdf|\xa7^\xe5w\x1a\xaa\xd0>\xdc\xf7H\xe61\xe5*\xccHq\xb9H\xb6"
+	MSPC: "d\x00\x00\x00"
+	AEAD: "AESG"
+	SCID: "\x00\xc80\"ls\xd5Q0\a\v\xef\x10\xae\xf6\xb5"
+	PDMD: "X509"
+	ICSL: "\x00Q%\x02"
+	PUBS: "䣑\x17gM:\xf3\xc2\t\x04q\xe2OP\x10i\xb2\xeb?n'\x1e\x04fC\xac\xa0od@D"
+	MIDS: "d\x00\x00\x00"
+	KEXS: "C255"
+	XLCT: "\xb3\x94\x8d \xcf\x1b\xa5v"
+	CFCW: "\x00\xc0\x00\x00"
+	SFCW: "\x00\x80\x00\x00"
+	PAD : (689 bytes)
+2023/05/17 17:53:47 -> Sending packet 0x5 (1071 bytes) for connection 3dc6f636f8281bf5 on path 0, unencrypted
+2023/05/17 17:53:47 	-> &wire.StreamFrame{StreamID: 1, FinBit: false, Offset: 0x820, Data length: 0x410, Offset + Data length: 0xc30}
+2023/05/17 17:53:47 <- Reading packet 0x5 (32 bytes) for connection 3dc6f636f8281bf5 on path 0, unencrypted
+2023/05/17 17:53:47 	<- &wire.StopWaitingFrame{LeastUnacked: 0x5}
+2023/05/17 17:53:47 	<- &wire.AckFrame{PathID: 0x0, LargestAcked: 0x5, LowestAcked: 0x4, AckRanges: []wire.AckRange(nil), DelayTime: 12µs}
+2023/05/17 17:53:47 <- Reading packet 0x6 (231 bytes) for connection 3dc6f636f8281bf5 on path 0
+2023/05/17 17:53:47 Queueing packet 0x6 for later decryption
+2023/05/17 17:53:47 <- Reading packet 0x6 (231 bytes) for connection 3dc6f636f8281bf5 on path 0, encrypted (not forward-secure)
+2023/05/17 17:53:47 	<- &wire.StreamFrame{StreamID: 1, FinBit: false, Offset: 0x3c2, Data length: 0xac, Offset + Data length: 0x46e}
+2023/05/17 17:53:47 -> Sending packet 0x6 (36 bytes) for connection 3dc6f636f8281bf5 on path 0, encrypted (not forward-secure)
+2023/05/17 17:53:47 	-> &wire.StopWaitingFrame{LeastUnacked: 0x6, PacketNumberLen: 0x2}
+2023/05/17 17:53:47 	-> &wire.AckFrame{PathID: 0x0, LargestAcked: 0x6, LowestAcked: 0x5, AckRanges: []wire.AckRange(nil), DelayTime: 10.331µs}
+2023/05/17 17:53:47 Got SHLO:
+	SNO : "?,\xfc\x8ex31\x1d\xa0\xc4\xec0\xf3E=\xd6\x0fX\xaf\xb3\xa4\x8e\xd0ܳՉ\x04\x02\r\x1c\xfe"
+	VER : "Q512Q039Q038Q037"
+	MSPC: "d\x00\x00\x00"
+	ICSL: "\x00Q%\x02"
+	PUBS: "䣑\x17gM:\xf3\xc2\t\x04q\xe2OP\x10i\xb2\xeb?n'\x1e\x04fC\xac\xa0od@D"
+	MIDS: "d\x00\x00\x00"
+	CFCW: "\x00\xc0\x00\x00"
+	SFCW: "\x00\x80\x00\x00"
+2023/05/17 17:53:47 Path manager tries to create paths
+A server has connected!
+2023/05/17 17:53:47 Created path 1 on 10.0.3.2:59387 to 10.0.0.2:4242
+2023/05/17 17:53:47 -> Sending packet 0x1 (25 bytes) for connection 3dc6f636f8281bf5 on path 1, forward-secure
+2023/05/17 17:53:47 	-> &wire.PingFrame{}
+2023/05/17 17:53:47 Path manager tries to create paths
+2023/05/17 17:53:47 -> Sending packet 0x2 (99 bytes) for connection 3dc6f636f8281bf5 on path 1, forward-secure
+2023/05/17 17:53:47 	-> &wire.PathsFrame{MaxNumPaths:0xff, NumPaths:0x2, PathIDs:[]protocol.PathID{0x0, 0x1}, RemoteRTTs:[]time.Duration{1832000, 0}}
+2023/05/17 17:53:47 	-> &wire.StreamFrame{StreamID: 3, FinBit: false, Offset: 0x0, Data length: 0x40, Offset + Data length: 0x40}
+Sending filename to the server! with filename  groot.jpg:::::::::::::::::::::::::::::::::::::::::::::::::::::::
+Connected to server, start receiving the file name and file size
+2023/05/17 17:53:47 -> Sending packet 0x3 (33 bytes) for connection 3dc6f636f8281bf5 on path 1, forward-secure
+2023/05/17 17:53:47 	-> &wire.PathsFrame{MaxNumPaths:0xff, NumPaths:0x2, PathIDs:[]protocol.PathID{0x0, 0x1}, RemoteRTTs:[]time.Duration{1832000, 0}}
+2023/05/17 17:53:47 <- Reading packet 0x1 (30 bytes) for connection 3dc6f636f8281bf5 on path 0, forward-secure
+2023/05/17 17:53:47 	<- &wire.AckFrame{PathID: 0x1, LargestAcked: 0x1, LowestAcked: 0x1, AckRanges: []wire.AckRange(nil), DelayTime: 18µs}
+2023/05/17 17:53:47 <- Reading packet 0x2 (34 bytes) for connection 3dc6f636f8281bf5 on path 1, forward-secure
+2023/05/17 17:53:47 	<- &wire.AckFrame{PathID: 0x1, LargestAcked: 0x3, LowestAcked: 0x1, AckRanges: []wire.AckRange{wire.AckRange{First:0x3, Last:0x3}, wire.AckRange{First:0x1, Last:0x1}}, DelayTime: 33µs}
+2023/05/17 17:53:47 	Dequeueing retransmission of packet 0x2 from path 1
+2023/05/17 17:53:47 -> Sending packet 0x4 (109 bytes) for connection 3dc6f636f8281bf5 on path 1, forward-secure
+2023/05/17 17:53:47 	-> &wire.StopWaitingFrame{LeastUnacked: 0x4, PacketNumberLen: 0x2}
+2023/05/17 17:53:47 	-> &wire.AckFrame{PathID: 0x1, LargestAcked: 0x2, LowestAcked: 0x2, AckRanges: []wire.AckRange(nil), DelayTime: 25.05µs}
+2023/05/17 17:53:47 	-> &wire.PathsFrame{MaxNumPaths:0xff, NumPaths:0x2, PathIDs:[]protocol.PathID{0x1, 0x0}, RemoteRTTs:[]time.Duration{1838838, 1838838}}
+2023/05/17 17:53:47 	-> &wire.StreamFrame{StreamID: 3, FinBit: false, Offset: 0x0, Data length: 0x40, Offset + Data length: 0x40}
+2023/05/17 17:53:47 <- Reading packet 0x3 (31 bytes) for connection 3dc6f636f8281bf5 on path 1, forward-secure
+2023/05/17 17:53:47 	<- &wire.AckFrame{PathID: 0x1, LargestAcked: 0x3, LowestAcked: 0x1, AckRanges: []wire.AckRange(nil), DelayTime: 150µs}
+2023/05/17 17:53:47 Created remote path 2 on 10.0.3.2:59387 to 10.0.2.2:4242
+2023/05/17 17:53:47 <- Reading packet 0x2 (36 bytes) for connection 3dc6f636f8281bf5 on path 2, forward-secure
+2023/05/17 17:53:47 	<- &wire.StreamFrame{StreamID: 3, FinBit: false, Offset: 0x0, Data length: 0xa, Offset + Data length: 0xa}
+2023/05/17 17:53:47 -> Sending packet 0x1 (31 bytes) for connection 3dc6f636f8281bf5 on path 2, forward-secure
+2023/05/17 17:53:47 	-> &wire.AckFrame{PathID: 0x2, LargestAcked: 0x2, LowestAcked: 0x2, AckRanges: []wire.AckRange(nil), DelayTime: 57.588µs}
+2023/05/17 17:53:47 	Dequeueing retransmission of packet 0x4 from path 1
+2023/05/17 17:53:47 -> Sending packet 0x5 (105 bytes) for connection 3dc6f636f8281bf5 on path 1, forward-secure
+2023/05/17 17:53:47 	-> &wire.StopWaitingFrame{LeastUnacked: 0x5, PacketNumberLen: 0x2}
+2023/05/17 17:53:47 	-> &wire.PathsFrame{MaxNumPaths:0xff, NumPaths:0x3, PathIDs:[]protocol.PathID{0x0, 0x1, 0x2}, RemoteRTTs:[]time.Duration{1838838, 1838838, 0}}
+2023/05/17 17:53:47 	-> &wire.StreamFrame{StreamID: 3, FinBit: false, Offset: 0x0, Data length: 0x40, Offset + Data length: 0x40}
+2023/05/17 17:53:47 <- Reading packet 0x1 (25 bytes) for connection 3dc6f636f8281bf5 on path 2, forward-secure
+2023/05/17 17:53:47 	<- &wire.PingFrame{}
+2023/05/17 17:53:47 -> Sending packet 0x2 (31 bytes) for connection 3dc6f636f8281bf5 on path 2, forward-secure
+2023/05/17 17:53:47 	-> &wire.AckFrame{PathID: 0x2, LargestAcked: 0x2, LowestAcked: 0x1, AckRanges: []wire.AckRange(nil), DelayTime: 393.547µs}
+2023/05/17 17:53:47 <- Reading packet 0x4 (1028 bytes) for connection 3dc6f636f8281bf5 on path 2, forward-secure
+2023/05/17 17:53:47 	<- &wire.StreamFrame{StreamID: 3, FinBit: false, Offset: 0x4a, Data length: 0x3e8, Offset + Data length: 0x432}
+2023/05/17 17:53:47 -> Sending packet 0x3 (34 bytes) for connection 3dc6f636f8281bf5 on path 2, forward-secure
+2023/05/17 17:53:47 	-> &wire.AckFrame{PathID: 0x2, LargestAcked: 0x4, LowestAcked: 0x1, AckRanges: []wire.AckRange{wire.AckRange{First:0x4, Last:0x4}, wire.AckRange{First:0x1, Last:0x2}}, DelayTime: 26.067µs}
+2023/05/17 17:53:47 <- Reading packet 0x3 (92 bytes) for connection 3dc6f636f8281bf5 on path 2, forward-secure
+2023/05/17 17:53:47 	<- &wire.StreamFrame{StreamID: 3, FinBit: false, Offset: 0xa, Data length: 0x40, Offset + Data length: 0x4a}
+2023/05/17 17:53:47 -> Sending packet 0x4 (31 bytes) for connection 3dc6f636f8281bf5 on path 2, forward-secure
+2023/05/17 17:53:47 	-> &wire.AckFrame{PathID: 0x2, LargestAcked: 0x4, LowestAcked: 0x1, AckRanges: []wire.AckRange(nil), DelayTime: 108.395µs}
+2023/05/17 17:53:47 <- Reading packet 0x5 (1028 bytes) for connection 3dc6f636f8281bf5 on path 2, forward-secure
+2023/05/17 17:53:47 	<- &wire.StreamFrame{StreamID: 3, FinBit: false, Offset: 0x432, Data length: 0x3e8, Offset + Data length: 0x81a}
+file size received:  3562600
+file name received:  groot.jpg
+2023/05/17 17:53:47 <- Reading packet 0x6 (712 bytes) for connection 3dc6f636f8281bf5 on path 2, forward-secure
+2023/05/17 17:53:47 	<- &wire.StreamFrame{StreamID: 3, FinBit: false, Offset: 0x956, Data length: 0x2ac, Offset + Data length: 0xc02}
+2023/05/17 17:53:47 -> Sending packet 0x5 (31 bytes) for connection 3dc6f636f8281bf5 on path 2, forward-secure
+2023/05/17 17:53:47 	-> &wire.AckFrame{PathID: 0x2, LargestAcked: 0x6, LowestAcked: 0x1, AckRanges: []wire.AckRange(nil), DelayTime: 16.513µs}
+[2KReceived: 1000 / 3562600 
+[2KReceived: 2000 / 3562600 
+2023/05/17 17:53:47 <- Reading packet 0xa (712 bytes) for connection 3dc6f636f8281bf5 on path 2, forward-secure
+2023/05/17 17:53:47 	<- &wire.StreamFrame{StreamID: 3, FinBit: false, Offset: 0x18f6, Data length: 0x2ac, Offset + Data length: 0x1ba2}
+2023/05/17 17:53:47 -> Sending packet 0x6 (34 bytes) for connection 3dc6f636f8281bf5 on path 2, forward-secure
+2023/05/17 17:53:47 	-> &wire.AckFrame{PathID: 0x2, LargestAcked: 0xa, LowestAcked: 0x1, AckRanges: []wire.AckRange{wire.AckRange{First:0xa, Last:0xa}, wire.AckRange{First:0x1, Last:0x6}}, DelayTime: 20.625µs}
+2023/05/17 17:53:47 <- Reading packet 0x7 (396 bytes) for connection 3dc6f636f8281bf5 on path 2, forward-secure
+2023/05/17 17:53:47 	<- &wire.StreamFrame{StreamID: 3, FinBit: false, Offset: 0xe7a, Data length: 0x170, Offset + Data length: 0xfea}
+2023/05/17 17:53:47 -> Sending packet 0x7 (34 bytes) for connection 3dc6f636f8281bf5 on path 2, forward-secure
+2023/05/17 17:53:47 	-> &wire.AckFrame{PathID: 0x2, LargestAcked: 0xa, LowestAcked: 0x1, AckRanges: []wire.AckRange{wire.AckRange{First:0xa, Last:0xa}, wire.AckRange{First:0x1, Last:0x7}}, DelayTime: 351.327µs}
+2023/05/17 17:53:47 <- Reading packet 0x8 (1028 bytes) for connection 3dc6f636f8281bf5 on path 2, forward-secure
+2023/05/17 17:53:47 	<- &wire.StreamFrame{StreamID: 3, FinBit: false, Offset: 0xfea, Data length: 0x3e8, Offset + Data length: 0x13d2}
+2023/05/17 17:53:47 -> Sending packet 0x8 (34 bytes) for connection 3dc6f636f8281bf5 on path 2, forward-secure
+2023/05/17 17:53:47 	-> &wire.AckFrame{PathID: 0x2, LargestAcked: 0xa, LowestAcked: 0x1, AckRanges: []wire.AckRange{wire.AckRange{First:0xa, Last:0xa}, wire.AckRange{First:0x1, Last:0x8}}, DelayTime: 430.784µs}
+2023/05/17 17:53:47 <- Reading packet 0x9 (1028 bytes) for connection 3dc6f636f8281bf5 on path 2, forward-secure
+2023/05/17 17:53:47 	<- &wire.StreamFrame{StreamID: 3, FinBit: false, Offset: 0x13d2, Data length: 0x3e8, Offset + Data length: 0x17ba}
+2023/05/17 17:53:47 -> Sending packet 0x9 (31 bytes) for connection 3dc6f636f8281bf5 on path 2, forward-secure
+2023/05/17 17:53:47 	-> &wire.AckFrame{PathID: 0x2, LargestAcked: 0xa, LowestAcked: 0x1, AckRanges: []wire.AckRange(nil), DelayTime: 666.478µs}
+2023/05/17 17:53:47 <- Reading packet 0xb (396 bytes) for connection 3dc6f636f8281bf5 on path 2, forward-secure
+2023/05/17 17:53:47 	<- &wire.StreamFrame{StreamID: 3, FinBit: false, Offset: 0x1e1a, Data length: 0x170, Offset + Data length: 0x1f8a}
+2023/05/17 17:53:47 <- Reading packet 0xc (80 bytes) for connection 3dc6f636f8281bf5 on path 2, forward-secure
+2023/05/17 17:53:47 	<- &wire.StreamFrame{StreamID: 3, FinBit: false, Offset: 0x233e, Data length: 0x34, Offset + Data length: 0x2372}
+2023/05/17 17:53:47 -> Sending packet 0xa (31 bytes) for connection 3dc6f636f8281bf5 on path 2, forward-secure
+2023/05/17 17:53:47 	-> &wire.AckFrame{PathID: 0x2, LargestAcked: 0xc, LowestAcked: 0x1, AckRanges: []wire.AckRange(nil), DelayTime: 26.4µs}
+2023/05/17 17:53:47 <- Reading packet 0xd (1028 bytes) for connection 3dc6f636f8281bf5 on path 2, forward-secure
+2023/05/17 17:53:47 	<- &wire.StreamFrame{StreamID: 3, FinBit: false, Offset: 0x2372, Data length: 0x3e8, Offset + Data length: 0x275a}
+2023/05/17 17:53:47 <- Reading packet 0xe (1028 bytes) for connection 3dc6f636f8281bf5 on path 2, forward-secure
+2023/05/17 17:53:47 	<- &wire.StreamFrame{StreamID: 3, FinBit: false, Offset: 0x275a, Data length: 0x3e8, Offset + Data length: 0x2b42}
+2023/05/17 17:53:47 -> Sending packet 0xb (31 bytes) for connection 3dc6f636f8281bf5 on path 2, forward-secure
+2023/05/17 17:53:47 	-> &wire.AckFrame{PathID: 0x2, LargestAcked: 0xe, LowestAcked: 0x1, AckRanges: []wire.AckRange(nil), DelayTime: 25.5µs}
+2023/05/17 17:53:47 <- Reading packet 0xf (712 bytes) for connection 3dc6f636f8281bf5 on path 2, forward-secure
+2023/05/17 17:53:47 	<- &wire.StreamFrame{StreamID: 3, FinBit: false, Offset: 0x2c7e, Data length: 0x2ac, Offset + Data length: 0x2f2a}
+2023/05/17 17:53:47 <- Reading packet 0x10 (396 bytes) for connection 3dc6f636f8281bf5 on path 2, forward-secure
+2023/05/17 17:53:47 	<- &wire.StreamFrame{StreamID: 3, FinBit: false, Offset: 0x31a2, Data length: 0x170, Offset + Data length: 0x3312}
+2023/05/17 17:53:47 -> Sending packet 0xc (31 bytes) for connection 3dc6f636f8281bf5 on path 2, forward-secure
+2023/05/17 17:53:47 	-> &wire.AckFrame{PathID: 0x2, LargestAcked: 0x10, LowestAcked: 0x1, AckRanges: []wire.AckRange(nil), DelayTime: 20.22µs}
+2023/05/17 17:53:47 <- Reading packet 0x11 (1028 bytes) for connection 3dc6f636f8281bf5 on path 2, forward-secure
+2023/05/17 17:53:47 	<- &wire.StreamFrame{StreamID: 3, FinBit: false, Offset: 0x3312, Data length: 0x3e8, Offset + Data length: 0x36fa}
+2023/05/17 17:53:47 <- Reading packet 0x20 (712 bytes) for connection 3dc6f636f8281bf5 on path 2, forward-secure
+2023/05/17 17:53:47 	<- &wire.StreamFrame{StreamID: 3, FinBit: false, Offset: 0x6ee6, Data length: 0x2ac, Offset + Data length: 0x7192}
+2023/05/17 17:53:47 -> Sending packet 0xd (34 bytes) for connection 3dc6f636f8281bf5 on path 2, forward-secure
+2023/05/17 17:53:47 	-> &wire.AckFrame{PathID: 0x2, LargestAcked: 0x20, LowestAcked: 0x1, AckRanges: []wire.AckRange{wire.AckRange{First:0x20, Last:0x20}, wire.AckRange{First:0x1, Last:0x11}}, DelayTime: 15.618µs}
+2023/05/17 17:53:47 <- Reading packet 0x12 (712 bytes) for connection 3dc6f636f8281bf5 on path 2, forward-secure
+2023/05/17 17:53:47 	<- &wire.StreamFrame{StreamID: 3, FinBit: false, Offset: 0x3836, Data length: 0x2ac, Offset + Data length: 0x3ae2}
+2023/05/17 17:53:47 -> Sending packet 0xe (34 bytes) for connection 3dc6f636f8281bf5 on path 2, forward-secure
+2023/05/17 17:53:47 	-> &wire.AckFrame{PathID: 0x2, LargestAcked: 0x20, LowestAcked: 0x1, AckRanges: []wire.AckRange{wire.AckRange{First:0x20, Last:0x20}, wire.AckRange{First:0x1, Last:0x12}}, DelayTime: 625.694µs}
+2023/05/17 17:53:47 <- Reading packet 0x21 (396 bytes) for connection 3dc6f636f8281bf5 on path 2, forward-secure
+2023/05/17 17:53:47 	<- &wire.StreamFrame{StreamID: 3, FinBit: false, Offset: 0x740a, Data length: 0x170, Offset + Data length: 0x757a}
+2023/05/17 17:53:47 <- Reading packet 0x13 (396 bytes) for connection 3dc6f636f8281bf5 on path 2, forward-secure
+2023/05/17 17:53:47 	<- &wire.StreamFrame{StreamID: 3, FinBit: false, Offset: 0x3d5a, Data length: 0x170, Offset + Data length: 0x3eca}
+2023/05/17 17:53:47 -> Sending packet 0xf (34 bytes) for connection 3dc6f636f8281bf5 on path 2, forward-secure
+2023/05/17 17:53:47 	-> &wire.AckFrame{PathID: 0x2, LargestAcked: 0x21, LowestAcked: 0x1, AckRanges: []wire.AckRange{wire.AckRange{First:0x20, Last:0x21}, wire.AckRange{First:0x1, Last:0x13}}, DelayTime: 411.783µs}
+2023/05/17 17:53:47 <- Reading packet 0x22 (80 bytes) for connection 3dc6f636f8281bf5 on path 2, forward-secure
+2023/05/17 17:53:47 	<- &wire.StreamFrame{StreamID: 3, FinBit: false, Offset: 0x792e, Data length: 0x34, Offset + Data length: 0x7962}
+2023/05/17 17:53:47 <- Reading packet 0x23 (1028 bytes) for connection 3dc6f636f8281bf5 on path 2, forward-secure
+2023/05/17 17:53:47 	<- &wire.StreamFrame{StreamID: 3, FinBit: false, Offset: 0x7962, Data length: 0x3e8, Offset + Data length: 0x7d4a}
+2023/05/17 17:53:47 -> Sending packet 0x10 (34 bytes) for connection 3dc6f636f8281bf5 on path 2, forward-secure
+2023/05/17 17:53:47 	-> &wire.AckFrame{PathID: 0x2, LargestAcked: 0x23, LowestAcked: 0x1, AckRanges: []wire.AckRange{wire.AckRange{First:0x20, Last:0x23}, wire.AckRange{First:0x1, Last:0x13}}, DelayTime: 13.057µs}
+2023/05/17 17:53:47 <- Reading packet 0x24 (722 bytes) for connection 3dc6f636f8281bf5 on path 2, forward-secure
+2023/05/17 17:53:47 	<- &wire.StreamFrame{StreamID: 3, FinBit: false, Offset: 0x7d4a, Data length: 0x2b6, Offset + Data length: 0x8000}
+2023/05/17 17:53:47 <- Reading packet 0x14 (80 bytes) for connection 3dc6f636f8281bf5 on path 2, forward-secure
+2023/05/17 17:53:47 	<- &wire.StreamFrame{StreamID: 3, FinBit: false, Offset: 0x427e, Data length: 0x34, Offset + Data length: 0x42b2}
+2023/05/17 17:53:47 -> Sending packet 0x11 (34 bytes) for connection 3dc6f636f8281bf5 on path 2, forward-secure
+2023/05/17 17:53:47 	-> &wire.AckFrame{PathID: 0x2, LargestAcked: 0x24, LowestAcked: 0x1, AckRanges: []wire.AckRange{wire.AckRange{First:0x20, Last:0x24}, wire.AckRange{First:0x1, Last:0x14}}, DelayTime: 580.155µs}
+2023/05/17 17:53:47 <- Reading packet 0x15 (1028 bytes) for connection 3dc6f636f8281bf5 on path 2, forward-secure
+2023/05/17 17:53:47 	<- &wire.StreamFrame{StreamID: 3, FinBit: false, Offset: 0x42b2, Data length: 0x3e8, Offset + Data length: 0x469a}
+2023/05/17 17:53:47 -> Sending packet 0x12 (34 bytes) for connection 3dc6f636f8281bf5 on path 2, forward-secure
+2023/05/17 17:53:47 	-> &wire.AckFrame{PathID: 0x2, LargestAcked: 0x24, LowestAcked: 0x1, AckRanges: []wire.AckRange{wire.AckRange{First:0x20, Last:0x24}, wire.AckRange{First:0x1, Last:0x15}}, DelayTime: 713.236µs}
+2023/05/17 17:53:47 <- Reading packet 0x16 (1028 bytes) for connection 3dc6f636f8281bf5 on path 2, forward-secure
+2023/05/17 17:53:47 	<- &wire.StreamFrame{StreamID: 3, FinBit: false, Offset: 0x469a, Data length: 0x3e8, Offset + Data length: 0x4a82}
+2023/05/17 17:53:47 -> Sending packet 0x13 (34 bytes) for connection 3dc6f636f8281bf5 on path 2, forward-secure
+2023/05/17 17:53:47 	-> &wire.AckFrame{PathID: 0x2, LargestAcked: 0x24, LowestAcked: 0x1, AckRanges: []wire.AckRange{wire.AckRange{First:0x20, Last:0x24}, wire.AckRange{First:0x1, Last:0x16}}, DelayTime: 1.695576ms}
+2023/05/17 17:53:47 	Dequeueing retransmission of packet 0x5 from path 1
+2023/05/17 17:53:47 -> Sending packet 0x6 (105 bytes) for connection 3dc6f636f8281bf5 on path 1, forward-secure
+2023/05/17 17:53:47 	-> &wire.StopWaitingFrame{LeastUnacked: 0x6, PacketNumberLen: 0x2}
+2023/05/17 17:53:47 	-> &wire.PathsFrame{MaxNumPaths:0xff, NumPaths:0x3, PathIDs:[]protocol.PathID{0x0, 0x1, 0x2}, RemoteRTTs:[]time.Duration{1838838, 1838838, 0}}
+2023/05/17 17:53:47 	-> &wire.StreamFrame{StreamID: 3, FinBit: false, Offset: 0x0, Data length: 0x40, Offset + Data length: 0x40}
+2023/05/17 17:53:47 <- Reading packet 0x17 (1028 bytes) for connection 3dc6f636f8281bf5 on path 2, forward-secure
+2023/05/17 17:53:47 	<- &wire.StreamFrame{StreamID: 3, FinBit: false, Offset: 0x4a82, Data length: 0x3e8, Offset + Data length: 0x4e6a}
+2023/05/17 17:53:47 -> Sending packet 0x14 (34 bytes) for connection 3dc6f636f8281bf5 on path 2, forward-secure
+2023/05/17 17:53:47 	-> &wire.AckFrame{PathID: 0x2, LargestAcked: 0x24, LowestAcked: 0x1, AckRanges: []wire.AckRange{wire.AckRange{First:0x20, Last:0x24}, wire.AckRange{First:0x1, Last:0x17}}, DelayTime: 2.554845ms}
+2023/05/17 17:53:47 <- Reading packet 0x18 (1028 bytes) for connection 3dc6f636f8281bf5 on path 2, forward-secure
+2023/05/17 17:53:47 	<- &wire.StreamFrame{StreamID: 3, FinBit: false, Offset: 0x4e6a, Data length: 0x3e8, Offset + Data length: 0x5252}
+2023/05/17 17:53:47 -> Sending packet 0x15 (34 bytes) for connection 3dc6f636f8281bf5 on path 2, forward-secure
+2023/05/17 17:53:47 	-> &wire.AckFrame{PathID: 0x2, LargestAcked: 0x24, LowestAcked: 0x1, AckRanges: []wire.AckRange{wire.AckRange{First:0x20, Last:0x24}, wire.AckRange{First:0x1, Last:0x18}}, DelayTime: 3.425037ms}
+2023/05/17 17:53:47 <- Reading packet 0x19 (712 bytes) for connection 3dc6f636f8281bf5 on path 2, forward-secure
+2023/05/17 17:53:47 	<- &wire.StreamFrame{StreamID: 3, FinBit: false, Offset: 0x538e, Data length: 0x2ac, Offset + Data length: 0x563a}
+2023/05/17 17:53:47 -> Sending packet 0x16 (34 bytes) for connection 3dc6f636f8281bf5 on path 2, forward-secure
+2023/05/17 17:53:47 	-> &wire.AckFrame{PathID: 0x2, LargestAcked: 0x24, LowestAcked: 0x1, AckRanges: []wire.AckRange{wire.AckRange{First:0x20, Last:0x24}, wire.AckRange{First:0x1, Last:0x19}}, DelayTime: 4.288448ms}
+2023/05/17 17:53:47 <- Reading packet 0x1a (1028 bytes) for connection 3dc6f636f8281bf5 on path 2, forward-secure
+2023/05/17 17:53:47 	<- &wire.StreamFrame{StreamID: 3, FinBit: false, Offset: 0x563a, Data length: 0x3e8, Offset + Data length: 0x5a22}
+2023/05/17 17:53:47 -> Sending packet 0x17 (34 bytes) for connection 3dc6f636f8281bf5 on path 2, forward-secure
+2023/05/17 17:53:47 	-> &wire.AckFrame{PathID: 0x2, LargestAcked: 0x24, LowestAcked: 0x1, AckRanges: []wire.AckRange{wire.AckRange{First:0x20, Last:0x24}, wire.AckRange{First:0x1, Last:0x1a}}, DelayTime: 4.855895ms}
+2023/05/17 17:53:47 <- Reading packet 0x1b (712 bytes) for connection 3dc6f636f8281bf5 on path 2, forward-secure
+2023/05/17 17:53:47 	<- &wire.StreamFrame{StreamID: 3, FinBit: false, Offset: 0x5b5e, Data length: 0x2ac, Offset + Data length: 0x5e0a}
+2023/05/17 17:53:47 -> Sending packet 0x18 (34 bytes) for connection 3dc6f636f8281bf5 on path 2, forward-secure
+2023/05/17 17:53:47 	-> &wire.AckFrame{PathID: 0x2, LargestAcked: 0x24, LowestAcked: 0x1, AckRanges: []wire.AckRange{wire.AckRange{First:0x20, Last:0x24}, wire.AckRange{First:0x1, Last:0x1b}}, DelayTime: 5.774782ms}
+2023/05/17 17:53:47 <- Reading packet 0x1c (1028 bytes) for connection 3dc6f636f8281bf5 on path 2, forward-secure
+2023/05/17 17:53:47 	<- &wire.StreamFrame{StreamID: 3, FinBit: false, Offset: 0x5e0a, Data length: 0x3e8, Offset + Data length: 0x61f2}
+2023/05/17 17:53:47 -> Sending packet 0x19 (34 bytes) for connection 3dc6f636f8281bf5 on path 2, forward-secure
+2023/05/17 17:53:47 	-> &wire.AckFrame{PathID: 0x2, LargestAcked: 0x24, LowestAcked: 0x1, AckRanges: []wire.AckRange{wire.AckRange{First:0x20, Last:0x24}, wire.AckRange{First:0x1, Last:0x1c}}, DelayTime: 6.311465ms}
+2023/05/17 17:53:47 <- Reading packet 0x1d (1028 bytes) for connection 3dc6f636f8281bf5 on path 2, forward-secure
+2023/05/17 17:53:47 	<- &wire.StreamFrame{StreamID: 3, FinBit: false, Offset: 0x61f2, Data length: 0x3e8, Offset + Data length: 0x65da}
+2023/05/17 17:53:47 -> Sending packet 0x1a (34 bytes) for connection 3dc6f636f8281bf5 on path 2, forward-secure
+2023/05/17 17:53:47 	-> &wire.AckFrame{PathID: 0x2, LargestAcked: 0x24, LowestAcked: 0x1, AckRanges: []wire.AckRange{wire.AckRange{First:0x20, Last:0x24}, wire.AckRange{First:0x1, Last:0x1d}}, DelayTime: 7.468397ms}
+2023/05/17 17:53:47 <- Reading packet 0x1e (1028 bytes) for connection 3dc6f636f8281bf5 on path 2, forward-secure
+2023/05/17 17:53:47 	<- &wire.StreamFrame{StreamID: 3, FinBit: false, Offset: 0x65da, Data length: 0x3e8, Offset + Data length: 0x69c2}
+2023/05/17 17:53:48 -> Sending packet 0x1b (34 bytes) for connection 3dc6f636f8281bf5 on path 2, forward-secure
+2023/05/17 17:53:48 	-> &wire.AckFrame{PathID: 0x2, LargestAcked: 0x24, LowestAcked: 0x1, AckRanges: []wire.AckRange{wire.AckRange{First:0x20, Last:0x24}, wire.AckRange{First:0x1, Last:0x1e}}, DelayTime: 8.009111ms}
+2023/05/17 17:53:48 <- Reading packet 0x1f (1028 bytes) for connection 3dc6f636f8281bf5 on path 2, forward-secure
+2023/05/17 17:53:48 	<- &wire.StreamFrame{StreamID: 3, FinBit: false, Offset: 0x69c2, Data length: 0x3e8, Offset + Data length: 0x6daa}
+2023/05/17 17:53:48 -> Sending packet 0x1c (31 bytes) for connection 3dc6f636f8281bf5 on path 2, forward-secure
+2023/05/17 17:53:48 	-> &wire.AckFrame{PathID: 0x2, LargestAcked: 0x24, LowestAcked: 0x1, AckRanges: []wire.AckRange(nil), DelayTime: 8.890067ms}
+2023/05/17 17:53:48 <- Reading packet 0x25 (34 bytes) for connection 3dc6f636f8281bf5 on path 2, forward-secure
+2023/05/17 17:53:48 	<- &wire.StopWaitingFrame{LeastUnacked: 0x5}
+2023/05/17 17:53:48 	<- &wire.AckFrame{PathID: 0x2, LargestAcked: 0x3, LowestAcked: 0x3, AckRanges: []wire.AckRange(nil), DelayTime: 39µs}
+2023/05/17 17:53:48 <- Reading packet 0x26 (34 bytes) for connection 3dc6f636f8281bf5 on path 2, forward-secure
+2023/05/17 17:53:48 	<- &wire.AckFrame{PathID: 0x2, LargestAcked: 0x3, LowestAcked: 0x1, AckRanges: []wire.AckRange{wire.AckRange{First:0x3, Last:0x3}, wire.AckRange{First:0x1, Last:0x1}}, DelayTime: 113µs}
+2023/05/17 17:53:48 <- Reading packet 0x27 (31 bytes) for connection 3dc6f636f8281bf5 on path 2, forward-secure
+2023/05/17 17:53:48 	<- &wire.AckFrame{PathID: 0x2, LargestAcked: 0x3, LowestAcked: 0x1, AckRanges: []wire.AckRange(nil), DelayTime: 171µs}
+2023/05/17 17:53:48 <- Reading packet 0x28 (1350 bytes) for connection 3dc6f636f8281bf5 on path 2, forward-secure
+2023/05/17 17:53:48 	<- &wire.StopWaitingFrame{LeastUnacked: 0x21}
+2023/05/17 17:53:48 	<- &wire.StreamFrame{StreamID: 3, FinBit: false, Offset: 0x3836, Data length: 0x2ac, Offset + Data length: 0x3ae2}
+2023/05/17 17:53:48 	<- &wire.StreamFrame{StreamID: 3, FinBit: false, Offset: 0x3d5a, Data length: 0x170, Offset + Data length: 0x3eca}
+2023/05/17 17:53:48 	<- &wire.StreamFrame{StreamID: 3, FinBit: false, Offset: 0x427e, Data length: 0x34, Offset + Data length: 0x42b2}
+2023/05/17 17:53:48 	<- &wire.StreamFrame{StreamID: 3, FinBit: false, Offset: 0x42b2, Data length: 0xc5, Offset + Data length: 0x4377}
+2023/05/17 17:53:48 <- Reading packet 0x29 (834 bytes) for connection 3dc6f636f8281bf5 on path 2, forward-secure
+2023/05/17 17:53:48 	<- &wire.StopWaitingFrame{LeastUnacked: 0x21}
+2023/05/17 17:53:48 	<- &wire.StreamFrame{StreamID: 3, FinBit: false, Offset: 0x4377, Data length: 0x323, Offset + Data length: 0x469a}
+2023/05/17 17:53:48 -> Sending packet 0x1d (34 bytes) for connection 3dc6f636f8281bf5 on path 2, forward-secure
+2023/05/17 17:53:48 	-> &wire.AckFrame{PathID: 0x2, LargestAcked: 0x29, LowestAcked: 0x21, AckRanges: []wire.AckRange(nil), DelayTime: 13.692µs}
+2023/05/17 17:53:48 	-> &wire.StopWaitingFrame{LeastUnacked: 0x4, PacketNumberLen: 0x2}
+2023/05/17 17:53:48 <- Reading packet 0x2a (1350 bytes) for connection 3dc6f636f8281bf5 on path 2, forward-secure
+2023/05/17 17:53:48 	<- &wire.StopWaitingFrame{LeastUnacked: 0x21}
+2023/05/17 17:53:48 	<- &wire.StreamFrame{StreamID: 3, FinBit: false, Offset: 0x469a, Data length: 0x3e8, Offset + Data length: 0x4a82}
+2023/05/17 17:53:48 	<- &wire.StreamFrame{StreamID: 3, FinBit: false, Offset: 0x4a82, Data length: 0x139, Offset + Data length: 0x4bbb}
+2023/05/17 17:53:48 <- Reading packet 0x2b (718 bytes) for connection 3dc6f636f8281bf5 on path 2, forward-secure
+2023/05/17 17:53:48 	<- &wire.StopWaitingFrame{LeastUnacked: 0x21}
+2023/05/17 17:53:48 	<- &wire.StreamFrame{StreamID: 3, FinBit: false, Offset: 0x4bbb, Data length: 0x2af, Offset + Data length: 0x4e6a}
+2023/05/17 17:53:48 -> Sending packet 0x1e (31 bytes) for connection 3dc6f636f8281bf5 on path 2, forward-secure
+2023/05/17 17:53:48 	-> &wire.AckFrame{PathID: 0x2, LargestAcked: 0x2b, LowestAcked: 0x21, AckRanges: []wire.AckRange(nil), DelayTime: 12.461µs}
+2023/05/17 17:53:48 <- Reading packet 0x2c (1350 bytes) for connection 3dc6f636f8281bf5 on path 2, forward-secure
+2023/05/17 17:53:48 	<- &wire.StopWaitingFrame{LeastUnacked: 0x22}
+2023/05/17 17:53:48 	<- &wire.StreamFrame{StreamID: 3, FinBit: false, Offset: 0x4e6a, Data length: 0x3e8, Offset + Data length: 0x5252}
+2023/05/17 17:53:48 	<- &wire.StreamFrame{StreamID: 3, FinBit: false, Offset: 0x538e, Data length: 0x139, Offset + Data length: 0x54c7}
+2023/05/17 17:53:48 <- Reading packet 0x2d (1350 bytes) for connection 3dc6f636f8281bf5 on path 2, forward-secure
+2023/05/17 17:53:48 	<- &wire.StopWaitingFrame{LeastUnacked: 0x22}
+2023/05/17 17:53:48 	<- &wire.StreamFrame{StreamID: 3, FinBit: false, Offset: 0x54c7, Data length: 0x173, Offset + Data length: 0x563a}
+2023/05/17 17:53:48 	<- &wire.StreamFrame{StreamID: 3, FinBit: false, Offset: 0x563a, Data length: 0x3ae, Offset + Data length: 0x59e8}
+2023/05/17 17:53:48 -> Sending packet 0x1f (31 bytes) for connection 3dc6f636f8281bf5 on path 2, forward-secure
+2023/05/17 17:53:48 	-> &wire.AckFrame{PathID: 0x2, LargestAcked: 0x2d, LowestAcked: 0x22, AckRanges: []wire.AckRange(nil), DelayTime: 17.126µs}
+2023/05/17 17:53:48 <- Reading packet 0x2e (89 bytes) for connection 3dc6f636f8281bf5 on path 2, forward-secure
+2023/05/17 17:53:48 	<- &wire.StopWaitingFrame{LeastUnacked: 0x22}
+2023/05/17 17:53:48 	<- &wire.StreamFrame{StreamID: 3, FinBit: false, Offset: 0x59e8, Data length: 0x3a, Offset + Data length: 0x5a22}
+2023/05/17 17:53:48 <- Reading packet 0x2f (1350 bytes) for connection 3dc6f636f8281bf5 on path 2, forward-secure
+2023/05/17 17:53:48 	<- &wire.StopWaitingFrame{LeastUnacked: 0x25}
+2023/05/17 17:53:48 	<- &wire.StreamFrame{StreamID: 3, FinBit: false, Offset: 0x5b5e, Data length: 0x2ac, Offset + Data length: 0x5e0a}
+2023/05/17 17:53:48 	<- &wire.StreamFrame{StreamID: 3, FinBit: false, Offset: 0x5e0a, Data length: 0x275, Offset + Data length: 0x607f}
+2023/05/17 17:53:48 -> Sending packet 0x20 (31 bytes) for connection 3dc6f636f8281bf5 on path 2, forward-secure
+2023/05/17 17:53:48 	-> &wire.AckFrame{PathID: 0x2, LargestAcked: 0x2f, LowestAcked: 0x25, AckRanges: []wire.AckRange(nil), DelayTime: 11.524µs}
+2023/05/17 17:53:48 <- Reading packet 0x30 (402 bytes) for connection 3dc6f636f8281bf5 on path 2, forward-secure
+2023/05/17 17:53:48 	<- &wire.StopWaitingFrame{LeastUnacked: 0x25}
+2023/05/17 17:53:48 	<- &wire.StreamFrame{StreamID: 3, FinBit: false, Offset: 0x607f, Data length: 0x173, Offset + Data length: 0x61f2}
+2023/05/17 17:53:48 <- Reading packet 0x31 (1350 bytes) for connection 3dc6f636f8281bf5 on path 2, forward-secure
+2023/05/17 17:53:48 	<- &wire.StopWaitingFrame{LeastUnacked: 0x25}
+2023/05/17 17:53:48 	<- &wire.StreamFrame{StreamID: 3, FinBit: false, Offset: 0x61f2, Data length: 0x3e8, Offset + Data length: 0x65da}
+2023/05/17 17:53:48 	<- &wire.StreamFrame{StreamID: 3, FinBit: false, Offset: 0x65da, Data length: 0x139, Offset + Data length: 0x6713}
+2023/05/17 17:53:48 -> Sending packet 0x21 (31 bytes) for connection 3dc6f636f8281bf5 on path 2, forward-secure
+2023/05/17 17:53:48 	-> &wire.AckFrame{PathID: 0x2, LargestAcked: 0x31, LowestAcked: 0x25, AckRanges: []wire.AckRange(nil), DelayTime: 37.486µs}
+2023/05/17 17:53:48 <- Reading packet 0x32 (718 bytes) for connection 3dc6f636f8281bf5 on path 2, forward-secure
+2023/05/17 17:53:48 	<- &wire.StopWaitingFrame{LeastUnacked: 0x25}
+2023/05/17 17:53:48 	<- &wire.StreamFrame{StreamID: 3, FinBit: false, Offset: 0x6713, Data length: 0x2af, Offset + Data length: 0x69c2}
+2023/05/17 17:53:48 <- Reading packet 0x33 (1031 bytes) for connection 3dc6f636f8281bf5 on path 2, forward-secure
+2023/05/17 17:53:48 	<- &wire.StopWaitingFrame{LeastUnacked: 0x25}
+2023/05/17 17:53:48 	<- &wire.StreamFrame{StreamID: 3, FinBit: false, Offset: 0x69c2, Data length: 0x3e8, Offset + Data length: 0x6daa}
+2023/05/17 17:53:48 -> Sending packet 0x22 (31 bytes) for connection 3dc6f636f8281bf5 on path 2, forward-secure
+2023/05/17 17:53:48 	-> &wire.AckFrame{PathID: 0x2, LargestAcked: 0x33, LowestAcked: 0x25, AckRanges: []wire.AckRange(nil), DelayTime: 14.43µs}
+2023/05/17 17:53:48 <- Reading packet 0x34 (34 bytes) for connection 3dc6f636f8281bf5 on path 2, forward-secure
+2023/05/17 17:53:48 	<- &wire.StopWaitingFrame{LeastUnacked: 0x2c}
+2023/05/17 17:53:48 	<- &wire.AckFrame{PathID: 0x2, LargestAcked: 0x1e, LowestAcked: 0x4, AckRanges: []wire.AckRange(nil), DelayTime: 32µs}
+2023/05/17 17:53:48 	Queueing packet 0x6 for retransmission (RTO), 1 outstanding
+2023/05/17 17:53:48 	Dequeueing retransmission of packet 0x6 from path 1
+2023/05/17 17:53:48 -> Sending packet 0x23 (106 bytes) for connection 3dc6f636f8281bf5 on path 2, forward-secure
+2023/05/17 17:53:48 	-> &wire.StopWaitingFrame{LeastUnacked: 0x1f, PacketNumberLen: 0x2}
+2023/05/17 17:53:48 	-> &wire.PingFrame{}
+2023/05/17 17:53:48 	-> &wire.PathsFrame{MaxNumPaths:0xff, NumPaths:0x3, PathIDs:[]protocol.PathID{0x0, 0x1, 0x2}, RemoteRTTs:[]time.Duration{1838838, 3600000000000, 0}}
+2023/05/17 17:53:48 	-> &wire.StreamFrame{StreamID: 3, FinBit: false, Offset: 0x0, Data length: 0x40, Offset + Data length: 0x40}
+2023/05/17 17:53:48 -> Sending packet 0x7 (25 bytes) for connection 3dc6f636f8281bf5 on path 1, forward-secure
+2023/05/17 17:53:48 	-> &wire.PingFrame{}
+2023/05/17 17:53:48 <- Reading packet 0x35 (737 bytes) for connection 3dc6f636f8281bf5 on path 2, forward-secure
+2023/05/17 17:53:48 	<- &wire.StopWaitingFrame{LeastUnacked: 0x34}
+2023/05/17 17:53:48 	<- &wire.AckFrame{PathID: 0x2, LargestAcked: 0x23, LowestAcked: 0x1f, AckRanges: []wire.AckRange(nil), DelayTime: 287.36ms}
+2023/05/17 17:53:48 	<- &wire.BlockedFrame{StreamID:0x3}
+2023/05/17 17:53:48 	<- &wire.StreamFrame{StreamID: 3, FinBit: false, Offset: 0x7d4a, Data length: 0x2b6, Offset + Data length: 0x8000}
+2023/05/17 17:53:48 -> Sending packet 0x8 (105 bytes) for connection 3dc6f636f8281bf5 on path 1, forward-secure
+2023/05/17 17:53:48 	-> &wire.StopWaitingFrame{LeastUnacked: 0x7, PacketNumberLen: 0x2}
+2023/05/17 17:53:48 	-> &wire.WindowUpdateFrame{StreamID:0x0, ByteOffset:0xc000}
+2023/05/17 17:53:48 	-> &wire.WindowUpdateFrame{StreamID:0x3, ByteOffset:0x8000}
+2023/05/17 17:53:48 	-> &wire.WindowUpdateFrame{StreamID:0x1, ByteOffset:0x8000}
+2023/05/17 17:53:48 	-> &wire.WindowUpdateFrame{StreamID:0x0, ByteOffset:0xc000}
+2023/05/17 17:53:48 	-> &wire.WindowUpdateFrame{StreamID:0x3, ByteOffset:0x8000}
+2023/05/17 17:53:48 	-> &wire.WindowUpdateFrame{StreamID:0x1, ByteOffset:0x8000}
+2023/05/17 17:53:48 -> Sending packet 0x24 (66 bytes) for connection 3dc6f636f8281bf5 on path 2, forward-secure
+2023/05/17 17:53:48 	-> &wire.StopWaitingFrame{LeastUnacked: 0x24, PacketNumberLen: 0x2}
+2023/05/17 17:53:48 	-> &wire.WindowUpdateFrame{StreamID:0x0, ByteOffset:0xc000}
+2023/05/17 17:53:48 	-> &wire.WindowUpdateFrame{StreamID:0x3, ByteOffset:0x8000}
+2023/05/17 17:53:48 	-> &wire.WindowUpdateFrame{StreamID:0x1, ByteOffset:0x8000}
+2023/05/17 17:53:48 	Dequeueing retransmission of packet 0x24 from path 2
+2023/05/17 17:53:48 -> Sending packet 0x25 (63 bytes) for connection 3dc6f636f8281bf5 on path 2, forward-secure
+2023/05/17 17:53:48 	-> &wire.WindowUpdateFrame{StreamID:0x1, ByteOffset:0x8000}
+2023/05/17 17:53:48 	-> &wire.WindowUpdateFrame{StreamID:0x3, ByteOffset:0x8000}
+2023/05/17 17:53:48 	-> &wire.WindowUpdateFrame{StreamID:0x0, ByteOffset:0xc000}
+2023/05/17 17:53:48 <- Reading packet 0x36 (31 bytes) for connection 3dc6f636f8281bf5 on path 2, forward-secure
+2023/05/17 17:53:48 	<- &wire.AckFrame{PathID: 0x2, LargestAcked: 0x25, LowestAcked: 0x24, AckRanges: []wire.AckRange(nil), DelayTime: 79µs}
+2023/05/17 17:53:48 -> Sending packet 0x26 (34 bytes) for connection 3dc6f636f8281bf5 on path 2, forward-secure
+2023/05/17 17:53:48 	-> &wire.StopWaitingFrame{LeastUnacked: 0x26, PacketNumberLen: 0x2}
+2023/05/17 17:53:48 	-> &wire.AckFrame{PathID: 0x2, LargestAcked: 0x36, LowestAcked: 0x34, AckRanges: []wire.AckRange(nil), DelayTime: 79.741µs}
+2023/05/17 17:53:48 	Queueing packet 0x7 for retransmission (RTO), 2 outstanding
+2023/05/17 17:53:48 	Queueing packet 0x8 for retransmission (RTO), 1 outstanding
+2023/05/17 17:53:48 	Dequeueing retransmission of packet 0x7 from path 1
+2023/05/17 17:53:48 	Dequeueing retransmission of packet 0x8 from path 1
+2023/05/17 17:53:48 -> Sending packet 0x27 (25 bytes) for connection 3dc6f636f8281bf5 on path 2, forward-secure
+2023/05/17 17:53:48 	-> &wire.PingFrame{}
+2023/05/17 17:53:48 -> Sending packet 0x9 (25 bytes) for connection 3dc6f636f8281bf5 on path 1, forward-secure
+2023/05/17 17:53:48 	-> &wire.PingFrame{}
+2023/05/17 17:53:48 -> Sending packet 0x28 (114 bytes) for connection 3dc6f636f8281bf5 on path 2, forward-secure
+2023/05/17 17:53:48 	-> &wire.PathsFrame{MaxNumPaths:0xff, NumPaths:0x3, PathIDs:[]protocol.PathID{0x0, 0x1, 0x2}, RemoteRTTs:[]time.Duration{1838838, 3600000000000, 769000}}
+2023/05/17 17:53:48 	-> &wire.WindowUpdateFrame{StreamID:0x1, ByteOffset:0x8000}
+2023/05/17 17:53:48 	-> &wire.WindowUpdateFrame{StreamID:0x3, ByteOffset:0x8000}
+2023/05/17 17:53:48 	-> &wire.WindowUpdateFrame{StreamID:0x0, ByteOffset:0xc000}
+2023/05/17 17:53:48 	-> &wire.WindowUpdateFrame{StreamID:0x1, ByteOffset:0x8000}
+2023/05/17 17:53:48 	-> &wire.WindowUpdateFrame{StreamID:0x3, ByteOffset:0x8000}
+2023/05/17 17:53:48 	-> &wire.WindowUpdateFrame{StreamID:0x0, ByteOffset:0xc000}
+2023/05/17 17:53:48 <- Reading packet 0x37 (34 bytes) for connection 3dc6f636f8281bf5 on path 2, forward-secure
+2023/05/17 17:53:48 	<- &wire.StopWaitingFrame{LeastUnacked: 0x37}
+2023/05/17 17:53:48 	<- &wire.AckFrame{PathID: 0x2, LargestAcked: 0x27, LowestAcked: 0x26, AckRanges: []wire.AckRange(nil), DelayTime: 119µs}
+2023/05/17 17:53:48 <- Reading packet 0x38 (25 bytes) for connection 3dc6f636f8281bf5 on path 2, forward-secure
+2023/05/17 17:53:48 	<- &wire.PingFrame{}
+2023/05/17 17:53:48 -> Sending packet 0x29 (34 bytes) for connection 3dc6f636f8281bf5 on path 2, forward-secure
+2023/05/17 17:53:48 	-> &wire.StopWaitingFrame{LeastUnacked: 0x28, PacketNumberLen: 0x2}
+2023/05/17 17:53:48 	-> &wire.AckFrame{PathID: 0x2, LargestAcked: 0x38, LowestAcked: 0x37, AckRanges: []wire.AckRange(nil), DelayTime: 38.625µs}
+2023/05/17 17:53:48 	Dequeueing retransmission of packet 0x28 from path 2
+2023/05/17 17:53:48 -> Sending packet 0x2a (114 bytes) for connection 3dc6f636f8281bf5 on path 2, forward-secure
+2023/05/17 17:53:48 	-> &wire.PathsFrame{MaxNumPaths:0xff, NumPaths:0x3, PathIDs:[]protocol.PathID{0x1, 0x2, 0x0}, RemoteRTTs:[]time.Duration{3600000000000, 760000, 1838838}}
+2023/05/17 17:53:48 	-> &wire.WindowUpdateFrame{StreamID:0x0, ByteOffset:0xc000}
+2023/05/17 17:53:48 	-> &wire.WindowUpdateFrame{StreamID:0x3, ByteOffset:0x8000}
+2023/05/17 17:53:48 	-> &wire.WindowUpdateFrame{StreamID:0x1, ByteOffset:0x8000}
+2023/05/17 17:53:48 	-> &wire.WindowUpdateFrame{StreamID:0x0, ByteOffset:0xc000}
+2023/05/17 17:53:48 	-> &wire.WindowUpdateFrame{StreamID:0x3, ByteOffset:0x8000}
+2023/05/17 17:53:48 	-> &wire.WindowUpdateFrame{StreamID:0x1, ByteOffset:0x8000}
+2023/05/17 17:53:49 	Dequeueing retransmission of packet 0x2a from path 2
+2023/05/17 17:53:49 -> Sending packet 0x2b (114 bytes) for connection 3dc6f636f8281bf5 on path 2, forward-secure
+2023/05/17 17:53:49 	-> &wire.PathsFrame{MaxNumPaths:0xff, NumPaths:0x3, PathIDs:[]protocol.PathID{0x1, 0x2, 0x0}, RemoteRTTs:[]time.Duration{3600000000000, 760000, 1838838}}
+2023/05/17 17:53:49 	-> &wire.WindowUpdateFrame{StreamID:0x1, ByteOffset:0x8000}
+2023/05/17 17:53:49 	-> &wire.WindowUpdateFrame{StreamID:0x3, ByteOffset:0x8000}
+2023/05/17 17:53:49 	-> &wire.WindowUpdateFrame{StreamID:0x0, ByteOffset:0xc000}
+2023/05/17 17:53:49 	-> &wire.WindowUpdateFrame{StreamID:0x1, ByteOffset:0x8000}
+2023/05/17 17:53:49 	-> &wire.WindowUpdateFrame{StreamID:0x3, ByteOffset:0x8000}
+2023/05/17 17:53:49 	-> &wire.WindowUpdateFrame{StreamID:0x0, ByteOffset:0xc000}
+2023/05/17 17:53:49 <- Reading packet 0x39 (34 bytes) for connection 3dc6f636f8281bf5 on path 2, forward-secure
+2023/05/17 17:53:49 	<- &wire.StopWaitingFrame{LeastUnacked: 0x39}
+2023/05/17 17:53:49 	<- &wire.AckFrame{PathID: 0x2, LargestAcked: 0x2b, LowestAcked: 0x28, AckRanges: []wire.AckRange(nil), DelayTime: 136µs}
+2023/05/17 17:53:49 <- Reading packet 0x3a (1350 bytes) for connection 3dc6f636f8281bf5 on path 2, forward-secure
+2023/05/17 17:53:49 	<- &wire.StopWaitingFrame{LeastUnacked: 0x39}
+2023/05/17 17:53:49 	<- &wire.PathsFrame{MaxNumPaths:0xff, NumPaths:0x3, PathIDs:[]protocol.PathID{0x0, 0x1, 0x2}, RemoteRTTs:[]time.Duration{12224000, 3599761408000, 10744000}}
+2023/05/17 17:53:49 &{MaxNumPaths:255 NumPaths:3 PathIDs:[0 1 2] RemoteRTTs:[12.224ms 59m59.761408s 10.744ms]}
+2023/05/17 17:53:49 	<- &wire.StreamFrame{StreamID: 3, FinBit: false, Offset: 0x4a, Data length: 0x3e8, Offset + Data length: 0x432}
+2023/05/17 17:53:49 	<- &wire.StreamFrame{StreamID: 3, FinBit: false, Offset: 0x432, Data length: 0x12d, Offset + Data length: 0x55f}
+2023/05/17 17:53:49 -> Sending packet 0x2c (34 bytes) for connection 3dc6f636f8281bf5 on path 2, forward-secure
+2023/05/17 17:53:49 	-> &wire.StopWaitingFrame{LeastUnacked: 0x2c, PacketNumberLen: 0x2}
+2023/05/17 17:53:49 	-> &wire.AckFrame{PathID: 0x2, LargestAcked: 0x3a, LowestAcked: 0x39, AckRanges: []wire.AckRange(nil), DelayTime: 307.617µs}
+2023/05/17 17:53:49 <- Reading packet 0x3b (1350 bytes) for connection 3dc6f636f8281bf5 on path 2, forward-secure
+2023/05/17 17:53:49 	<- &wire.StopWaitingFrame{LeastUnacked: 0x39}
+2023/05/17 17:53:49 	<- &wire.StreamFrame{StreamID: 3, FinBit: false, Offset: 0x55f, Data length: 0x2bb, Offset + Data length: 0x81a}
+2023/05/17 17:53:49 	<- &wire.StreamFrame{StreamID: 3, FinBit: false, Offset: 0x81a, Data length: 0x13c, Offset + Data length: 0x956}
+2023/05/17 17:53:49 	<- &wire.StreamFrame{StreamID: 3, FinBit: false, Offset: 0x956, Data length: 0x124, Offset + Data length: 0xa7a}
+[2KReceived: 3000 / 3562600 
+2023/05/17 17:53:49 <- Reading packet 0x3c (1350 bytes) for connection 3dc6f636f8281bf5 on path 2, forward-secure
+2023/05/17 17:53:49 	<- &wire.StopWaitingFrame{LeastUnacked: 0x39}
+2023/05/17 17:53:49 	<- &wire.StreamFrame{StreamID: 3, FinBit: false, Offset: 0xa7a, Data length: 0x188, Offset + Data length: 0xc02}
+2023/05/17 17:53:49 	<- &wire.StreamFrame{StreamID: 3, FinBit: false, Offset: 0xc02, Data length: 0x278, Offset + Data length: 0xe7a}
+2023/05/17 17:53:49 	<- &wire.StreamFrame{StreamID: 3, FinBit: false, Offset: 0xe7a, Data length: 0x11b, Offset + Data length: 0xf95}
+2023/05/17 17:53:49 -> Sending packet 0x2d (31 bytes) for connection 3dc6f636f8281bf5 on path 2, forward-secure
+2023/05/17 17:53:49 	-> &wire.AckFrame{PathID: 0x2, LargestAcked: 0x3c, LowestAcked: 0x39, AckRanges: []wire.AckRange(nil), DelayTime: 103.482µs}
+[2KReceived: 4000 / 3562600 
+[2KReceived: 5000 / 3562600 
+[2KReceived: 6000 / 3562600 
+2023/05/17 17:53:49 <- Reading packet 0x3d (1350 bytes) for connection 3dc6f636f8281bf5 on path 2, forward-secure
+2023/05/17 17:53:49 	<- &wire.StopWaitingFrame{LeastUnacked: 0x39}
+2023/05/17 17:53:49 	<- &wire.StreamFrame{StreamID: 3, FinBit: false, Offset: 0xf95, Data length: 0x55, Offset + Data length: 0xfea}
+2023/05/17 17:53:49 	<- &wire.StreamFrame{StreamID: 3, FinBit: false, Offset: 0xfea, Data length: 0x3e8, Offset + Data length: 0x13d2}
+2023/05/17 17:53:49 	<- &wire.StreamFrame{StreamID: 3, FinBit: false, Offset: 0x13d2, Data length: 0xde, Offset + Data length: 0x14b0}
+2023/05/17 17:53:49 <- Reading packet 0x3e (1350 bytes) for connection 3dc6f636f8281bf5 on path 2, forward-secure
+2023/05/17 17:53:49 	<- &wire.StopWaitingFrame{LeastUnacked: 0x39}
+2023/05/17 17:53:49 	<- &wire.StreamFrame{StreamID: 3, FinBit: false, Offset: 0x14b0, Data length: 0x30a, Offset + Data length: 0x17ba}
+2023/05/17 17:53:49 	<- &wire.StreamFrame{StreamID: 3, FinBit: false, Offset: 0x17ba, Data length: 0x13c, Offset + Data length: 0x18f6}
+2023/05/17 17:53:49 	<- &wire.StreamFrame{StreamID: 3, FinBit: false, Offset: 0x18f6, Data length: 0xd5, Offset + Data length: 0x19cb}
+2023/05/17 17:53:49 -> Sending packet 0x2e (31 bytes) for connection 3dc6f636f8281bf5 on path 2, forward-secure
+2023/05/17 17:53:49 	-> &wire.AckFrame{PathID: 0x2, LargestAcked: 0x3e, LowestAcked: 0x39, AckRanges: []wire.AckRange(nil), DelayTime: 141.828µs}
+[2KReceived: 7000 / 3562600 
+2023/05/17 17:53:49 <- Reading packet 0x3f (1350 bytes) for connection 3dc6f636f8281bf5 on path 2, forward-secure
+2023/05/17 17:53:49 	<- &wire.StopWaitingFrame{LeastUnacked: 0x39}
+2023/05/17 17:53:49 	<- &wire.StreamFrame{StreamID: 3, FinBit: false, Offset: 0x19cb, Data length: 0x1d7, Offset + Data length: 0x1ba2}
+2023/05/17 17:53:49 	<- &wire.StreamFrame{StreamID: 3, FinBit: false, Offset: 0x1ba2, Data length: 0x278, Offset + Data length: 0x1e1a}
+2023/05/17 17:53:49 	<- &wire.StreamFrame{StreamID: 3, FinBit: false, Offset: 0x1e1a, Data length: 0xcc, Offset + Data length: 0x1ee6}
+[2KReceived: 8000 / 3562600 
+2023/05/17 17:53:49 <- Reading packet 0x40 (1350 bytes) for connection 3dc6f636f8281bf5 on path 2, forward-secure
+2023/05/17 17:53:49 	<- &wire.StopWaitingFrame{LeastUnacked: 0x39}
+2023/05/17 17:53:49 	<- &wire.StreamFrame{StreamID: 3, FinBit: false, Offset: 0x1ee6, Data length: 0xa4, Offset + Data length: 0x1f8a}
+2023/05/17 17:53:49 	<- &wire.StreamFrame{StreamID: 3, FinBit: false, Offset: 0x1f8a, Data length: 0x3b4, Offset + Data length: 0x233e}
+2023/05/17 17:53:49 	<- &wire.StreamFrame{StreamID: 3, FinBit: false, Offset: 0x233e, Data length: 0x34, Offset + Data length: 0x2372}
+2023/05/17 17:53:49 	<- &wire.StreamFrame{StreamID: 3, FinBit: false, Offset: 0x2372, Data length: 0x89, Offset + Data length: 0x23fb}
+2023/05/17 17:53:49 -> Sending packet 0x2f (31 bytes) for connection 3dc6f636f8281bf5 on path 2, forward-secure
+2023/05/17 17:53:49 	-> &wire.AckFrame{PathID: 0x2, LargestAcked: 0x40, LowestAcked: 0x39, AckRanges: []wire.AckRange(nil), DelayTime: 145.791µs}
+[2KReceived: 9000 / 3562600 
+[2KReceived: 10000 / 3562600 
+[2KReceived: 11000 / 3562600 
+2023/05/17 17:53:49 <- Reading packet 0x41 (1350 bytes) for connection 3dc6f636f8281bf5 on path 2, forward-secure
+2023/05/17 17:53:49 	<- &wire.StopWaitingFrame{LeastUnacked: 0x39}
+2023/05/17 17:53:49 	<- &wire.StreamFrame{StreamID: 3, FinBit: false, Offset: 0x23fb, Data length: 0x35f, Offset + Data length: 0x275a}
+2023/05/17 17:53:49 	<- &wire.StreamFrame{StreamID: 3, FinBit: false, Offset: 0x275a, Data length: 0x1c2, Offset + Data length: 0x291c}
+2023/05/17 17:53:49 <- Reading packet 0x42 (1350 bytes) for connection 3dc6f636f8281bf5 on path 2, forward-secure
+2023/05/17 17:53:49 	<- &wire.StopWaitingFrame{LeastUnacked: 0x39}
+2023/05/17 17:53:49 	<- &wire.StreamFrame{StreamID: 3, FinBit: false, Offset: 0x291c, Data length: 0x226, Offset + Data length: 0x2b42}
+2023/05/17 17:53:49 	<- &wire.StreamFrame{StreamID: 3, FinBit: false, Offset: 0x2b42, Data length: 0x13c, Offset + Data length: 0x2c7e}
+2023/05/17 17:53:49 	<- &wire.StreamFrame{StreamID: 3, FinBit: false, Offset: 0x2c7e, Data length: 0x1b9, Offset + Data length: 0x2e37}
+2023/05/17 17:53:49 -> Sending packet 0x30 (31 bytes) for connection 3dc6f636f8281bf5 on path 2, forward-secure
+2023/05/17 17:53:49 	-> &wire.AckFrame{PathID: 0x2, LargestAcked: 0x42, LowestAcked: 0x39, AckRanges: []wire.AckRange(nil), DelayTime: 97.149µs}
+[2KReceived: 12000 / 3562600 
+2023/05/17 17:53:49 <- Reading packet 0x43 (1350 bytes) for connection 3dc6f636f8281bf5 on path 2, forward-secure
+2023/05/17 17:53:49 	<- &wire.StopWaitingFrame{LeastUnacked: 0x39}
+2023/05/17 17:53:49 	<- &wire.StreamFrame{StreamID: 3, FinBit: false, Offset: 0x2e37, Data length: 0xf3, Offset + Data length: 0x2f2a}
+2023/05/17 17:53:49 	<- &wire.StreamFrame{StreamID: 3, FinBit: false, Offset: 0x2f2a, Data length: 0x278, Offset + Data length: 0x31a2}
+2023/05/17 17:53:49 	<- &wire.StreamFrame{StreamID: 3, FinBit: false, Offset: 0x31a2, Data length: 0x170, Offset + Data length: 0x3312}
+2023/05/17 17:53:49 	<- &wire.StreamFrame{StreamID: 3, FinBit: false, Offset: 0x3312, Data length: 0x3a, Offset + Data length: 0x334c}
+[2KReceived: 13000 / 3562600 
+[2KReceived: 14000 / 3562600 
+2023/05/17 17:53:49 <- Reading packet 0x44 (1350 bytes) for connection 3dc6f636f8281bf5 on path 2, forward-secure
+2023/05/17 17:53:49 	<- &wire.StopWaitingFrame{LeastUnacked: 0x39}
+2023/05/17 17:53:49 	<- &wire.StreamFrame{StreamID: 3, FinBit: false, Offset: 0x334c, Data length: 0x3ae, Offset + Data length: 0x36fa}
+2023/05/17 17:53:49 	<- &wire.StreamFrame{StreamID: 3, FinBit: false, Offset: 0x36fa, Data length: 0x13c, Offset + Data length: 0x3836}
+2023/05/17 17:53:49 	<- &wire.StreamFrame{StreamID: 3, FinBit: false, Offset: 0x3836, Data length: 0x31, Offset + Data length: 0x3867}
+2023/05/17 17:53:49 -> Sending packet 0x31 (31 bytes) for connection 3dc6f636f8281bf5 on path 2, forward-secure
+2023/05/17 17:53:49 	-> &wire.AckFrame{PathID: 0x2, LargestAcked: 0x44, LowestAcked: 0x39, AckRanges: []wire.AckRange(nil), DelayTime: 161.743µs}
+[2KReceived: 15000 / 3562600 
+2023/05/17 17:53:49 <- Reading packet 0x45 (1350 bytes) for connection 3dc6f636f8281bf5 on path 2, forward-secure
+2023/05/17 17:53:49 	<- &wire.StopWaitingFrame{LeastUnacked: 0x39}
+2023/05/17 17:53:49 	<- &wire.StreamFrame{StreamID: 3, FinBit: false, Offset: 0x3867, Data length: 0x27b, Offset + Data length: 0x3ae2}
+2023/05/17 17:53:49 	<- &wire.StreamFrame{StreamID: 3, FinBit: false, Offset: 0x3ae2, Data length: 0x278, Offset + Data length: 0x3d5a}
+2023/05/17 17:53:49 	<- &wire.StreamFrame{StreamID: 3, FinBit: false, Offset: 0x3d5a, Data length: 0x28, Offset + Data length: 0x3d82}
+[2KReceived: 16000 / 3562600 
+2023/05/17 17:53:49 <- Reading packet 0x46 (1350 bytes) for connection 3dc6f636f8281bf5 on path 2, forward-secure
+2023/05/17 17:53:49 	<- &wire.StopWaitingFrame{LeastUnacked: 0x39}
+2023/05/17 17:53:49 	<- &wire.StreamFrame{StreamID: 3, FinBit: false, Offset: 0x3d82, Data length: 0x148, Offset + Data length: 0x3eca}
+2023/05/17 17:53:49 	<- &wire.StreamFrame{StreamID: 3, FinBit: false, Offset: 0x3eca, Data length: 0x3b4, Offset + Data length: 0x427e}
+2023/05/17 17:53:49 	<- &wire.StreamFrame{StreamID: 3, FinBit: false, Offset: 0x427e, Data length: 0x1f, Offset + Data length: 0x429d}
+2023/05/17 17:53:49 Increasing receive flow control window increment for stream 3 to 64 kB
+[2KReceived: 17000 / 3562600 
+2023/05/17 17:53:49 -> Sending packet 0x32 (44 bytes) for connection 3dc6f636f8281bf5 on path 2, forward-secure
+2023/05/17 17:53:49 	-> &wire.AckFrame{PathID: 0x2, LargestAcked: 0x46, LowestAcked: 0x39, AckRanges: []wire.AckRange(nil), DelayTime: 175.006µs}
+[2KReceived: 18000 / 3562600 
+2023/05/17 17:53:49 	-> &wire.WindowUpdateFrame{StreamID:0x3, ByteOffset:0x142b2}
+[2KReceived: 19000 / 3562600 
+[2KReceived: 20000 / 3562600 
+[2KReceived: 21000 / 3562600 
+2023/05/17 17:53:49 -> Sending packet 0x33 (37 bytes) for connection 3dc6f636f8281bf5 on path 2, forward-secure
+2023/05/17 17:53:49 	-> &wire.WindowUpdateFrame{StreamID:0x3, ByteOffset:0x142b2}
+2023/05/17 17:53:49 <- Reading packet 0x47 (1350 bytes) for connection 3dc6f636f8281bf5 on path 2, forward-secure
+2023/05/17 17:53:49 	<- &wire.StopWaitingFrame{LeastUnacked: 0x39}
+2023/05/17 17:53:49 	<- &wire.StreamFrame{StreamID: 3, FinBit: false, Offset: 0x429d, Data length: 0x15, Offset + Data length: 0x42b2}
+2023/05/17 17:53:49 	<- &wire.StreamFrame{StreamID: 3, FinBit: false, Offset: 0x4377, Data length: 0x323, Offset + Data length: 0x469a}
+2023/05/17 17:53:49 	<- &wire.StreamFrame{StreamID: 3, FinBit: false, Offset: 0x469a, Data length: 0x1e3, Offset + Data length: 0x487d}
+2023/05/17 17:53:49 <- Reading packet 0x48 (1350 bytes) for connection 3dc6f636f8281bf5 on path 2, forward-secure
+2023/05/17 17:53:49 	<- &wire.StopWaitingFrame{LeastUnacked: 0x39}
+2023/05/17 17:53:49 	<- &wire.StreamFrame{StreamID: 3, FinBit: false, Offset: 0x487d, Data length: 0x205, Offset + Data length: 0x4a82}
+2023/05/17 17:53:49 	<- &wire.StreamFrame{StreamID: 3, FinBit: false, Offset: 0x4bbb, Data length: 0x2af, Offset + Data length: 0x4e6a}
+2023/05/17 17:53:49 	<- &wire.StreamFrame{StreamID: 3, FinBit: false, Offset: 0x4e6a, Data length: 0x67, Offset + Data length: 0x4ed1}
+2023/05/17 17:53:49 -> Sending packet 0x34 (31 bytes) for connection 3dc6f636f8281bf5 on path 2, forward-secure
+2023/05/17 17:53:49 	-> &wire.AckFrame{PathID: 0x2, LargestAcked: 0x48, LowestAcked: 0x39, AckRanges: []wire.AckRange(nil), DelayTime: 160.641µs}
+2023/05/17 17:53:49 <- Reading packet 0x49 (1350 bytes) for connection 3dc6f636f8281bf5 on path 2, forward-secure
+2023/05/17 17:53:49 	<- &wire.StopWaitingFrame{LeastUnacked: 0x39}
+2023/05/17 17:53:49 	<- &wire.StreamFrame{StreamID: 3, FinBit: false, Offset: 0x4ed1, Data length: 0x381, Offset + Data length: 0x5252}
+2023/05/17 17:53:49 	<- &wire.StreamFrame{StreamID: 3, FinBit: false, Offset: 0x5252, Data length: 0x13c, Offset + Data length: 0x538e}
+2023/05/17 17:53:49 	<- &wire.StreamFrame{StreamID: 3, FinBit: false, Offset: 0x54c7, Data length: 0x5e, Offset + Data length: 0x5525}
+[2KReceived: 22000 / 3562600 
+[2KReceived: 23000 / 3562600 
+2023/05/17 17:53:49 <- Reading packet 0x4a (1350 bytes) for connection 3dc6f636f8281bf5 on path 2, forward-secure
+2023/05/17 17:53:49 	<- &wire.StopWaitingFrame{LeastUnacked: 0x39}
+2023/05/17 17:53:49 	<- &wire.StreamFrame{StreamID: 3, FinBit: false, Offset: 0x5525, Data length: 0x115, Offset + Data length: 0x563a}
+2023/05/17 17:53:49 	<- &wire.StreamFrame{StreamID: 3, FinBit: false, Offset: 0x59e8, Data length: 0x3a, Offset + Data length: 0x5a22}
+2023/05/17 17:53:49 	<- &wire.StreamFrame{StreamID: 3, FinBit: false, Offset: 0x5a22, Data length: 0x13c, Offset + Data length: 0x5b5e}
+2023/05/17 17:53:49 	<- &wire.StreamFrame{StreamID: 3, FinBit: false, Offset: 0x5b5e, Data length: 0x28a, Offset + Data length: 0x5de8}
+[2KReceived: 24000 / 3562600 
+2023/05/17 17:53:49 -> Sending packet 0x35 (31 bytes) for connection 3dc6f636f8281bf5 on path 2, forward-secure
+2023/05/17 17:53:49 	-> &wire.AckFrame{PathID: 0x2, LargestAcked: 0x4a, LowestAcked: 0x39, AckRanges: []wire.AckRange(nil), DelayTime: 166.308µs}
+[2KReceived: 25000 / 3562600 
+[2KReceived: 26000 / 3562600 
+[2KReceived: 27000 / 3562600 
+[2KReceived: 28000 / 3562600 
+2023/05/17 17:53:49 <- Reading packet 0x4b (1350 bytes) for connection 3dc6f636f8281bf5 on path 2, forward-secure
+2023/05/17 17:53:49 	<- &wire.StopWaitingFrame{LeastUnacked: 0x39}
+2023/05/17 17:53:49 	<- &wire.StreamFrame{StreamID: 3, FinBit: false, Offset: 0x5de8, Data length: 0x22, Offset + Data length: 0x5e0a}
+2023/05/17 17:53:49 	<- &wire.StreamFrame{StreamID: 3, FinBit: false, Offset: 0x607f, Data length: 0x173, Offset + Data length: 0x61f2}
+2023/05/17 17:53:49 	<- &wire.StreamFrame{StreamID: 3, FinBit: false, Offset: 0x61f2, Data length: 0x386, Offset + Data length: 0x6578}
+2023/05/17 17:53:49 <- Reading packet 0x4c (1350 bytes) for connection 3dc6f636f8281bf5 on path 2, forward-secure
+2023/05/17 17:53:49 	<- &wire.StopWaitingFrame{LeastUnacked: 0x39}
+2023/05/17 17:53:49 	<- &wire.StreamFrame{StreamID: 3, FinBit: false, Offset: 0x6578, Data length: 0x62, Offset + Data length: 0x65da}
+2023/05/17 17:53:49 	<- &wire.StreamFrame{StreamID: 3, FinBit: false, Offset: 0x6713, Data length: 0x2af, Offset + Data length: 0x69c2}
+2023/05/17 17:53:49 	<- &wire.StreamFrame{StreamID: 3, FinBit: false, Offset: 0x69c2, Data length: 0x20a, Offset + Data length: 0x6bcc}
+2023/05/17 17:53:49 -> Sending packet 0x36 (31 bytes) for connection 3dc6f636f8281bf5 on path 2, forward-secure
+2023/05/17 17:53:49 	-> &wire.AckFrame{PathID: 0x2, LargestAcked: 0x4c, LowestAcked: 0x39, AckRanges: []wire.AckRange(nil), DelayTime: 139.388µs}
+2023/05/17 17:53:49 <- Reading packet 0x4d (1350 bytes) for connection 3dc6f636f8281bf5 on path 2, forward-secure
+2023/05/17 17:53:49 	<- &wire.StopWaitingFrame{LeastUnacked: 0x39}
+2023/05/17 17:53:49 	<- &wire.StreamFrame{StreamID: 3, FinBit: false, Offset: 0x6bcc, Data length: 0x1de, Offset + Data length: 0x6daa}
+2023/05/17 17:53:49 	<- &wire.StreamFrame{StreamID: 3, FinBit: false, Offset: 0x6daa, Data length: 0x13c, Offset + Data length: 0x6ee6}
+2023/05/17 17:53:49 	<- &wire.StreamFrame{StreamID: 3, FinBit: false, Offset: 0x6ee6, Data length: 0x201, Offset + Data length: 0x70e7}
+[2KReceived: 29000 / 3562600 
+2023/05/17 17:53:49 <- Reading packet 0x4e (1350 bytes) for connection 3dc6f636f8281bf5 on path 2, forward-secure
+2023/05/17 17:53:49 	<- &wire.StopWaitingFrame{LeastUnacked: 0x39}
+2023/05/17 17:53:49 	<- &wire.StreamFrame{StreamID: 3, FinBit: false, Offset: 0x70e7, Data length: 0xab, Offset + Data length: 0x7192}
+2023/05/17 17:53:49 	<- &wire.StreamFrame{StreamID: 3, FinBit: false, Offset: 0x7192, Data length: 0x278, Offset + Data length: 0x740a}
+2023/05/17 17:53:49 	<- &wire.StreamFrame{StreamID: 3, FinBit: false, Offset: 0x740a, Data length: 0x170, Offset + Data length: 0x757a}
+[2KReceived: 30000 / 3562600 
+2023/05/17 17:53:49 	<- &wire.StreamFrame{StreamID: 3, FinBit: false, Offset: 0x757a, Data length: 0x82, Offset + Data length: 0x75fc}
+2023/05/17 17:53:49 -> Sending packet 0x37 (31 bytes) for connection 3dc6f636f8281bf5 on path 2, forward-secure
+2023/05/17 17:53:49 	-> &wire.AckFrame{PathID: 0x2, LargestAcked: 0x4e, LowestAcked: 0x39, AckRanges: []wire.AckRange(nil), DelayTime: 208.522µs}
+2023/05/17 17:53:49 <- Reading packet 0x4f (1350 bytes) for connection 3dc6f636f8281bf5 on path 2, forward-secure
+2023/05/17 17:53:49 	<- &wire.StopWaitingFrame{LeastUnacked: 0x39}
+2023/05/17 17:53:49 	<- &wire.StreamFrame{StreamID: 3, FinBit: false, Offset: 0x75fc, Data length: 0x332, Offset + Data length: 0x792e}
+2023/05/17 17:53:49 	<- &wire.StreamFrame{StreamID: 3, FinBit: false, Offset: 0x792e, Data length: 0x34, Offset + Data length: 0x7962}
+2023/05/17 17:53:49 	<- &wire.StreamFrame{StreamID: 3, FinBit: false, Offset: 0x7962, Data length: 0x1b5, Offset + Data length: 0x7b17}
+[2KReceived: 31000 / 3562600 
+[2KReceived: 32000 / 3562600 
+2023/05/17 17:53:49 <- Reading packet 0x50 (594 bytes) for connection 3dc6f636f8281bf5 on path 2, forward-secure
+2023/05/17 17:53:49 	<- &wire.StopWaitingFrame{LeastUnacked: 0x39}
+2023/05/17 17:53:49 	<- &wire.StreamFrame{StreamID: 3, FinBit: false, Offset: 0x7b17, Data length: 0x233, Offset + Data length: 0x7d4a}
+2023/05/17 17:53:49 -> Sending packet 0x38 (31 bytes) for connection 3dc6f636f8281bf5 on path 2, forward-secure
+2023/05/17 17:53:49 	-> &wire.AckFrame{PathID: 0x2, LargestAcked: 0x50, LowestAcked: 0x39, AckRanges: []wire.AckRange(nil), DelayTime: 148.919µs}
+2023/05/17 17:53:49 <- Reading packet 0x51 (34 bytes) for connection 3dc6f636f8281bf5 on path 2, forward-secure
+2023/05/17 17:53:49 	<- &wire.StopWaitingFrame{LeastUnacked: 0x3d}
+2023/05/17 17:53:49 	<- &wire.AckFrame{PathID: 0x2, LargestAcked: 0x2d, LowestAcked: 0x2c, AckRanges: []wire.AckRange(nil), DelayTime: 34µs}
+2023/05/17 17:53:49 <- Reading packet 0x52 (334 bytes) for connection 3dc6f636f8281bf5 on path 2, forward-secure
+2023/05/17 17:53:49 	<- &wire.StreamFrame{StreamID: 3, FinBit: false, Offset: 0x8000, Data length: 0x132, Offset + Data length: 0x8132}
+2023/05/17 17:53:49 <- Reading packet 0x53 (1028 bytes) for connection 3dc6f636f8281bf5 on path 2, forward-secure
+2023/05/17 17:53:49 	<- &wire.StreamFrame{StreamID: 3, FinBit: false, Offset: 0x8132, Data length: 0x3e8, Offset + Data length: 0x851a}
+2023/05/17 17:53:49 -> Sending packet 0x39 (31 bytes) for connection 3dc6f636f8281bf5 on path 2, forward-secure
+2023/05/17 17:53:49 	-> &wire.AckFrame{PathID: 0x2, LargestAcked: 0x53, LowestAcked: 0x3d, AckRanges: []wire.AckRange(nil), DelayTime: 50.07µs}
+[2KReceived: 33000 / 3562600 
+[2KReceived: 34000 / 3562600 
+2023/05/17 17:53:49 <- Reading packet 0x54 (1028 bytes) for connection 3dc6f636f8281bf5 on path 2, forward-secure
+2023/05/17 17:53:49 	<- &wire.StreamFrame{StreamID: 3, FinBit: false, Offset: 0x851a, Data length: 0x3e8, Offset + Data length: 0x8902}
+[2KReceived: 35000 / 3562600 
+2023/05/17 17:53:49 <- Reading packet 0x55 (1028 bytes) for connection 3dc6f636f8281bf5 on path 2, forward-secure
+2023/05/17 17:53:49 	<- &wire.StreamFrame{StreamID: 3, FinBit: false, Offset: 0x8902, Data length: 0x3e8, Offset + Data length: 0x8cea}
+2023/05/17 17:53:49 -> Sending packet 0x3a (31 bytes) for connection 3dc6f636f8281bf5 on path 2, forward-secure
+2023/05/17 17:53:49 	-> &wire.AckFrame{PathID: 0x2, LargestAcked: 0x55, LowestAcked: 0x3d, AckRanges: []wire.AckRange(nil), DelayTime: 64.289µs}
+[2KReceived: 36000 / 3562600 
+2023/05/17 17:53:49 <- Reading packet 0x56 (1028 bytes) for connection 3dc6f636f8281bf5 on path 2, forward-secure
+2023/05/17 17:53:49 	<- &wire.StreamFrame{StreamID: 3, FinBit: false, Offset: 0x8cea, Data length: 0x3e8, Offset + Data length: 0x90d2}
+[2KReceived: 37000 / 3562600 
+2023/05/17 17:53:49 <- Reading packet 0x57 (1028 bytes) for connection 3dc6f636f8281bf5 on path 2, forward-secure
+2023/05/17 17:53:49 	<- &wire.StreamFrame{StreamID: 3, FinBit: false, Offset: 0x90d2, Data length: 0x3e8, Offset + Data length: 0x94ba}
+2023/05/17 17:53:49 -> Sending packet 0x3b (31 bytes) for connection 3dc6f636f8281bf5 on path 2, forward-secure
+2023/05/17 17:53:49 	-> &wire.AckFrame{PathID: 0x2, LargestAcked: 0x57, LowestAcked: 0x3d, AckRanges: []wire.AckRange(nil), DelayTime: 79.057µs}
+[2KReceived: 38000 / 3562600 
+2023/05/17 17:53:49 <- Reading packet 0x58 (1028 bytes) for connection 3dc6f636f8281bf5 on path 2, forward-secure
+2023/05/17 17:53:49 	<- &wire.StreamFrame{StreamID: 3, FinBit: false, Offset: 0x94ba, Data length: 0x3e8, Offset + Data length: 0x98a2}
+[2KReceived: 39000 / 3562600 
+2023/05/17 17:53:49 <- Reading packet 0x59 (1028 bytes) for connection 3dc6f636f8281bf5 on path 2, forward-secure
+2023/05/17 17:53:49 	<- &wire.StreamFrame{StreamID: 3, FinBit: false, Offset: 0x98a2, Data length: 0x3e8, Offset + Data length: 0x9c8a}
+2023/05/17 17:53:49 -> Sending packet 0x3c (31 bytes) for connection 3dc6f636f8281bf5 on path 2, forward-secure
+2023/05/17 17:53:49 	-> &wire.AckFrame{PathID: 0x2, LargestAcked: 0x59, LowestAcked: 0x3d, AckRanges: []wire.AckRange(nil), DelayTime: 101.738µs}
+[2KReceived: 40000 / 3562600 
+2023/05/17 17:53:49 <- Reading packet 0x5a (1028 bytes) for connection 3dc6f636f8281bf5 on path 2, forward-secure
+2023/05/17 17:53:49 	<- &wire.StreamFrame{StreamID: 3, FinBit: false, Offset: 0x9c8a, Data length: 0x3e8, Offset + Data length: 0xa072}
+[2KReceived: 41000 / 3562600 
+2023/05/17 17:53:49 <- Reading packet 0x5b (1038 bytes) for connection 3dc6f636f8281bf5 on path 2, forward-secure
+2023/05/17 17:53:49 	<- &wire.StopWaitingFrame{LeastUnacked: 0x47}
+2023/05/17 17:53:49 	<- &wire.AckFrame{PathID: 0x2, LargestAcked: 0x33, LowestAcked: 0x2c, AckRanges: []wire.AckRange(nil), DelayTime: 69µs}
+2023/05/17 17:53:49 	<- &wire.StreamFrame{StreamID: 3, FinBit: false, Offset: 0xa072, Data length: 0x3e8, Offset + Data length: 0xa45a}
+2023/05/17 17:53:49 -> Sending packet 0x3d (34 bytes) for connection 3dc6f636f8281bf5 on path 2, forward-secure
+2023/05/17 17:53:49 	-> &wire.StopWaitingFrame{LeastUnacked: 0x34, PacketNumberLen: 0x2}
+2023/05/17 17:53:49 	-> &wire.AckFrame{PathID: 0x2, LargestAcked: 0x5b, LowestAcked: 0x47, AckRanges: []wire.AckRange(nil), DelayTime: 125.663µs}
+[2KReceived: 42000 / 3562600 
+2023/05/17 17:53:49 <- Reading packet 0x5c (1028 bytes) for connection 3dc6f636f8281bf5 on path 2, forward-secure
+2023/05/17 17:53:49 	<- &wire.StreamFrame{StreamID: 3, FinBit: false, Offset: 0xa45a, Data length: 0x3e8, Offset + Data length: 0xa842}
+[2KReceived: 43000 / 3562600 
+2023/05/17 17:53:49 <- Reading packet 0x5d (1028 bytes) for connection 3dc6f636f8281bf5 on path 2, forward-secure
+2023/05/17 17:53:49 	<- &wire.StreamFrame{StreamID: 3, FinBit: false, Offset: 0xa842, Data length: 0x3e8, Offset + Data length: 0xac2a}
+2023/05/17 17:53:49 -> Sending packet 0x3e (31 bytes) for connection 3dc6f636f8281bf5 on path 2, forward-secure
+2023/05/17 17:53:49 	-> &wire.AckFrame{PathID: 0x2, LargestAcked: 0x5d, LowestAcked: 0x47, AckRanges: []wire.AckRange(nil), DelayTime: 70.188µs}
+[2KReceived: 44000 / 3562600 
+2023/05/17 17:53:49 <- Reading packet 0x5e (1028 bytes) for connection 3dc6f636f8281bf5 on path 2, forward-secure
+2023/05/17 17:53:49 	<- &wire.StreamFrame{StreamID: 3, FinBit: false, Offset: 0xac2a, Data length: 0x3e8, Offset + Data length: 0xb012}
+[2KReceived: 45000 / 3562600 
+2023/05/17 17:53:49 <- Reading packet 0x5f (1028 bytes) for connection 3dc6f636f8281bf5 on path 2, forward-secure
+2023/05/17 17:53:49 	<- &wire.StreamFrame{StreamID: 3, FinBit: false, Offset: 0xb012, Data length: 0x3e8, Offset + Data length: 0xb3fa}
+2023/05/17 17:53:49 -> Sending packet 0x3f (31 bytes) for connection 3dc6f636f8281bf5 on path 2, forward-secure
+2023/05/17 17:53:49 	-> &wire.AckFrame{PathID: 0x2, LargestAcked: 0x5f, LowestAcked: 0x47, AckRanges: []wire.AckRange(nil), DelayTime: 36.124µs}
+[2KReceived: 46000 / 3562600 
+2023/05/17 17:53:49 <- Reading packet 0x60 (1028 bytes) for connection 3dc6f636f8281bf5 on path 2, forward-secure
+2023/05/17 17:53:49 	<- &wire.StreamFrame{StreamID: 3, FinBit: false, Offset: 0xb3fa, Data length: 0x3e8, Offset + Data length: 0xb7e2}
+[2KReceived: 47000 / 3562600 
+2023/05/17 17:53:49 <- Reading packet 0x61 (1028 bytes) for connection 3dc6f636f8281bf5 on path 2, forward-secure
+2023/05/17 17:53:49 	<- &wire.StreamFrame{StreamID: 3, FinBit: false, Offset: 0xb7e2, Data length: 0x3e8, Offset + Data length: 0xbbca}
+2023/05/17 17:53:49 -> Sending packet 0x40 (31 bytes) for connection 3dc6f636f8281bf5 on path 2, forward-secure
+2023/05/17 17:53:49 	-> &wire.AckFrame{PathID: 0x2, LargestAcked: 0x61, LowestAcked: 0x47, AckRanges: []wire.AckRange(nil), DelayTime: 37.171µs}
+[2KReceived: 48000 / 3562600 
+2023/05/17 17:53:49 <- Reading packet 0x62 (1028 bytes) for connection 3dc6f636f8281bf5 on path 2, forward-secure
+2023/05/17 17:53:49 	<- &wire.StreamFrame{StreamID: 3, FinBit: false, Offset: 0xbbca, Data length: 0x3e8, Offset + Data length: 0xbfb2}
+[2KReceived: 49000 / 3562600 
+2023/05/17 17:53:49 <- Reading packet 0x63 (1028 bytes) for connection 3dc6f636f8281bf5 on path 2, forward-secure
+2023/05/17 17:53:49 	<- &wire.StreamFrame{StreamID: 3, FinBit: false, Offset: 0xbfb2, Data length: 0x3e8, Offset + Data length: 0xc39a}
+2023/05/17 17:53:49 -> Sending packet 0x41 (31 bytes) for connection 3dc6f636f8281bf5 on path 2, forward-secure
+2023/05/17 17:53:49 	-> &wire.AckFrame{PathID: 0x2, LargestAcked: 0x63, LowestAcked: 0x47, AckRanges: []wire.AckRange(nil), DelayTime: 45.122µs}
+[2KReceived: 50000 / 3562600 
+2023/05/17 17:53:49 Increasing receive flow control window increment for stream 3 to 128 kB
+2023/05/17 17:53:49 -> Sending packet 0xa (53 bytes) for connection 3dc6f636f8281bf5 on path 1, forward-secure
+2023/05/17 17:53:49 	-> &wire.StopWaitingFrame{LeastUnacked: 0x9, PacketNumberLen: 0x2}
+2023/05/17 17:53:49 	-> &wire.WindowUpdateFrame{StreamID:0x3, ByteOffset:0x2c39a}
+2023/05/17 17:53:49 	-> &wire.WindowUpdateFrame{StreamID:0x3, ByteOffset:0x2c39a}
+2023/05/17 17:53:49 -> Sending packet 0x42 (37 bytes) for connection 3dc6f636f8281bf5 on path 2, forward-secure
+2023/05/17 17:53:49 	-> &wire.WindowUpdateFrame{StreamID:0x3, ByteOffset:0x2c39a}
+2023/05/17 17:53:49 <- Reading packet 0x64 (1028 bytes) for connection 3dc6f636f8281bf5 on path 2, forward-secure
+2023/05/17 17:53:49 	<- &wire.StreamFrame{StreamID: 3, FinBit: false, Offset: 0xc39a, Data length: 0x3e8, Offset + Data length: 0xc782}
+[2KReceived: 51000 / 3562600 
+2023/05/17 17:53:49 <- Reading packet 0x65 (1028 bytes) for connection 3dc6f636f8281bf5 on path 2, forward-secure
+2023/05/17 17:53:49 	<- &wire.StreamFrame{StreamID: 3, FinBit: false, Offset: 0xc782, Data length: 0x3e8, Offset + Data length: 0xcb6a}
+2023/05/17 17:53:49 -> Sending packet 0x43 (31 bytes) for connection 3dc6f636f8281bf5 on path 2, forward-secure
+2023/05/17 17:53:49 	-> &wire.AckFrame{PathID: 0x2, LargestAcked: 0x65, LowestAcked: 0x47, AckRanges: []wire.AckRange(nil), DelayTime: 27.231µs}
+[2KReceived: 52000 / 3562600 
+2023/05/17 17:53:49 <- Reading packet 0x66 (1028 bytes) for connection 3dc6f636f8281bf5 on path 2, forward-secure
+2023/05/17 17:53:49 	<- &wire.StreamFrame{StreamID: 3, FinBit: false, Offset: 0xcb6a, Data length: 0x3e8, Offset + Data length: 0xcf52}
+[2KReceived: 53000 / 3562600 
+2023/05/17 17:53:49 <- Reading packet 0x67 (1028 bytes) for connection 3dc6f636f8281bf5 on path 2, forward-secure
+2023/05/17 17:53:49 	<- &wire.StreamFrame{StreamID: 3, FinBit: false, Offset: 0xcf52, Data length: 0x3e8, Offset + Data length: 0xd33a}
+2023/05/17 17:53:49 -> Sending packet 0x44 (31 bytes) for connection 3dc6f636f8281bf5 on path 2, forward-secure
+2023/05/17 17:53:49 	-> &wire.AckFrame{PathID: 0x2, LargestAcked: 0x67, LowestAcked: 0x47, AckRanges: []wire.AckRange(nil), DelayTime: 27.097µs}
+[2KReceived: 54000 / 3562600 
+2023/05/17 17:53:49 <- Reading packet 0x68 (1028 bytes) for connection 3dc6f636f8281bf5 on path 2, forward-secure
+2023/05/17 17:53:49 	<- &wire.StreamFrame{StreamID: 3, FinBit: false, Offset: 0xd33a, Data length: 0x3e8, Offset + Data length: 0xd722}
+[2KReceived: 55000 / 3562600 
+2023/05/17 17:53:49 <- Reading packet 0x69 (1028 bytes) for connection 3dc6f636f8281bf5 on path 2, forward-secure
+2023/05/17 17:53:49 	<- &wire.StreamFrame{StreamID: 3, FinBit: false, Offset: 0xd722, Data length: 0x3e8, Offset + Data length: 0xdb0a}
+2023/05/17 17:53:49 -> Sending packet 0x45 (31 bytes) for connection 3dc6f636f8281bf5 on path 2, forward-secure
+2023/05/17 17:53:49 	-> &wire.AckFrame{PathID: 0x2, LargestAcked: 0x69, LowestAcked: 0x47, AckRanges: []wire.AckRange(nil), DelayTime: 41.079µs}
+[2KReceived: 56000 / 3562600 
+2023/05/17 17:53:49 <- Reading packet 0x6a (1028 bytes) for connection 3dc6f636f8281bf5 on path 2, forward-secure
+2023/05/17 17:53:49 	<- &wire.StreamFrame{StreamID: 3, FinBit: false, Offset: 0xdb0a, Data length: 0x3e8, Offset + Data length: 0xdef2}
+[2KReceived: 57000 / 3562600 
+2023/05/17 17:53:49 <- Reading packet 0x6b (1028 bytes) for connection 3dc6f636f8281bf5 on path 2, forward-secure
+2023/05/17 17:53:49 	<- &wire.StreamFrame{StreamID: 3, FinBit: false, Offset: 0xdef2, Data length: 0x3e8, Offset + Data length: 0xe2da}
+2023/05/17 17:53:49 -> Sending packet 0x46 (31 bytes) for connection 3dc6f636f8281bf5 on path 2, forward-secure
+2023/05/17 17:53:49 	-> &wire.AckFrame{PathID: 0x2, LargestAcked: 0x6b, LowestAcked: 0x47, AckRanges: []wire.AckRange(nil), DelayTime: 18.06µs}
+[2KReceived: 58000 / 3562600 
+2023/05/17 17:53:49 <- Reading packet 0x6c (1028 bytes) for connection 3dc6f636f8281bf5 on path 2, forward-secure
+2023/05/17 17:53:49 	<- &wire.StreamFrame{StreamID: 3, FinBit: false, Offset: 0xe2da, Data length: 0x3e8, Offset + Data length: 0xe6c2}
+[2KReceived: 59000 / 3562600 
+2023/05/17 17:53:49 <- Reading packet 0x6d (1028 bytes) for connection 3dc6f636f8281bf5 on path 2, forward-secure
+2023/05/17 17:53:49 	<- &wire.StreamFrame{StreamID: 3, FinBit: false, Offset: 0xe6c2, Data length: 0x3e8, Offset + Data length: 0xeaaa}
+2023/05/17 17:53:49 -> Sending packet 0x47 (31 bytes) for connection 3dc6f636f8281bf5 on path 2, forward-secure
+2023/05/17 17:53:49 	-> &wire.AckFrame{PathID: 0x2, LargestAcked: 0x6d, LowestAcked: 0x47, AckRanges: []wire.AckRange(nil), DelayTime: 33.462µs}
+[2KReceived: 60000 / 3562600 
+2023/05/17 17:53:49 <- Reading packet 0x6e (1028 bytes) for connection 3dc6f636f8281bf5 on path 2, forward-secure
+2023/05/17 17:53:49 	<- &wire.StreamFrame{StreamID: 3, FinBit: false, Offset: 0xeaaa, Data length: 0x3e8, Offset + Data length: 0xee92}
+[2KReceived: 61000 / 3562600 
+2023/05/17 17:53:49 <- Reading packet 0x6f (1028 bytes) for connection 3dc6f636f8281bf5 on path 2, forward-secure
+2023/05/17 17:53:49 	<- &wire.StreamFrame{StreamID: 3, FinBit: false, Offset: 0xee92, Data length: 0x3e8, Offset + Data length: 0xf27a}
+2023/05/17 17:53:49 -> Sending packet 0x48 (31 bytes) for connection 3dc6f636f8281bf5 on path 2, forward-secure
+2023/05/17 17:53:49 	-> &wire.AckFrame{PathID: 0x2, LargestAcked: 0x6f, LowestAcked: 0x47, AckRanges: []wire.AckRange(nil), DelayTime: 40.752µs}
+[2KReceived: 62000 / 3562600 
+2023/05/17 17:53:49 <- Reading packet 0x70 (1028 bytes) for connection 3dc6f636f8281bf5 on path 2, forward-secure
+2023/05/17 17:53:49 	<- &wire.StreamFrame{StreamID: 3, FinBit: false, Offset: 0xf27a, Data length: 0x3e8, Offset + Data length: 0xf662}
+[2KReceived: 63000 / 3562600 
+2023/05/17 17:53:49 <- Reading packet 0x71 (1028 bytes) for connection 3dc6f636f8281bf5 on path 2, forward-secure
+2023/05/17 17:53:49 	<- &wire.StreamFrame{StreamID: 3, FinBit: false, Offset: 0xf662, Data length: 0x3e8, Offset + Data length: 0xfa4a}
+2023/05/17 17:53:49 -> Sending packet 0x49 (31 bytes) for connection 3dc6f636f8281bf5 on path 2, forward-secure
+2023/05/17 17:53:49 	-> &wire.AckFrame{PathID: 0x2, LargestAcked: 0x71, LowestAcked: 0x47, AckRanges: []wire.AckRange(nil), DelayTime: 20.063µs}
+[2KReceived: 64000 / 3562600 
+2023/05/17 17:53:49 <- Reading packet 0x72 (1028 bytes) for connection 3dc6f636f8281bf5 on path 2, forward-secure
+2023/05/17 17:53:49 	<- &wire.StreamFrame{StreamID: 3, FinBit: false, Offset: 0xfa4a, Data length: 0x3e8, Offset + Data length: 0xfe32}
+[2KReceived: 65000 / 3562600 
+2023/05/17 17:53:49 <- Reading packet 0x73 (1028 bytes) for connection 3dc6f636f8281bf5 on path 2, forward-secure
+2023/05/17 17:53:49 	<- &wire.StreamFrame{StreamID: 3, FinBit: false, Offset: 0xfe32, Data length: 0x3e8, Offset + Data length: 0x1021a}
+2023/05/17 17:53:49 -> Sending packet 0x4a (31 bytes) for connection 3dc6f636f8281bf5 on path 2, forward-secure
+2023/05/17 17:53:49 	-> &wire.AckFrame{PathID: 0x2, LargestAcked: 0x73, LowestAcked: 0x47, AckRanges: []wire.AckRange(nil), DelayTime: 23.105µs}
+[2KReceived: 66000 / 3562600 
+2023/05/17 17:53:49 <- Reading packet 0x74 (1029 bytes) for connection 3dc6f636f8281bf5 on path 2, forward-secure
+2023/05/17 17:53:49 	<- &wire.StreamFrame{StreamID: 3, FinBit: false, Offset: 0x1021a, Data length: 0x3e8, Offset + Data length: 0x10602}
+[2KReceived: 67000 / 3562600 
+2023/05/17 17:53:49 <- Reading packet 0x75 (1029 bytes) for connection 3dc6f636f8281bf5 on path 2, forward-secure
+2023/05/17 17:53:49 	<- &wire.StreamFrame{StreamID: 3, FinBit: false, Offset: 0x10602, Data length: 0x3e8, Offset + Data length: 0x109ea}
+2023/05/17 17:53:49 -> Sending packet 0x4b (31 bytes) for connection 3dc6f636f8281bf5 on path 2, forward-secure
+2023/05/17 17:53:49 	-> &wire.AckFrame{PathID: 0x2, LargestAcked: 0x75, LowestAcked: 0x47, AckRanges: []wire.AckRange(nil), DelayTime: 21.68µs}
+[2KReceived: 68000 / 3562600 
+2023/05/17 17:53:49 <- Reading packet 0x76 (1029 bytes) for connection 3dc6f636f8281bf5 on path 2, forward-secure
+2023/05/17 17:53:49 	<- &wire.StreamFrame{StreamID: 3, FinBit: false, Offset: 0x109ea, Data length: 0x3e8, Offset + Data length: 0x10dd2}
+[2KReceived: 69000 / 3562600 
+2023/05/17 17:53:49 <- Reading packet 0x77 (1029 bytes) for connection 3dc6f636f8281bf5 on path 2, forward-secure
+2023/05/17 17:53:49 	<- &wire.StreamFrame{StreamID: 3, FinBit: false, Offset: 0x10dd2, Data length: 0x3e8, Offset + Data length: 0x111ba}
+2023/05/17 17:53:49 -> Sending packet 0x4c (31 bytes) for connection 3dc6f636f8281bf5 on path 2, forward-secure
+2023/05/17 17:53:49 	-> &wire.AckFrame{PathID: 0x2, LargestAcked: 0x77, LowestAcked: 0x47, AckRanges: []wire.AckRange(nil), DelayTime: 21.071µs}
+[2KReceived: 70000 / 3562600 
+2023/05/17 17:53:49 <- Reading packet 0x78 (1029 bytes) for connection 3dc6f636f8281bf5 on path 2, forward-secure
+2023/05/17 17:53:49 	<- &wire.StreamFrame{StreamID: 3, FinBit: false, Offset: 0x111ba, Data length: 0x3e8, Offset + Data length: 0x115a2}
+[2KReceived: 71000 / 3562600 
+2023/05/17 17:53:49 <- Reading packet 0x79 (1029 bytes) for connection 3dc6f636f8281bf5 on path 2, forward-secure
+2023/05/17 17:53:49 	<- &wire.StreamFrame{StreamID: 3, FinBit: false, Offset: 0x115a2, Data length: 0x3e8, Offset + Data length: 0x1198a}
+2023/05/17 17:53:49 -> Sending packet 0x4d (31 bytes) for connection 3dc6f636f8281bf5 on path 2, forward-secure
+2023/05/17 17:53:49 	-> &wire.AckFrame{PathID: 0x2, LargestAcked: 0x79, LowestAcked: 0x47, AckRanges: []wire.AckRange(nil), DelayTime: 16.574µs}
+[2KReceived: 72000 / 3562600 
+2023/05/17 17:53:49 <- Reading packet 0x7a (1029 bytes) for connection 3dc6f636f8281bf5 on path 2, forward-secure
+2023/05/17 17:53:49 	<- &wire.StreamFrame{StreamID: 3, FinBit: false, Offset: 0x1198a, Data length: 0x3e8, Offset + Data length: 0x11d72}
+[2KReceived: 73000 / 3562600 
+2023/05/17 17:53:49 <- Reading packet 0x7b (1029 bytes) for connection 3dc6f636f8281bf5 on path 2, forward-secure
+2023/05/17 17:53:49 	<- &wire.StreamFrame{StreamID: 3, FinBit: false, Offset: 0x11d72, Data length: 0x3e8, Offset + Data length: 0x1215a}
+2023/05/17 17:53:49 -> Sending packet 0x4e (31 bytes) for connection 3dc6f636f8281bf5 on path 2, forward-secure
+2023/05/17 17:53:49 	-> &wire.AckFrame{PathID: 0x2, LargestAcked: 0x7b, LowestAcked: 0x47, AckRanges: []wire.AckRange(nil), DelayTime: 15.342µs}
+[2KReceived: 74000 / 3562600 
+2023/05/17 17:53:49 <- Reading packet 0x7c (1029 bytes) for connection 3dc6f636f8281bf5 on path 2, forward-secure
+2023/05/17 17:53:49 	<- &wire.StreamFrame{StreamID: 3, FinBit: false, Offset: 0x1215a, Data length: 0x3e8, Offset + Data length: 0x12542}
+[2KReceived: 75000 / 3562600 
+2023/05/17 17:53:49 <- Reading packet 0x7d (1029 bytes) for connection 3dc6f636f8281bf5 on path 2, forward-secure
+2023/05/17 17:53:49 	<- &wire.StreamFrame{StreamID: 3, FinBit: false, Offset: 0x12542, Data length: 0x3e8, Offset + Data length: 0x1292a}
+2023/05/17 17:53:49 -> Sending packet 0x4f (31 bytes) for connection 3dc6f636f8281bf5 on path 2, forward-secure
+2023/05/17 17:53:49 	-> &wire.AckFrame{PathID: 0x2, LargestAcked: 0x7d, LowestAcked: 0x47, AckRanges: []wire.AckRange(nil), DelayTime: 14.083µs}
+[2KReceived: 76000 / 3562600 
+2023/05/17 17:53:49 <- Reading packet 0x7e (1029 bytes) for connection 3dc6f636f8281bf5 on path 2, forward-secure
+2023/05/17 17:53:49 	<- &wire.StreamFrame{StreamID: 3, FinBit: false, Offset: 0x1292a, Data length: 0x3e8, Offset + Data length: 0x12d12}
+[2KReceived: 77000 / 3562600 
+2023/05/17 17:53:49 <- Reading packet 0x7f (1029 bytes) for connection 3dc6f636f8281bf5 on path 2, forward-secure
+2023/05/17 17:53:49 	<- &wire.StreamFrame{StreamID: 3, FinBit: false, Offset: 0x12d12, Data length: 0x3e8, Offset + Data length: 0x130fa}
+2023/05/17 17:53:49 -> Sending packet 0x50 (31 bytes) for connection 3dc6f636f8281bf5 on path 2, forward-secure
+2023/05/17 17:53:49 	-> &wire.AckFrame{PathID: 0x2, LargestAcked: 0x7f, LowestAcked: 0x47, AckRanges: []wire.AckRange(nil), DelayTime: 16.561µs}
+[2KReceived: 78000 / 3562600 
+2023/05/17 17:53:49 <- Reading packet 0x80 (1029 bytes) for connection 3dc6f636f8281bf5 on path 2, forward-secure
+2023/05/17 17:53:49 	<- &wire.StreamFrame{StreamID: 3, FinBit: false, Offset: 0x130fa, Data length: 0x3e8, Offset + Data length: 0x134e2}
+[2KReceived: 79000 / 3562600 
+2023/05/17 17:53:49 <- Reading packet 0x81 (1029 bytes) for connection 3dc6f636f8281bf5 on path 2, forward-secure
+2023/05/17 17:53:49 	<- &wire.StreamFrame{StreamID: 3, FinBit: false, Offset: 0x134e2, Data length: 0x3e8, Offset + Data length: 0x138ca}
+2023/05/17 17:53:49 -> Sending packet 0x51 (31 bytes) for connection 3dc6f636f8281bf5 on path 2, forward-secure
+2023/05/17 17:53:49 	-> &wire.AckFrame{PathID: 0x2, LargestAcked: 0x81, LowestAcked: 0x47, AckRanges: []wire.AckRange(nil), DelayTime: 23.224µs}
+[2KReceived: 80000 / 3562600 
+2023/05/17 17:53:49 <- Reading packet 0x82 (1029 bytes) for connection 3dc6f636f8281bf5 on path 2, forward-secure
+2023/05/17 17:53:49 	<- &wire.StreamFrame{StreamID: 3, FinBit: false, Offset: 0x138ca, Data length: 0x3e8, Offset + Data length: 0x13cb2}
+[2KReceived: 81000 / 3562600 
+2023/05/17 17:53:49 <- Reading packet 0x83 (1029 bytes) for connection 3dc6f636f8281bf5 on path 2, forward-secure
+2023/05/17 17:53:49 	<- &wire.StreamFrame{StreamID: 3, FinBit: false, Offset: 0x13cb2, Data length: 0x3e8, Offset + Data length: 0x1409a}
+2023/05/17 17:53:49 -> Sending packet 0x52 (31 bytes) for connection 3dc6f636f8281bf5 on path 2, forward-secure
+2023/05/17 17:53:49 	-> &wire.AckFrame{PathID: 0x2, LargestAcked: 0x83, LowestAcked: 0x47, AckRanges: []wire.AckRange(nil), DelayTime: 13.8µs}
+[2KReceived: 82000 / 3562600 
+2023/05/17 17:53:49 <- Reading packet 0x84 (575 bytes) for connection 3dc6f636f8281bf5 on path 2, forward-secure
+2023/05/17 17:53:49 	<- &wire.StopWaitingFrame{LeastUnacked: 0x5e}
+2023/05/17 17:53:49 	<- &wire.AckFrame{PathID: 0x2, LargestAcked: 0x3e, LowestAcked: 0x34, AckRanges: []wire.AckRange(nil), DelayTime: 75µs}
+2023/05/17 17:53:49 	<- &wire.StreamFrame{StreamID: 3, FinBit: false, Offset: 0x1409a, Data length: 0x218, Offset + Data length: 0x142b2}
+2023/05/17 17:53:49 <- Reading packet 0x85 (29 bytes) for connection 3dc6f636f8281bf5 on path 2, forward-secure
+2023/05/17 17:53:49 	<- &wire.BlockedFrame{StreamID:0x3}
+2023/05/17 17:53:49 -> Sending packet 0x53 (31 bytes) for connection 3dc6f636f8281bf5 on path 2, forward-secure
+2023/05/17 17:53:49 	-> &wire.AckFrame{PathID: 0x2, LargestAcked: 0x85, LowestAcked: 0x5e, AckRanges: []wire.AckRange(nil), DelayTime: 10.799µs}
+2023/05/17 17:53:49 -> Sending packet 0xb (102 bytes) for connection 3dc6f636f8281bf5 on path 1, forward-secure
+2023/05/17 17:53:49 	-> &wire.WindowUpdateFrame{StreamID:0x0, ByteOffset:0xc000}
+2023/05/17 17:53:49 	-> &wire.WindowUpdateFrame{StreamID:0x3, ByteOffset:0x2c39a}
+2023/05/17 17:53:49 	-> &wire.WindowUpdateFrame{StreamID:0x1, ByteOffset:0x8000}
+2023/05/17 17:53:49 	-> &wire.WindowUpdateFrame{StreamID:0x0, ByteOffset:0xc000}
+2023/05/17 17:53:49 	-> &wire.WindowUpdateFrame{StreamID:0x3, ByteOffset:0x2c39a}
+2023/05/17 17:53:49 	-> &wire.WindowUpdateFrame{StreamID:0x1, ByteOffset:0x8000}
+2023/05/17 17:53:49 -> Sending packet 0x54 (63 bytes) for connection 3dc6f636f8281bf5 on path 2, forward-secure
+2023/05/17 17:53:49 	-> &wire.WindowUpdateFrame{StreamID:0x0, ByteOffset:0xc000}
+2023/05/17 17:53:49 	-> &wire.WindowUpdateFrame{StreamID:0x3, ByteOffset:0x2c39a}
+2023/05/17 17:53:49 	-> &wire.WindowUpdateFrame{StreamID:0x1, ByteOffset:0x8000}
+2023/05/17 17:53:49 <- Reading packet 0x86 (493 bytes) for connection 3dc6f636f8281bf5 on path 2, forward-secure
+2023/05/17 17:53:49 	<- &wire.StreamFrame{StreamID: 3, FinBit: false, Offset: 0x142b2, Data length: 0x1d0, Offset + Data length: 0x14482}
+[2KReceived: 83000 / 3562600 
+2023/05/17 17:53:49 <- Reading packet 0x87 (1029 bytes) for connection 3dc6f636f8281bf5 on path 2, forward-secure
+2023/05/17 17:53:49 	<- &wire.StreamFrame{StreamID: 3, FinBit: false, Offset: 0x14482, Data length: 0x3e8, Offset + Data length: 0x1486a}
+2023/05/17 17:53:49 -> Sending packet 0x55 (31 bytes) for connection 3dc6f636f8281bf5 on path 2, forward-secure
+2023/05/17 17:53:49 	-> &wire.AckFrame{PathID: 0x2, LargestAcked: 0x87, LowestAcked: 0x5e, AckRanges: []wire.AckRange(nil), DelayTime: 12.621µs}
+[2KReceived: 84000 / 3562600 
+2023/05/17 17:53:49 <- Reading packet 0x88 (1029 bytes) for connection 3dc6f636f8281bf5 on path 2, forward-secure
+2023/05/17 17:53:49 	<- &wire.StreamFrame{StreamID: 3, FinBit: false, Offset: 0x1486a, Data length: 0x3e8, Offset + Data length: 0x14c52}
+[2KReceived: 85000 / 3562600 
+2023/05/17 17:53:49 <- Reading packet 0x89 (1029 bytes) for connection 3dc6f636f8281bf5 on path 2, forward-secure
+2023/05/17 17:53:49 	<- &wire.StreamFrame{StreamID: 3, FinBit: false, Offset: 0x14c52, Data length: 0x3e8, Offset + Data length: 0x1503a}
+2023/05/17 17:53:49 -> Sending packet 0x56 (31 bytes) for connection 3dc6f636f8281bf5 on path 2, forward-secure
+2023/05/17 17:53:49 	-> &wire.AckFrame{PathID: 0x2, LargestAcked: 0x89, LowestAcked: 0x5e, AckRanges: []wire.AckRange(nil), DelayTime: 18.233µs}
+[2KReceived: 86000 / 3562600 
+2023/05/17 17:53:49 <- Reading packet 0x8a (1029 bytes) for connection 3dc6f636f8281bf5 on path 2, forward-secure
+2023/05/17 17:53:49 	<- &wire.StreamFrame{StreamID: 3, FinBit: false, Offset: 0x1503a, Data length: 0x3e8, Offset + Data length: 0x15422}
+[2KReceived: 87000 / 3562600 
+2023/05/17 17:53:49 <- Reading packet 0x8b (1029 bytes) for connection 3dc6f636f8281bf5 on path 2, forward-secure
+2023/05/17 17:53:49 	<- &wire.StreamFrame{StreamID: 3, FinBit: false, Offset: 0x15422, Data length: 0x3e8, Offset + Data length: 0x1580a}
+2023/05/17 17:53:49 -> Sending packet 0x57 (31 bytes) for connection 3dc6f636f8281bf5 on path 2, forward-secure
+2023/05/17 17:53:49 	-> &wire.AckFrame{PathID: 0x2, LargestAcked: 0x8b, LowestAcked: 0x5e, AckRanges: []wire.AckRange(nil), DelayTime: 22.614µs}
+[2KReceived: 88000 / 3562600 
+2023/05/17 17:53:49 <- Reading packet 0x8c (1029 bytes) for connection 3dc6f636f8281bf5 on path 2, forward-secure
+2023/05/17 17:53:49 	<- &wire.StreamFrame{StreamID: 3, FinBit: false, Offset: 0x1580a, Data length: 0x3e8, Offset + Data length: 0x15bf2}
+[2KReceived: 89000 / 3562600 
+2023/05/17 17:53:49 <- Reading packet 0x8d (1029 bytes) for connection 3dc6f636f8281bf5 on path 2, forward-secure
+2023/05/17 17:53:49 	<- &wire.StreamFrame{StreamID: 3, FinBit: false, Offset: 0x15bf2, Data length: 0x3e8, Offset + Data length: 0x15fda}
+2023/05/17 17:53:49 -> Sending packet 0x58 (31 bytes) for connection 3dc6f636f8281bf5 on path 2, forward-secure
+2023/05/17 17:53:49 	-> &wire.AckFrame{PathID: 0x2, LargestAcked: 0x8d, LowestAcked: 0x5e, AckRanges: []wire.AckRange(nil), DelayTime: 13.816µs}
+[2KReceived: 90000 / 3562600 
+2023/05/17 17:53:49 <- Reading packet 0x8e (1029 bytes) for connection 3dc6f636f8281bf5 on path 2, forward-secure
+2023/05/17 17:53:49 	<- &wire.StreamFrame{StreamID: 3, FinBit: false, Offset: 0x15fda, Data length: 0x3e8, Offset + Data length: 0x163c2}
+[2KReceived: 91000 / 3562600 
+2023/05/17 17:53:49 <- Reading packet 0x8f (1029 bytes) for connection 3dc6f636f8281bf5 on path 2, forward-secure
+2023/05/17 17:53:49 	<- &wire.StreamFrame{StreamID: 3, FinBit: false, Offset: 0x163c2, Data length: 0x3e8, Offset + Data length: 0x167aa}
+2023/05/17 17:53:49 -> Sending packet 0x59 (31 bytes) for connection 3dc6f636f8281bf5 on path 2, forward-secure
+2023/05/17 17:53:49 	-> &wire.AckFrame{PathID: 0x2, LargestAcked: 0x8f, LowestAcked: 0x5e, AckRanges: []wire.AckRange(nil), DelayTime: 14.75µs}
+[2KReceived: 92000 / 3562600 
+2023/05/17 17:53:49 <- Reading packet 0x90 (1029 bytes) for connection 3dc6f636f8281bf5 on path 2, forward-secure
+2023/05/17 17:53:49 	<- &wire.StreamFrame{StreamID: 3, FinBit: false, Offset: 0x167aa, Data length: 0x3e8, Offset + Data length: 0x16b92}
+[2KReceived: 93000 / 3562600 
+2023/05/17 17:53:49 <- Reading packet 0x91 (1029 bytes) for connection 3dc6f636f8281bf5 on path 2, forward-secure
+2023/05/17 17:53:49 	<- &wire.StreamFrame{StreamID: 3, FinBit: false, Offset: 0x16b92, Data length: 0x3e8, Offset + Data length: 0x16f7a}
+2023/05/17 17:53:49 -> Sending packet 0x5a (31 bytes) for connection 3dc6f636f8281bf5 on path 2, forward-secure
+2023/05/17 17:53:49 	-> &wire.AckFrame{PathID: 0x2, LargestAcked: 0x91, LowestAcked: 0x5e, AckRanges: []wire.AckRange(nil), DelayTime: 12.976µs}
+[2KReceived: 94000 / 3562600 
+2023/05/17 17:53:49 <- Reading packet 0x92 (1029 bytes) for connection 3dc6f636f8281bf5 on path 2, forward-secure
+2023/05/17 17:53:49 	<- &wire.StreamFrame{StreamID: 3, FinBit: false, Offset: 0x16f7a, Data length: 0x3e8, Offset + Data length: 0x17362}
+[2KReceived: 95000 / 3562600 
+2023/05/17 17:53:49 <- Reading packet 0x93 (1029 bytes) for connection 3dc6f636f8281bf5 on path 2, forward-secure
+2023/05/17 17:53:49 	<- &wire.StreamFrame{StreamID: 3, FinBit: false, Offset: 0x17362, Data length: 0x3e8, Offset + Data length: 0x1774a}
+2023/05/17 17:53:49 -> Sending packet 0x5b (31 bytes) for connection 3dc6f636f8281bf5 on path 2, forward-secure
+2023/05/17 17:53:49 	-> &wire.AckFrame{PathID: 0x2, LargestAcked: 0x93, LowestAcked: 0x5e, AckRanges: []wire.AckRange(nil), DelayTime: 10.37µs}
+[2KReceived: 96000 / 3562600 
+2023/05/17 17:53:49 <- Reading packet 0x94 (1029 bytes) for connection 3dc6f636f8281bf5 on path 2, forward-secure
+2023/05/17 17:53:49 	<- &wire.StreamFrame{StreamID: 3, FinBit: false, Offset: 0x1774a, Data length: 0x3e8, Offset + Data length: 0x17b32}
+[2KReceived: 97000 / 3562600 
+2023/05/17 17:53:49 <- Reading packet 0x95 (1029 bytes) for connection 3dc6f636f8281bf5 on path 2, forward-secure
+2023/05/17 17:53:49 	<- &wire.StreamFrame{StreamID: 3, FinBit: false, Offset: 0x17b32, Data length: 0x3e8, Offset + Data length: 0x17f1a}
+2023/05/17 17:53:49 -> Sending packet 0x5c (31 bytes) for connection 3dc6f636f8281bf5 on path 2, forward-secure
+2023/05/17 17:53:49 	-> &wire.AckFrame{PathID: 0x2, LargestAcked: 0x95, LowestAcked: 0x5e, AckRanges: []wire.AckRange(nil), DelayTime: 13.005µs}
+[2KReceived: 98000 / 3562600 
+2023/05/17 17:53:49 <- Reading packet 0x96 (1029 bytes) for connection 3dc6f636f8281bf5 on path 2, forward-secure
+2023/05/17 17:53:49 	<- &wire.StreamFrame{StreamID: 3, FinBit: false, Offset: 0x17f1a, Data length: 0x3e8, Offset + Data length: 0x18302}
+[2KReceived: 99000 / 3562600 
+2023/05/17 17:53:49 <- Reading packet 0x97 (1029 bytes) for connection 3dc6f636f8281bf5 on path 2, forward-secure
+2023/05/17 17:53:49 	<- &wire.StreamFrame{StreamID: 3, FinBit: false, Offset: 0x18302, Data length: 0x3e8, Offset + Data length: 0x186ea}
+2023/05/17 17:53:49 -> Sending packet 0x5d (31 bytes) for connection 3dc6f636f8281bf5 on path 2, forward-secure
+2023/05/17 17:53:49 	-> &wire.AckFrame{PathID: 0x2, LargestAcked: 0x97, LowestAcked: 0x5e, AckRanges: []wire.AckRange(nil), DelayTime: 15.477µs}
+[2KReceived: 100000 / 3562600 
+2023/05/17 17:53:49 <- Reading packet 0x98 (1029 bytes) for connection 3dc6f636f8281bf5 on path 2, forward-secure
+2023/05/17 17:53:49 	<- &wire.StreamFrame{StreamID: 3, FinBit: false, Offset: 0x186ea, Data length: 0x3e8, Offset + Data length: 0x18ad2}
+[2KReceived: 101000 / 3562600 
+2023/05/17 17:53:49 <- Reading packet 0x99 (1029 bytes) for connection 3dc6f636f8281bf5 on path 2, forward-secure
+2023/05/17 17:53:49 	<- &wire.StreamFrame{StreamID: 3, FinBit: false, Offset: 0x18ad2, Data length: 0x3e8, Offset + Data length: 0x18eba}
+2023/05/17 17:53:49 -> Sending packet 0x5e (31 bytes) for connection 3dc6f636f8281bf5 on path 2, forward-secure
+2023/05/17 17:53:49 	-> &wire.AckFrame{PathID: 0x2, LargestAcked: 0x99, LowestAcked: 0x5e, AckRanges: []wire.AckRange(nil), DelayTime: 14.854µs}
+[2KReceived: 102000 / 3562600 
+2023/05/17 17:53:49 <- Reading packet 0x9a (1029 bytes) for connection 3dc6f636f8281bf5 on path 2, forward-secure
+2023/05/17 17:53:49 	<- &wire.StreamFrame{StreamID: 3, FinBit: false, Offset: 0x18eba, Data length: 0x3e8, Offset + Data length: 0x192a2}
+[2KReceived: 103000 / 3562600 
+2023/05/17 17:53:49 <- Reading packet 0x9b (1029 bytes) for connection 3dc6f636f8281bf5 on path 2, forward-secure
+2023/05/17 17:53:49 	<- &wire.StreamFrame{StreamID: 3, FinBit: false, Offset: 0x192a2, Data length: 0x3e8, Offset + Data length: 0x1968a}
+2023/05/17 17:53:49 -> Sending packet 0x5f (31 bytes) for connection 3dc6f636f8281bf5 on path 2, forward-secure
+2023/05/17 17:53:49 	-> &wire.AckFrame{PathID: 0x2, LargestAcked: 0x9b, LowestAcked: 0x5e, AckRanges: []wire.AckRange(nil), DelayTime: 13.384µs}
+[2KReceived: 104000 / 3562600 
+2023/05/17 17:53:49 <- Reading packet 0x9c (1029 bytes) for connection 3dc6f636f8281bf5 on path 2, forward-secure
+2023/05/17 17:53:49 	<- &wire.StreamFrame{StreamID: 3, FinBit: false, Offset: 0x1968a, Data length: 0x3e8, Offset + Data length: 0x19a72}
+[2KReceived: 105000 / 3562600 
+2023/05/17 17:53:49 <- Reading packet 0x9d (1029 bytes) for connection 3dc6f636f8281bf5 on path 2, forward-secure
+2023/05/17 17:53:49 	<- &wire.StreamFrame{StreamID: 3, FinBit: false, Offset: 0x19a72, Data length: 0x3e8, Offset + Data length: 0x19e5a}
+2023/05/17 17:53:49 -> Sending packet 0x60 (31 bytes) for connection 3dc6f636f8281bf5 on path 2, forward-secure
+2023/05/17 17:53:49 	-> &wire.AckFrame{PathID: 0x2, LargestAcked: 0x9d, LowestAcked: 0x5e, AckRanges: []wire.AckRange(nil), DelayTime: 13.066µs}
+[2KReceived: 106000 / 3562600 
+2023/05/17 17:53:49 <- Reading packet 0x9e (1029 bytes) for connection 3dc6f636f8281bf5 on path 2, forward-secure
+2023/05/17 17:53:49 	<- &wire.StreamFrame{StreamID: 3, FinBit: false, Offset: 0x19e5a, Data length: 0x3e8, Offset + Data length: 0x1a242}
+[2KReceived: 107000 / 3562600 
+2023/05/17 17:53:49 <- Reading packet 0x9f (1029 bytes) for connection 3dc6f636f8281bf5 on path 2, forward-secure
+2023/05/17 17:53:49 	<- &wire.StreamFrame{StreamID: 3, FinBit: false, Offset: 0x1a242, Data length: 0x3e8, Offset + Data length: 0x1a62a}
+2023/05/17 17:53:49 -> Sending packet 0x61 (31 bytes) for connection 3dc6f636f8281bf5 on path 2, forward-secure
+2023/05/17 17:53:49 	-> &wire.AckFrame{PathID: 0x2, LargestAcked: 0x9f, LowestAcked: 0x5e, AckRanges: []wire.AckRange(nil), DelayTime: 22.666µs}
+[2KReceived: 108000 / 3562600 
+2023/05/17 17:53:49 <- Reading packet 0xa0 (1029 bytes) for connection 3dc6f636f8281bf5 on path 2, forward-secure
+2023/05/17 17:53:49 	<- &wire.StreamFrame{StreamID: 3, FinBit: false, Offset: 0x1a62a, Data length: 0x3e8, Offset + Data length: 0x1aa12}
+[2KReceived: 109000 / 3562600 
+2023/05/17 17:53:49 <- Reading packet 0xa1 (1029 bytes) for connection 3dc6f636f8281bf5 on path 2, forward-secure
+2023/05/17 17:53:49 	<- &wire.StreamFrame{StreamID: 3, FinBit: false, Offset: 0x1aa12, Data length: 0x3e8, Offset + Data length: 0x1adfa}
+2023/05/17 17:53:49 -> Sending packet 0x62 (31 bytes) for connection 3dc6f636f8281bf5 on path 2, forward-secure
+2023/05/17 17:53:49 	-> &wire.AckFrame{PathID: 0x2, LargestAcked: 0xa1, LowestAcked: 0x5e, AckRanges: []wire.AckRange(nil), DelayTime: 22.047µs}
+[2KReceived: 110000 / 3562600 
+2023/05/17 17:53:49 <- Reading packet 0xa2 (1029 bytes) for connection 3dc6f636f8281bf5 on path 2, forward-secure
+2023/05/17 17:53:49 	<- &wire.StreamFrame{StreamID: 3, FinBit: false, Offset: 0x1adfa, Data length: 0x3e8, Offset + Data length: 0x1b1e2}
+[2KReceived: 111000 / 3562600 
+2023/05/17 17:53:49 <- Reading packet 0xa3 (1029 bytes) for connection 3dc6f636f8281bf5 on path 2, forward-secure
+2023/05/17 17:53:49 	<- &wire.StreamFrame{StreamID: 3, FinBit: false, Offset: 0x1b1e2, Data length: 0x3e8, Offset + Data length: 0x1b5ca}
+2023/05/17 17:53:49 -> Sending packet 0x63 (31 bytes) for connection 3dc6f636f8281bf5 on path 2, forward-secure
+2023/05/17 17:53:49 	-> &wire.AckFrame{PathID: 0x2, LargestAcked: 0xa3, LowestAcked: 0x5e, AckRanges: []wire.AckRange(nil), DelayTime: 14.189µs}
+[2KReceived: 112000 / 3562600 
+2023/05/17 17:53:49 <- Reading packet 0xa4 (1029 bytes) for connection 3dc6f636f8281bf5 on path 2, forward-secure
+2023/05/17 17:53:49 	<- &wire.StreamFrame{StreamID: 3, FinBit: false, Offset: 0x1b5ca, Data length: 0x3e8, Offset + Data length: 0x1b9b2}
+[2KReceived: 113000 / 3562600 
+2023/05/17 17:53:49 <- Reading packet 0xa5 (1029 bytes) for connection 3dc6f636f8281bf5 on path 2, forward-secure
+2023/05/17 17:53:49 	<- &wire.StreamFrame{StreamID: 3, FinBit: false, Offset: 0x1b9b2, Data length: 0x3e8, Offset + Data length: 0x1bd9a}
+2023/05/17 17:53:49 -> Sending packet 0x64 (31 bytes) for connection 3dc6f636f8281bf5 on path 2, forward-secure
+2023/05/17 17:53:49 	-> &wire.AckFrame{PathID: 0x2, LargestAcked: 0xa5, LowestAcked: 0x5e, AckRanges: []wire.AckRange(nil), DelayTime: 15.93µs}
+[2KReceived: 114000 / 3562600 
+2023/05/17 17:53:49 <- Reading packet 0xa6 (1029 bytes) for connection 3dc6f636f8281bf5 on path 2, forward-secure
+2023/05/17 17:53:49 	<- &wire.StreamFrame{StreamID: 3, FinBit: false, Offset: 0x1bd9a, Data length: 0x3e8, Offset + Data length: 0x1c182}
+[2KReceived: 115000 / 3562600 
+2023/05/17 17:53:49 <- Reading packet 0xa7 (1029 bytes) for connection 3dc6f636f8281bf5 on path 2, forward-secure
+2023/05/17 17:53:49 	<- &wire.StreamFrame{StreamID: 3, FinBit: false, Offset: 0x1c182, Data length: 0x3e8, Offset + Data length: 0x1c56a}
+2023/05/17 17:53:49 -> Sending packet 0x65 (31 bytes) for connection 3dc6f636f8281bf5 on path 2, forward-secure
+2023/05/17 17:53:49 	-> &wire.AckFrame{PathID: 0x2, LargestAcked: 0xa7, LowestAcked: 0x5e, AckRanges: []wire.AckRange(nil), DelayTime: 11.838µs}
+[2KReceived: 116000 / 3562600 
+2023/05/17 17:53:49 Increasing receive flow control window increment for stream 3 to 256 kB
+2023/05/17 17:53:49 -> Sending packet 0xc (50 bytes) for connection 3dc6f636f8281bf5 on path 1, forward-secure
+2023/05/17 17:53:49 	-> &wire.WindowUpdateFrame{StreamID:0x3, ByteOffset:0x5c56a}
+2023/05/17 17:53:49 	-> &wire.WindowUpdateFrame{StreamID:0x3, ByteOffset:0x5c56a}
+2023/05/17 17:53:49 -> Sending packet 0x66 (37 bytes) for connection 3dc6f636f8281bf5 on path 2, forward-secure
+2023/05/17 17:53:49 	-> &wire.WindowUpdateFrame{StreamID:0x3, ByteOffset:0x5c56a}
+2023/05/17 17:53:49 <- Reading packet 0xa8 (1029 bytes) for connection 3dc6f636f8281bf5 on path 2, forward-secure
+2023/05/17 17:53:49 	<- &wire.StreamFrame{StreamID: 3, FinBit: false, Offset: 0x1c56a, Data length: 0x3e8, Offset + Data length: 0x1c952}
+[2KReceived: 117000 / 3562600 
+2023/05/17 17:53:49 <- Reading packet 0xa9 (1029 bytes) for connection 3dc6f636f8281bf5 on path 2, forward-secure
+2023/05/17 17:53:49 	<- &wire.StreamFrame{StreamID: 3, FinBit: false, Offset: 0x1c952, Data length: 0x3e8, Offset + Data length: 0x1cd3a}
+2023/05/17 17:53:49 -> Sending packet 0x67 (31 bytes) for connection 3dc6f636f8281bf5 on path 2, forward-secure
+2023/05/17 17:53:49 	-> &wire.AckFrame{PathID: 0x2, LargestAcked: 0xa9, LowestAcked: 0x5e, AckRanges: []wire.AckRange(nil), DelayTime: 9.93µs}
+[2KReceived: 118000 / 3562600 
+2023/05/17 17:53:49 <- Reading packet 0xaa (1039 bytes) for connection 3dc6f636f8281bf5 on path 2, forward-secure
+2023/05/17 17:53:49 	<- &wire.StopWaitingFrame{LeastUnacked: 0x82}
+2023/05/17 17:53:49 	<- &wire.AckFrame{PathID: 0x2, LargestAcked: 0x51, LowestAcked: 0x34, AckRanges: []wire.AckRange(nil), DelayTime: 17µs}
+2023/05/17 17:53:49 	<- &wire.StreamFrame{StreamID: 3, FinBit: false, Offset: 0x1cd3a, Data length: 0x3e8, Offset + Data length: 0x1d122}
+[2KReceived: 119000 / 3562600 
+2023/05/17 17:53:49 <- Reading packet 0xab (1029 bytes) for connection 3dc6f636f8281bf5 on path 2, forward-secure
+2023/05/17 17:53:49 	<- &wire.StreamFrame{StreamID: 3, FinBit: false, Offset: 0x1d122, Data length: 0x3e8, Offset + Data length: 0x1d50a}
+2023/05/17 17:53:49 -> Sending packet 0x68 (34 bytes) for connection 3dc6f636f8281bf5 on path 2, forward-secure
+2023/05/17 17:53:49 	-> &wire.StopWaitingFrame{LeastUnacked: 0x52, PacketNumberLen: 0x2}
+2023/05/17 17:53:49 	-> &wire.AckFrame{PathID: 0x2, LargestAcked: 0xab, LowestAcked: 0x82, AckRanges: []wire.AckRange(nil), DelayTime: 12.917µs}
+[2KReceived: 120000 / 3562600 
+2023/05/17 17:53:49 <- Reading packet 0xac (1029 bytes) for connection 3dc6f636f8281bf5 on path 2, forward-secure
+2023/05/17 17:53:49 	<- &wire.StreamFrame{StreamID: 3, FinBit: false, Offset: 0x1d50a, Data length: 0x3e8, Offset + Data length: 0x1d8f2}
+[2KReceived: 121000 / 3562600 
+2023/05/17 17:53:49 <- Reading packet 0xad (1029 bytes) for connection 3dc6f636f8281bf5 on path 2, forward-secure
+2023/05/17 17:53:49 	<- &wire.StreamFrame{StreamID: 3, FinBit: false, Offset: 0x1d8f2, Data length: 0x3e8, Offset + Data length: 0x1dcda}
+2023/05/17 17:53:49 -> Sending packet 0x69 (31 bytes) for connection 3dc6f636f8281bf5 on path 2, forward-secure
+[2KReceived: 122000 / 3562600 
+2023/05/17 17:53:49 	-> &wire.AckFrame{PathID: 0x2, LargestAcked: 0xad, LowestAcked: 0x82, AckRanges: []wire.AckRange(nil), DelayTime: 38.217µs}
+2023/05/17 17:53:49 <- Reading packet 0xae (1029 bytes) for connection 3dc6f636f8281bf5 on path 2, forward-secure
+2023/05/17 17:53:49 	<- &wire.StreamFrame{StreamID: 3, FinBit: false, Offset: 0x1dcda, Data length: 0x3e8, Offset + Data length: 0x1e0c2}
+[2KReceived: 123000 / 3562600 
+2023/05/17 17:53:49 <- Reading packet 0xaf (1029 bytes) for connection 3dc6f636f8281bf5 on path 2, forward-secure
+2023/05/17 17:53:49 	<- &wire.StreamFrame{StreamID: 3, FinBit: false, Offset: 0x1e0c2, Data length: 0x3e8, Offset + Data length: 0x1e4aa}
+2023/05/17 17:53:49 -> Sending packet 0x6a (31 bytes) for connection 3dc6f636f8281bf5 on path 2, forward-secure
+2023/05/17 17:53:49 	-> &wire.AckFrame{PathID: 0x2, LargestAcked: 0xaf, LowestAcked: 0x82, AckRanges: []wire.AckRange(nil), DelayTime: 15.349µs}
+[2KReceived: 124000 / 3562600 
+2023/05/17 17:53:49 <- Reading packet 0xb0 (1029 bytes) for connection 3dc6f636f8281bf5 on path 2, forward-secure
+2023/05/17 17:53:49 	<- &wire.StreamFrame{StreamID: 3, FinBit: false, Offset: 0x1e4aa, Data length: 0x3e8, Offset + Data length: 0x1e892}
+[2KReceived: 125000 / 3562600 
+2023/05/17 17:53:49 <- Reading packet 0xb1 (1029 bytes) for connection 3dc6f636f8281bf5 on path 2, forward-secure
+2023/05/17 17:53:49 	<- &wire.StreamFrame{StreamID: 3, FinBit: false, Offset: 0x1e892, Data length: 0x3e8, Offset + Data length: 0x1ec7a}
+2023/05/17 17:53:49 -> Sending packet 0x6b (31 bytes) for connection 3dc6f636f8281bf5 on path 2, forward-secure
+2023/05/17 17:53:49 	-> &wire.AckFrame{PathID: 0x2, LargestAcked: 0xb1, LowestAcked: 0x82, AckRanges: []wire.AckRange(nil), DelayTime: 15.072µs}
+[2KReceived: 126000 / 3562600 
+2023/05/17 17:53:49 <- Reading packet 0xb2 (1029 bytes) for connection 3dc6f636f8281bf5 on path 2, forward-secure
+2023/05/17 17:53:49 	<- &wire.StreamFrame{StreamID: 3, FinBit: false, Offset: 0x1ec7a, Data length: 0x3e8, Offset + Data length: 0x1f062}
+[2KReceived: 127000 / 3562600 
+2023/05/17 17:53:49 <- Reading packet 0xb3 (1029 bytes) for connection 3dc6f636f8281bf5 on path 2, forward-secure
+2023/05/17 17:53:49 	<- &wire.StreamFrame{StreamID: 3, FinBit: false, Offset: 0x1f062, Data length: 0x3e8, Offset + Data length: 0x1f44a}
+2023/05/17 17:53:49 -> Sending packet 0x6c (31 bytes) for connection 3dc6f636f8281bf5 on path 2, forward-secure
+2023/05/17 17:53:49 	-> &wire.AckFrame{PathID: 0x2, LargestAcked: 0xb3, LowestAcked: 0x82, AckRanges: []wire.AckRange(nil), DelayTime: 20.958µs}
+[2KReceived: 128000 / 3562600 
+2023/05/17 17:53:49 <- Reading packet 0xb4 (1029 bytes) for connection 3dc6f636f8281bf5 on path 2, forward-secure
+2023/05/17 17:53:49 	<- &wire.StreamFrame{StreamID: 3, FinBit: false, Offset: 0x1f44a, Data length: 0x3e8, Offset + Data length: 0x1f832}
+[2KReceived: 129000 / 3562600 
+2023/05/17 17:53:49 <- Reading packet 0xb5 (1029 bytes) for connection 3dc6f636f8281bf5 on path 2, forward-secure
+2023/05/17 17:53:49 	<- &wire.StreamFrame{StreamID: 3, FinBit: false, Offset: 0x1f832, Data length: 0x3e8, Offset + Data length: 0x1fc1a}
+2023/05/17 17:53:49 -> Sending packet 0x6d (31 bytes) for connection 3dc6f636f8281bf5 on path 2, forward-secure
+2023/05/17 17:53:49 	-> &wire.AckFrame{PathID: 0x2, LargestAcked: 0xb5, LowestAcked: 0x82, AckRanges: []wire.AckRange(nil), DelayTime: 22.473µs}
+[2KReceived: 130000 / 3562600 
+2023/05/17 17:53:49 <- Reading packet 0xb6 (1029 bytes) for connection 3dc6f636f8281bf5 on path 2, forward-secure
+2023/05/17 17:53:49 	<- &wire.StreamFrame{StreamID: 3, FinBit: false, Offset: 0x1fc1a, Data length: 0x3e8, Offset + Data length: 0x20002}
+[2KReceived: 131000 / 3562600 
+2023/05/17 17:53:49 <- Reading packet 0xb7 (1029 bytes) for connection 3dc6f636f8281bf5 on path 2, forward-secure
+2023/05/17 17:53:49 	<- &wire.StreamFrame{StreamID: 3, FinBit: false, Offset: 0x20002, Data length: 0x3e8, Offset + Data length: 0x203ea}
+2023/05/17 17:53:49 -> Sending packet 0x6e (31 bytes) for connection 3dc6f636f8281bf5 on path 2, forward-secure
+2023/05/17 17:53:49 	-> &wire.AckFrame{PathID: 0x2, LargestAcked: 0xb7, LowestAcked: 0x82, AckRanges: []wire.AckRange(nil), DelayTime: 12.079µs}
+[2KReceived: 132000 / 3562600 
+2023/05/17 17:53:49 <- Reading packet 0xb8 (1029 bytes) for connection 3dc6f636f8281bf5 on path 2, forward-secure
+2023/05/17 17:53:49 	<- &wire.StreamFrame{StreamID: 3, FinBit: false, Offset: 0x203ea, Data length: 0x3e8, Offset + Data length: 0x207d2}
+[2KReceived: 133000 / 3562600 
+2023/05/17 17:53:49 <- Reading packet 0xb9 (1029 bytes) for connection 3dc6f636f8281bf5 on path 2, forward-secure
+2023/05/17 17:53:49 	<- &wire.StreamFrame{StreamID: 3, FinBit: false, Offset: 0x207d2, Data length: 0x3e8, Offset + Data length: 0x20bba}
+2023/05/17 17:53:49 -> Sending packet 0x6f (31 bytes) for connection 3dc6f636f8281bf5 on path 2, forward-secure
+2023/05/17 17:53:49 	-> &wire.AckFrame{PathID: 0x2, LargestAcked: 0xb9, LowestAcked: 0x82, AckRanges: []wire.AckRange(nil), DelayTime: 15.117µs}
+[2KReceived: 134000 / 3562600 
+2023/05/17 17:53:49 <- Reading packet 0xba (1029 bytes) for connection 3dc6f636f8281bf5 on path 2, forward-secure
+2023/05/17 17:53:49 	<- &wire.StreamFrame{StreamID: 3, FinBit: false, Offset: 0x20bba, Data length: 0x3e8, Offset + Data length: 0x20fa2}
+[2KReceived: 135000 / 3562600 
+2023/05/17 17:53:49 <- Reading packet 0xbb (1029 bytes) for connection 3dc6f636f8281bf5 on path 2, forward-secure
+2023/05/17 17:53:49 	<- &wire.StreamFrame{StreamID: 3, FinBit: false, Offset: 0x20fa2, Data length: 0x3e8, Offset + Data length: 0x2138a}
+2023/05/17 17:53:49 -> Sending packet 0x70 (31 bytes) for connection 3dc6f636f8281bf5 on path 2, forward-secure
+2023/05/17 17:53:49 	-> &wire.AckFrame{PathID: 0x2, LargestAcked: 0xbb, LowestAcked: 0x82, AckRanges: []wire.AckRange(nil), DelayTime: 13.706µs}
+[2KReceived: 136000 / 3562600 
+2023/05/17 17:53:49 <- Reading packet 0xbc (1029 bytes) for connection 3dc6f636f8281bf5 on path 2, forward-secure
+2023/05/17 17:53:49 	<- &wire.StreamFrame{StreamID: 3, FinBit: false, Offset: 0x2138a, Data length: 0x3e8, Offset + Data length: 0x21772}
+[2KReceived: 137000 / 3562600 
+2023/05/17 17:53:49 <- Reading packet 0xbd (1029 bytes) for connection 3dc6f636f8281bf5 on path 2, forward-secure
+2023/05/17 17:53:49 	<- &wire.StreamFrame{StreamID: 3, FinBit: false, Offset: 0x21772, Data length: 0x3e8, Offset + Data length: 0x21b5a}
+2023/05/17 17:53:49 -> Sending packet 0x71 (31 bytes) for connection 3dc6f636f8281bf5 on path 2, forward-secure
+2023/05/17 17:53:49 	-> &wire.AckFrame{PathID: 0x2, LargestAcked: 0xbd, LowestAcked: 0x82, AckRanges: []wire.AckRange(nil), DelayTime: 20.366µs}
+[2KReceived: 138000 / 3562600 
+2023/05/17 17:53:49 <- Reading packet 0xbe (1029 bytes) for connection 3dc6f636f8281bf5 on path 2, forward-secure
+2023/05/17 17:53:49 	<- &wire.StreamFrame{StreamID: 3, FinBit: false, Offset: 0x21b5a, Data length: 0x3e8, Offset + Data length: 0x21f42}
+[2KReceived: 139000 / 3562600 
+2023/05/17 17:53:49 <- Reading packet 0xbf (1029 bytes) for connection 3dc6f636f8281bf5 on path 2, forward-secure
+2023/05/17 17:53:49 	<- &wire.StreamFrame{StreamID: 3, FinBit: false, Offset: 0x21f42, Data length: 0x3e8, Offset + Data length: 0x2232a}
+2023/05/17 17:53:49 -> Sending packet 0x72 (31 bytes) for connection 3dc6f636f8281bf5 on path 2, forward-secure
+2023/05/17 17:53:49 	-> &wire.AckFrame{PathID: 0x2, LargestAcked: 0xbf, LowestAcked: 0x82, AckRanges: []wire.AckRange(nil), DelayTime: 13.078µs}
+[2KReceived: 140000 / 3562600 
+2023/05/17 17:53:49 <- Reading packet 0xc0 (1029 bytes) for connection 3dc6f636f8281bf5 on path 2, forward-secure
+2023/05/17 17:53:49 	<- &wire.StreamFrame{StreamID: 3, FinBit: false, Offset: 0x2232a, Data length: 0x3e8, Offset + Data length: 0x22712}
+[2KReceived: 141000 / 3562600 
+2023/05/17 17:53:49 <- Reading packet 0xc1 (1029 bytes) for connection 3dc6f636f8281bf5 on path 2, forward-secure
+2023/05/17 17:53:49 	<- &wire.StreamFrame{StreamID: 3, FinBit: false, Offset: 0x22712, Data length: 0x3e8, Offset + Data length: 0x22afa}
+2023/05/17 17:53:49 -> Sending packet 0x73 (31 bytes) for connection 3dc6f636f8281bf5 on path 2, forward-secure
+2023/05/17 17:53:49 	-> &wire.AckFrame{PathID: 0x2, LargestAcked: 0xc1, LowestAcked: 0x82, AckRanges: []wire.AckRange(nil), DelayTime: 11.463µs}
+[2KReceived: 142000 / 3562600 
+2023/05/17 17:53:49 <- Reading packet 0xc2 (1029 bytes) for connection 3dc6f636f8281bf5 on path 2, forward-secure
+2023/05/17 17:53:49 	<- &wire.StreamFrame{StreamID: 3, FinBit: false, Offset: 0x22afa, Data length: 0x3e8, Offset + Data length: 0x22ee2}
+[2KReceived: 143000 / 3562600 
+2023/05/17 17:53:49 <- Reading packet 0xc3 (1029 bytes) for connection 3dc6f636f8281bf5 on path 2, forward-secure
+2023/05/17 17:53:49 	<- &wire.StreamFrame{StreamID: 3, FinBit: false, Offset: 0x22ee2, Data length: 0x3e8, Offset + Data length: 0x232ca}
+2023/05/17 17:53:49 -> Sending packet 0x74 (31 bytes) for connection 3dc6f636f8281bf5 on path 2, forward-secure
+2023/05/17 17:53:49 	-> &wire.AckFrame{PathID: 0x2, LargestAcked: 0xc3, LowestAcked: 0x82, AckRanges: []wire.AckRange(nil), DelayTime: 9.109µs}
+[2KReceived: 144000 / 3562600 
+2023/05/17 17:53:49 <- Reading packet 0xc4 (1029 bytes) for connection 3dc6f636f8281bf5 on path 2, forward-secure
+2023/05/17 17:53:49 	<- &wire.StreamFrame{StreamID: 3, FinBit: false, Offset: 0x232ca, Data length: 0x3e8, Offset + Data length: 0x236b2}
+[2KReceived: 145000 / 3562600 
+2023/05/17 17:53:49 <- Reading packet 0xc5 (1029 bytes) for connection 3dc6f636f8281bf5 on path 2, forward-secure
+2023/05/17 17:53:49 	<- &wire.StreamFrame{StreamID: 3, FinBit: false, Offset: 0x236b2, Data length: 0x3e8, Offset + Data length: 0x23a9a}
+2023/05/17 17:53:49 -> Sending packet 0x75 (31 bytes) for connection 3dc6f636f8281bf5 on path 2, forward-secure
+2023/05/17 17:53:49 	-> &wire.AckFrame{PathID: 0x2, LargestAcked: 0xc5, LowestAcked: 0x82, AckRanges: []wire.AckRange(nil), DelayTime: 10.274µs}
+[2KReceived: 146000 / 3562600 
+2023/05/17 17:53:49 <- Reading packet 0xc6 (1029 bytes) for connection 3dc6f636f8281bf5 on path 2, forward-secure
+2023/05/17 17:53:49 	<- &wire.StreamFrame{StreamID: 3, FinBit: false, Offset: 0x23a9a, Data length: 0x3e8, Offset + Data length: 0x23e82}
+[2KReceived: 147000 / 3562600 
+2023/05/17 17:53:49 <- Reading packet 0xc7 (1029 bytes) for connection 3dc6f636f8281bf5 on path 2, forward-secure
+2023/05/17 17:53:49 	<- &wire.StreamFrame{StreamID: 3, FinBit: false, Offset: 0x23e82, Data length: 0x3e8, Offset + Data length: 0x2426a}
+2023/05/17 17:53:49 -> Sending packet 0x76 (31 bytes) for connection 3dc6f636f8281bf5 on path 2, forward-secure
+2023/05/17 17:53:49 	-> &wire.AckFrame{PathID: 0x2, LargestAcked: 0xc7, LowestAcked: 0x82, AckRanges: []wire.AckRange(nil), DelayTime: 22.555µs}
+[2KReceived: 148000 / 3562600 
+2023/05/17 17:53:49 <- Reading packet 0xc8 (1029 bytes) for connection 3dc6f636f8281bf5 on path 2, forward-secure
+2023/05/17 17:53:49 	<- &wire.StreamFrame{StreamID: 3, FinBit: false, Offset: 0x2426a, Data length: 0x3e8, Offset + Data length: 0x24652}
+[2KReceived: 149000 / 3562600 
+2023/05/17 17:53:49 <- Reading packet 0xc9 (1029 bytes) for connection 3dc6f636f8281bf5 on path 2, forward-secure
+2023/05/17 17:53:49 	<- &wire.StreamFrame{StreamID: 3, FinBit: false, Offset: 0x24652, Data length: 0x3e8, Offset + Data length: 0x24a3a}
+2023/05/17 17:53:49 -> Sending packet 0x77 (31 bytes) for connection 3dc6f636f8281bf5 on path 2, forward-secure
+2023/05/17 17:53:49 	-> &wire.AckFrame{PathID: 0x2, LargestAcked: 0xc9, LowestAcked: 0x82, AckRanges: []wire.AckRange(nil), DelayTime: 11.492µs}
+[2KReceived: 150000 / 3562600 
+2023/05/17 17:53:49 <- Reading packet 0xca (1029 bytes) for connection 3dc6f636f8281bf5 on path 2, forward-secure
+2023/05/17 17:53:49 	<- &wire.StreamFrame{StreamID: 3, FinBit: false, Offset: 0x24a3a, Data length: 0x3e8, Offset + Data length: 0x24e22}
+[2KReceived: 151000 / 3562600 
+2023/05/17 17:53:49 <- Reading packet 0xcb (1029 bytes) for connection 3dc6f636f8281bf5 on path 2, forward-secure
+2023/05/17 17:53:49 	<- &wire.StreamFrame{StreamID: 3, FinBit: false, Offset: 0x24e22, Data length: 0x3e8, Offset + Data length: 0x2520a}
+2023/05/17 17:53:49 -> Sending packet 0x78 (31 bytes) for connection 3dc6f636f8281bf5 on path 2, forward-secure
+2023/05/17 17:53:49 	-> &wire.AckFrame{PathID: 0x2, LargestAcked: 0xcb, LowestAcked: 0x82, AckRanges: []wire.AckRange(nil), DelayTime: 12.161µs}
+[2KReceived: 152000 / 3562600 
+2023/05/17 17:53:49 <- Reading packet 0xcc (1029 bytes) for connection 3dc6f636f8281bf5 on path 2, forward-secure
+2023/05/17 17:53:49 	<- &wire.StreamFrame{StreamID: 3, FinBit: false, Offset: 0x2520a, Data length: 0x3e8, Offset + Data length: 0x255f2}
+[2KReceived: 153000 / 3562600 
+2023/05/17 17:53:49 <- Reading packet 0xcd (1029 bytes) for connection 3dc6f636f8281bf5 on path 2, forward-secure
+2023/05/17 17:53:49 	<- &wire.StreamFrame{StreamID: 3, FinBit: false, Offset: 0x255f2, Data length: 0x3e8, Offset + Data length: 0x259da}
+2023/05/17 17:53:49 -> Sending packet 0x79 (31 bytes) for connection 3dc6f636f8281bf5 on path 2, forward-secure
+2023/05/17 17:53:49 	-> &wire.AckFrame{PathID: 0x2, LargestAcked: 0xcd, LowestAcked: 0x82, AckRanges: []wire.AckRange(nil), DelayTime: 13.327µs}
+[2KReceived: 154000 / 3562600 
+2023/05/17 17:53:49 -> Sending packet 0x7a (25 bytes) for connection 3dc6f636f8281bf5 on path 2, forward-secure
+2023/05/17 17:53:49 	-> &wire.PingFrame{}
+2023/05/17 17:53:49 <- Reading packet 0xce (1039 bytes) for connection 3dc6f636f8281bf5 on path 2, forward-secure
+2023/05/17 17:53:49 	<- &wire.StopWaitingFrame{LeastUnacked: 0xa6}
+2023/05/17 17:53:49 	<- &wire.AckFrame{PathID: 0x2, LargestAcked: 0x64, LowestAcked: 0x34, AckRanges: []wire.AckRange(nil), DelayTime: 23µs}
+2023/05/17 17:53:49 	<- &wire.StreamFrame{StreamID: 3, FinBit: false, Offset: 0x259da, Data length: 0x3e8, Offset + Data length: 0x25dc2}
+[2KReceived: 155000 / 3562600 
+2023/05/17 17:53:49 <- Reading packet 0xcf (1029 bytes) for connection 3dc6f636f8281bf5 on path 2, forward-secure
+2023/05/17 17:53:49 	<- &wire.StreamFrame{StreamID: 3, FinBit: false, Offset: 0x25dc2, Data length: 0x3e8, Offset + Data length: 0x261aa}
+2023/05/17 17:53:49 -> Sending packet 0x7b (34 bytes) for connection 3dc6f636f8281bf5 on path 2, forward-secure
+2023/05/17 17:53:49 	-> &wire.StopWaitingFrame{LeastUnacked: 0x65, PacketNumberLen: 0x2}
+2023/05/17 17:53:49 	-> &wire.AckFrame{PathID: 0x2, LargestAcked: 0xcf, LowestAcked: 0xa6, AckRanges: []wire.AckRange(nil), DelayTime: 9.169µs}
+[2KReceived: 156000 / 3562600 
+2023/05/17 17:53:49 <- Reading packet 0xd0 (1029 bytes) for connection 3dc6f636f8281bf5 on path 2, forward-secure
+2023/05/17 17:53:49 	<- &wire.StreamFrame{StreamID: 3, FinBit: false, Offset: 0x261aa, Data length: 0x3e8, Offset + Data length: 0x26592}
+[2KReceived: 157000 / 3562600 
+2023/05/17 17:53:49 <- Reading packet 0xd1 (1029 bytes) for connection 3dc6f636f8281bf5 on path 2, forward-secure
+2023/05/17 17:53:49 	<- &wire.StreamFrame{StreamID: 3, FinBit: false, Offset: 0x26592, Data length: 0x3e8, Offset + Data length: 0x2697a}
+2023/05/17 17:53:49 -> Sending packet 0x7c (31 bytes) for connection 3dc6f636f8281bf5 on path 2, forward-secure
+2023/05/17 17:53:49 	-> &wire.AckFrame{PathID: 0x2, LargestAcked: 0xd1, LowestAcked: 0xa6, AckRanges: []wire.AckRange(nil), DelayTime: 15.476µs}
+[2KReceived: 158000 / 3562600 
+2023/05/17 17:53:49 <- Reading packet 0xd2 (1029 bytes) for connection 3dc6f636f8281bf5 on path 2, forward-secure
+2023/05/17 17:53:49 	<- &wire.StreamFrame{StreamID: 3, FinBit: false, Offset: 0x2697a, Data length: 0x3e8, Offset + Data length: 0x26d62}
+[2KReceived: 159000 / 3562600 
+2023/05/17 17:53:49 <- Reading packet 0xd3 (1029 bytes) for connection 3dc6f636f8281bf5 on path 2, forward-secure
+2023/05/17 17:53:49 	<- &wire.StreamFrame{StreamID: 3, FinBit: false, Offset: 0x26d62, Data length: 0x3e8, Offset + Data length: 0x2714a}
+2023/05/17 17:53:49 -> Sending packet 0x7d (31 bytes) for connection 3dc6f636f8281bf5 on path 2, forward-secure
+2023/05/17 17:53:49 	-> &wire.AckFrame{PathID: 0x2, LargestAcked: 0xd3, LowestAcked: 0xa6, AckRanges: []wire.AckRange(nil), DelayTime: 10.596µs}
+[2KReceived: 160000 / 3562600 
+2023/05/17 17:53:49 <- Reading packet 0xd4 (1029 bytes) for connection 3dc6f636f8281bf5 on path 2, forward-secure
+2023/05/17 17:53:49 	<- &wire.StreamFrame{StreamID: 3, FinBit: false, Offset: 0x2714a, Data length: 0x3e8, Offset + Data length: 0x27532}
+[2KReceived: 161000 / 3562600 
+2023/05/17 17:53:49 <- Reading packet 0xd5 (1029 bytes) for connection 3dc6f636f8281bf5 on path 2, forward-secure
+2023/05/17 17:53:49 	<- &wire.StreamFrame{StreamID: 3, FinBit: false, Offset: 0x27532, Data length: 0x3e8, Offset + Data length: 0x2791a}
+2023/05/17 17:53:49 -> Sending packet 0x7e (31 bytes) for connection 3dc6f636f8281bf5 on path 2, forward-secure
+2023/05/17 17:53:49 	-> &wire.AckFrame{PathID: 0x2, LargestAcked: 0xd5, LowestAcked: 0xa6, AckRanges: []wire.AckRange(nil), DelayTime: 10.468µs}
+[2KReceived: 162000 / 3562600 
+2023/05/17 17:53:49 <- Reading packet 0xd6 (1029 bytes) for connection 3dc6f636f8281bf5 on path 2, forward-secure
+2023/05/17 17:53:49 	<- &wire.StreamFrame{StreamID: 3, FinBit: false, Offset: 0x2791a, Data length: 0x3e8, Offset + Data length: 0x27d02}
+[2KReceived: 163000 / 3562600 
+2023/05/17 17:53:49 <- Reading packet 0xd7 (1029 bytes) for connection 3dc6f636f8281bf5 on path 2, forward-secure
+2023/05/17 17:53:49 	<- &wire.StreamFrame{StreamID: 3, FinBit: false, Offset: 0x27d02, Data length: 0x3e8, Offset + Data length: 0x280ea}
+2023/05/17 17:53:49 -> Sending packet 0x7f (31 bytes) for connection 3dc6f636f8281bf5 on path 2, forward-secure
+2023/05/17 17:53:49 	-> &wire.AckFrame{PathID: 0x2, LargestAcked: 0xd7, LowestAcked: 0xa6, AckRanges: []wire.AckRange(nil), DelayTime: 10.128µs}
+[2KReceived: 164000 / 3562600 
+2023/05/17 17:53:49 <- Reading packet 0xd8 (1029 bytes) for connection 3dc6f636f8281bf5 on path 2, forward-secure
+2023/05/17 17:53:49 	<- &wire.StreamFrame{StreamID: 3, FinBit: false, Offset: 0x280ea, Data length: 0x3e8, Offset + Data length: 0x284d2}
+[2KReceived: 165000 / 3562600 
+2023/05/17 17:53:49 <- Reading packet 0xd9 (1029 bytes) for connection 3dc6f636f8281bf5 on path 2, forward-secure
+2023/05/17 17:53:49 	<- &wire.StreamFrame{StreamID: 3, FinBit: false, Offset: 0x284d2, Data length: 0x3e8, Offset + Data length: 0x288ba}
+2023/05/17 17:53:49 -> Sending packet 0x80 (31 bytes) for connection 3dc6f636f8281bf5 on path 2, forward-secure
+2023/05/17 17:53:49 	-> &wire.AckFrame{PathID: 0x2, LargestAcked: 0xd9, LowestAcked: 0xa6, AckRanges: []wire.AckRange(nil), DelayTime: 10.926µs}
+[2KReceived: 166000 / 3562600 
+2023/05/17 17:53:49 <- Reading packet 0xda (1029 bytes) for connection 3dc6f636f8281bf5 on path 2, forward-secure
+2023/05/17 17:53:49 	<- &wire.StreamFrame{StreamID: 3, FinBit: false, Offset: 0x288ba, Data length: 0x3e8, Offset + Data length: 0x28ca2}
+[2KReceived: 167000 / 3562600 
+2023/05/17 17:53:49 <- Reading packet 0xdb (1029 bytes) for connection 3dc6f636f8281bf5 on path 2, forward-secure
+2023/05/17 17:53:49 	<- &wire.StreamFrame{StreamID: 3, FinBit: false, Offset: 0x28ca2, Data length: 0x3e8, Offset + Data length: 0x2908a}
+2023/05/17 17:53:49 -> Sending packet 0x81 (31 bytes) for connection 3dc6f636f8281bf5 on path 2, forward-secure
+2023/05/17 17:53:49 	-> &wire.AckFrame{PathID: 0x2, LargestAcked: 0xdb, LowestAcked: 0xa6, AckRanges: []wire.AckRange(nil), DelayTime: 11.367µs}
+[2KReceived: 168000 / 3562600 
+2023/05/17 17:53:49 <- Reading packet 0xdc (1029 bytes) for connection 3dc6f636f8281bf5 on path 2, forward-secure
+2023/05/17 17:53:49 	<- &wire.StreamFrame{StreamID: 3, FinBit: false, Offset: 0x2908a, Data length: 0x3e8, Offset + Data length: 0x29472}
+[2KReceived: 169000 / 3562600 
+2023/05/17 17:53:49 <- Reading packet 0xdd (1029 bytes) for connection 3dc6f636f8281bf5 on path 2, forward-secure
+2023/05/17 17:53:49 	<- &wire.StreamFrame{StreamID: 3, FinBit: false, Offset: 0x29472, Data length: 0x3e8, Offset + Data length: 0x2985a}
+2023/05/17 17:53:49 -> Sending packet 0x82 (31 bytes) for connection 3dc6f636f8281bf5 on path 2, forward-secure
+2023/05/17 17:53:49 	-> &wire.AckFrame{PathID: 0x2, LargestAcked: 0xdd, LowestAcked: 0xa6, AckRanges: []wire.AckRange(nil), DelayTime: 15.83µs}
+[2KReceived: 170000 / 3562600 
+2023/05/17 17:53:49 <- Reading packet 0xde (1029 bytes) for connection 3dc6f636f8281bf5 on path 2, forward-secure
+2023/05/17 17:53:49 	<- &wire.StreamFrame{StreamID: 3, FinBit: false, Offset: 0x2985a, Data length: 0x3e8, Offset + Data length: 0x29c42}
+[2KReceived: 171000 / 3562600 
+2023/05/17 17:53:49 <- Reading packet 0xdf (1029 bytes) for connection 3dc6f636f8281bf5 on path 2, forward-secure
+2023/05/17 17:53:49 	<- &wire.StreamFrame{StreamID: 3, FinBit: false, Offset: 0x29c42, Data length: 0x3e8, Offset + Data length: 0x2a02a}
+2023/05/17 17:53:49 -> Sending packet 0x83 (31 bytes) for connection 3dc6f636f8281bf5 on path 2, forward-secure
+2023/05/17 17:53:49 	-> &wire.AckFrame{PathID: 0x2, LargestAcked: 0xdf, LowestAcked: 0xa6, AckRanges: []wire.AckRange(nil), DelayTime: 13.816µs}
+[2KReceived: 172000 / 3562600 
+2023/05/17 17:53:49 <- Reading packet 0xe0 (1029 bytes) for connection 3dc6f636f8281bf5 on path 2, forward-secure
+2023/05/17 17:53:49 	<- &wire.StreamFrame{StreamID: 3, FinBit: false, Offset: 0x2a02a, Data length: 0x3e8, Offset + Data length: 0x2a412}
+[2KReceived: 173000 / 3562600 
+2023/05/17 17:53:49 <- Reading packet 0xe1 (1029 bytes) for connection 3dc6f636f8281bf5 on path 2, forward-secure
+2023/05/17 17:53:49 	<- &wire.StreamFrame{StreamID: 3, FinBit: false, Offset: 0x2a412, Data length: 0x3e8, Offset + Data length: 0x2a7fa}
+2023/05/17 17:53:49 -> Sending packet 0x84 (31 bytes) for connection 3dc6f636f8281bf5 on path 2, forward-secure
+2023/05/17 17:53:49 	-> &wire.AckFrame{PathID: 0x2, LargestAcked: 0xe1, LowestAcked: 0xa6, AckRanges: []wire.AckRange(nil), DelayTime: 21.478µs}
+[2KReceived: 174000 / 3562600 
+2023/05/17 17:53:49 <- Reading packet 0xe2 (1029 bytes) for connection 3dc6f636f8281bf5 on path 2, forward-secure
+2023/05/17 17:53:49 	<- &wire.StreamFrame{StreamID: 3, FinBit: false, Offset: 0x2a7fa, Data length: 0x3e8, Offset + Data length: 0x2abe2}
+[2KReceived: 175000 / 3562600 
+2023/05/17 17:53:49 <- Reading packet 0xe3 (1029 bytes) for connection 3dc6f636f8281bf5 on path 2, forward-secure
+2023/05/17 17:53:49 	<- &wire.StreamFrame{StreamID: 3, FinBit: false, Offset: 0x2abe2, Data length: 0x3e8, Offset + Data length: 0x2afca}
+2023/05/17 17:53:49 -> Sending packet 0x85 (31 bytes) for connection 3dc6f636f8281bf5 on path 2, forward-secure
+2023/05/17 17:53:49 	-> &wire.AckFrame{PathID: 0x2, LargestAcked: 0xe3, LowestAcked: 0xa6, AckRanges: []wire.AckRange(nil), DelayTime: 13.688µs}
+[2KReceived: 176000 / 3562600 
+2023/05/17 17:53:49 <- Reading packet 0xe4 (1029 bytes) for connection 3dc6f636f8281bf5 on path 2, forward-secure
+2023/05/17 17:53:49 	<- &wire.StreamFrame{StreamID: 3, FinBit: false, Offset: 0x2afca, Data length: 0x3e8, Offset + Data length: 0x2b3b2}
+[2KReceived: 177000 / 3562600 
+2023/05/17 17:53:49 <- Reading packet 0xe5 (1029 bytes) for connection 3dc6f636f8281bf5 on path 2, forward-secure
+2023/05/17 17:53:49 	<- &wire.StreamFrame{StreamID: 3, FinBit: false, Offset: 0x2b3b2, Data length: 0x3e8, Offset + Data length: 0x2b79a}
+2023/05/17 17:53:49 -> Sending packet 0x86 (31 bytes) for connection 3dc6f636f8281bf5 on path 2, forward-secure
+2023/05/17 17:53:49 	-> &wire.AckFrame{PathID: 0x2, LargestAcked: 0xe5, LowestAcked: 0xa6, AckRanges: []wire.AckRange(nil), DelayTime: 13.405µs}
+[2KReceived: 178000 / 3562600 
+2023/05/17 17:53:49 <- Reading packet 0xe6 (1029 bytes) for connection 3dc6f636f8281bf5 on path 2, forward-secure
+2023/05/17 17:53:49 	<- &wire.StreamFrame{StreamID: 3, FinBit: false, Offset: 0x2b79a, Data length: 0x3e8, Offset + Data length: 0x2bb82}
+[2KReceived: 179000 / 3562600 
+2023/05/17 17:53:49 <- Reading packet 0xe7 (1029 bytes) for connection 3dc6f636f8281bf5 on path 2, forward-secure
+2023/05/17 17:53:49 	<- &wire.StreamFrame{StreamID: 3, FinBit: false, Offset: 0x2bb82, Data length: 0x3e8, Offset + Data length: 0x2bf6a}
+2023/05/17 17:53:49 -> Sending packet 0x87 (31 bytes) for connection 3dc6f636f8281bf5 on path 2, forward-secure
+2023/05/17 17:53:49 	-> &wire.AckFrame{PathID: 0x2, LargestAcked: 0xe7, LowestAcked: 0xa6, AckRanges: []wire.AckRange(nil), DelayTime: 24.5µs}
+[2KReceived: 180000 / 3562600 
+2023/05/17 17:53:49 <- Reading packet 0xe8 (1029 bytes) for connection 3dc6f636f8281bf5 on path 2, forward-secure
+2023/05/17 17:53:49 	<- &wire.StreamFrame{StreamID: 3, FinBit: false, Offset: 0x2bf6a, Data length: 0x3e8, Offset + Data length: 0x2c352}
+[2KReceived: 181000 / 3562600 
+2023/05/17 17:53:49 <- Reading packet 0xe9 (1029 bytes) for connection 3dc6f636f8281bf5 on path 2, forward-secure
+2023/05/17 17:53:49 	<- &wire.StreamFrame{StreamID: 3, FinBit: false, Offset: 0x2c352, Data length: 0x3e8, Offset + Data length: 0x2c73a}
+2023/05/17 17:53:49 -> Sending packet 0x88 (31 bytes) for connection 3dc6f636f8281bf5 on path 2, forward-secure
+2023/05/17 17:53:49 	-> &wire.AckFrame{PathID: 0x2, LargestAcked: 0xe9, LowestAcked: 0xa6, AckRanges: []wire.AckRange(nil), DelayTime: 14.885µs}
+[2KReceived: 182000 / 3562600 
+2023/05/17 17:53:49 <- Reading packet 0xea (1029 bytes) for connection 3dc6f636f8281bf5 on path 2, forward-secure
+2023/05/17 17:53:49 	<- &wire.StreamFrame{StreamID: 3, FinBit: false, Offset: 0x2c73a, Data length: 0x3e8, Offset + Data length: 0x2cb22}
+[2KReceived: 183000 / 3562600 
+2023/05/17 17:53:49 <- Reading packet 0xeb (1029 bytes) for connection 3dc6f636f8281bf5 on path 2, forward-secure
+2023/05/17 17:53:49 	<- &wire.StreamFrame{StreamID: 3, FinBit: false, Offset: 0x2cb22, Data length: 0x3e8, Offset + Data length: 0x2cf0a}
+2023/05/17 17:53:49 -> Sending packet 0x89 (31 bytes) for connection 3dc6f636f8281bf5 on path 2, forward-secure
+2023/05/17 17:53:49 	-> &wire.AckFrame{PathID: 0x2, LargestAcked: 0xeb, LowestAcked: 0xa6, AckRanges: []wire.AckRange(nil), DelayTime: 12.985µs}
+[2KReceived: 184000 / 3562600 
+2023/05/17 17:53:49 <- Reading packet 0xec (1029 bytes) for connection 3dc6f636f8281bf5 on path 2, forward-secure
+2023/05/17 17:53:49 	<- &wire.StreamFrame{StreamID: 3, FinBit: false, Offset: 0x2cf0a, Data length: 0x3e8, Offset + Data length: 0x2d2f2}
+[2KReceived: 185000 / 3562600 
+2023/05/17 17:53:49 <- Reading packet 0xed (1029 bytes) for connection 3dc6f636f8281bf5 on path 2, forward-secure
+2023/05/17 17:53:49 	<- &wire.StreamFrame{StreamID: 3, FinBit: false, Offset: 0x2d2f2, Data length: 0x3e8, Offset + Data length: 0x2d6da}
+2023/05/17 17:53:49 -> Sending packet 0x8a (31 bytes) for connection 3dc6f636f8281bf5 on path 2, forward-secure
+2023/05/17 17:53:49 	-> &wire.AckFrame{PathID: 0x2, LargestAcked: 0xed, LowestAcked: 0xa6, AckRanges: []wire.AckRange(nil), DelayTime: 21.144µs}
+[2KReceived: 186000 / 3562600 
+2023/05/17 17:53:49 <- Reading packet 0xee (1039 bytes) for connection 3dc6f636f8281bf5 on path 2, forward-secure
+2023/05/17 17:53:49 	<- &wire.StopWaitingFrame{LeastUnacked: 0xc6}
+2023/05/17 17:53:49 	<- &wire.AckFrame{PathID: 0x2, LargestAcked: 0x75, LowestAcked: 0x52, AckRanges: []wire.AckRange(nil), DelayTime: 19µs}
+2023/05/17 17:53:49 	<- &wire.StreamFrame{StreamID: 3, FinBit: false, Offset: 0x2d6da, Data length: 0x3e8, Offset + Data length: 0x2dac2}
+[2KReceived: 187000 / 3562600 
+2023/05/17 17:53:49 <- Reading packet 0xef (1029 bytes) for connection 3dc6f636f8281bf5 on path 2, forward-secure
+2023/05/17 17:53:49 	<- &wire.StreamFrame{StreamID: 3, FinBit: false, Offset: 0x2dac2, Data length: 0x3e8, Offset + Data length: 0x2deaa}
+2023/05/17 17:53:49 -> Sending packet 0x8b (34 bytes) for connection 3dc6f636f8281bf5 on path 2, forward-secure
+2023/05/17 17:53:49 	-> &wire.StopWaitingFrame{LeastUnacked: 0x76, PacketNumberLen: 0x2}
+2023/05/17 17:53:49 	-> &wire.AckFrame{PathID: 0x2, LargestAcked: 0xef, LowestAcked: 0xc6, AckRanges: []wire.AckRange(nil), DelayTime: 19.109µs}
+[2KReceived: 188000 / 3562600 
+2023/05/17 17:53:49 <- Reading packet 0xf0 (1029 bytes) for connection 3dc6f636f8281bf5 on path 2, forward-secure
+2023/05/17 17:53:49 	<- &wire.StreamFrame{StreamID: 3, FinBit: false, Offset: 0x2deaa, Data length: 0x3e8, Offset + Data length: 0x2e292}
+[2KReceived: 189000 / 3562600 
+2023/05/17 17:53:49 <- Reading packet 0xf1 (1029 bytes) for connection 3dc6f636f8281bf5 on path 2, forward-secure
+2023/05/17 17:53:49 	<- &wire.StreamFrame{StreamID: 3, FinBit: false, Offset: 0x2e292, Data length: 0x3e8, Offset + Data length: 0x2e67a}
+2023/05/17 17:53:49 -> Sending packet 0x8c (31 bytes) for connection 3dc6f636f8281bf5 on path 2, forward-secure
+2023/05/17 17:53:49 	-> &wire.AckFrame{PathID: 0x2, LargestAcked: 0xf1, LowestAcked: 0xc6, AckRanges: []wire.AckRange(nil), DelayTime: 29.262µs}
+[2KReceived: 190000 / 3562600 
+2023/05/17 17:53:49 <- Reading packet 0xf2 (1029 bytes) for connection 3dc6f636f8281bf5 on path 2, forward-secure
+2023/05/17 17:53:49 	<- &wire.StreamFrame{StreamID: 3, FinBit: false, Offset: 0x2e67a, Data length: 0x3e8, Offset + Data length: 0x2ea62}
+[2KReceived: 191000 / 3562600 
+2023/05/17 17:53:49 <- Reading packet 0xf3 (1029 bytes) for connection 3dc6f636f8281bf5 on path 2, forward-secure
+2023/05/17 17:53:49 	<- &wire.StreamFrame{StreamID: 3, FinBit: false, Offset: 0x2ea62, Data length: 0x3e8, Offset + Data length: 0x2ee4a}
+2023/05/17 17:53:49 -> Sending packet 0x8d (31 bytes) for connection 3dc6f636f8281bf5 on path 2, forward-secure
+2023/05/17 17:53:49 	-> &wire.AckFrame{PathID: 0x2, LargestAcked: 0xf3, LowestAcked: 0xc6, AckRanges: []wire.AckRange(nil), DelayTime: 14.034µs}
+[2KReceived: 192000 / 3562600 
+2023/05/17 17:53:49 -> Sending packet 0x8e (25 bytes) for connection 3dc6f636f8281bf5 on path 2, forward-secure
+2023/05/17 17:53:49 	-> &wire.PingFrame{}
+2023/05/17 17:53:49 <- Reading packet 0xf4 (1029 bytes) for connection 3dc6f636f8281bf5 on path 2, forward-secure
+2023/05/17 17:53:49 	<- &wire.StreamFrame{StreamID: 3, FinBit: false, Offset: 0x2ee4a, Data length: 0x3e8, Offset + Data length: 0x2f232}
+[2KReceived: 193000 / 3562600 
+2023/05/17 17:53:49 <- Reading packet 0xf5 (1029 bytes) for connection 3dc6f636f8281bf5 on path 2, forward-secure
+2023/05/17 17:53:49 	<- &wire.StreamFrame{StreamID: 3, FinBit: false, Offset: 0x2f232, Data length: 0x3e8, Offset + Data length: 0x2f61a}
+2023/05/17 17:53:49 -> Sending packet 0x8f (31 bytes) for connection 3dc6f636f8281bf5 on path 2, forward-secure
+2023/05/17 17:53:49 	-> &wire.AckFrame{PathID: 0x2, LargestAcked: 0xf5, LowestAcked: 0xc6, AckRanges: []wire.AckRange(nil), DelayTime: 12.247µs}
+[2KReceived: 194000 / 3562600 
+2023/05/17 17:53:49 <- Reading packet 0xf6 (1029 bytes) for connection 3dc6f636f8281bf5 on path 2, forward-secure
+2023/05/17 17:53:49 	<- &wire.StreamFrame{StreamID: 3, FinBit: false, Offset: 0x2f61a, Data length: 0x3e8, Offset + Data length: 0x2fa02}
+[2KReceived: 195000 / 3562600 
+2023/05/17 17:53:49 <- Reading packet 0xf7 (1029 bytes) for connection 3dc6f636f8281bf5 on path 2, forward-secure
+2023/05/17 17:53:49 	<- &wire.StreamFrame{StreamID: 3, FinBit: false, Offset: 0x2fa02, Data length: 0x3e8, Offset + Data length: 0x2fdea}
+2023/05/17 17:53:49 -> Sending packet 0x90 (31 bytes) for connection 3dc6f636f8281bf5 on path 2, forward-secure
+2023/05/17 17:53:49 	-> &wire.AckFrame{PathID: 0x2, LargestAcked: 0xf7, LowestAcked: 0xc6, AckRanges: []wire.AckRange(nil), DelayTime: 11.948µs}
+[2KReceived: 196000 / 3562600 
+2023/05/17 17:53:49 <- Reading packet 0xf8 (1029 bytes) for connection 3dc6f636f8281bf5 on path 2, forward-secure
+2023/05/17 17:53:49 	<- &wire.StreamFrame{StreamID: 3, FinBit: false, Offset: 0x2fdea, Data length: 0x3e8, Offset + Data length: 0x301d2}
+[2KReceived: 197000 / 3562600 
+2023/05/17 17:53:49 <- Reading packet 0xf9 (1029 bytes) for connection 3dc6f636f8281bf5 on path 2, forward-secure
+2023/05/17 17:53:49 	<- &wire.StreamFrame{StreamID: 3, FinBit: false, Offset: 0x301d2, Data length: 0x3e8, Offset + Data length: 0x305ba}
+2023/05/17 17:53:49 -> Sending packet 0x91 (31 bytes) for connection 3dc6f636f8281bf5 on path 2, forward-secure
+2023/05/17 17:53:49 	-> &wire.AckFrame{PathID: 0x2, LargestAcked: 0xf9, LowestAcked: 0xc6, AckRanges: []wire.AckRange(nil), DelayTime: 20.453µs}
+[2KReceived: 198000 / 3562600 
+2023/05/17 17:53:49 <- Reading packet 0xfa (1029 bytes) for connection 3dc6f636f8281bf5 on path 2, forward-secure
+2023/05/17 17:53:49 	<- &wire.StreamFrame{StreamID: 3, FinBit: false, Offset: 0x305ba, Data length: 0x3e8, Offset + Data length: 0x309a2}
+[2KReceived: 199000 / 3562600 
+2023/05/17 17:53:49 <- Reading packet 0xfb (1029 bytes) for connection 3dc6f636f8281bf5 on path 2, forward-secure
+2023/05/17 17:53:49 	<- &wire.StreamFrame{StreamID: 3, FinBit: false, Offset: 0x309a2, Data length: 0x3e8, Offset + Data length: 0x30d8a}
+2023/05/17 17:53:49 -> Sending packet 0x92 (31 bytes) for connection 3dc6f636f8281bf5 on path 2, forward-secure
+2023/05/17 17:53:49 	-> &wire.AckFrame{PathID: 0x2, LargestAcked: 0xfb, LowestAcked: 0xc6, AckRanges: []wire.AckRange(nil), DelayTime: 12.559µs}
+[2KReceived: 200000 / 3562600 
+2023/05/17 17:53:49 <- Reading packet 0xfc (1029 bytes) for connection 3dc6f636f8281bf5 on path 2, forward-secure
+2023/05/17 17:53:49 	<- &wire.StreamFrame{StreamID: 3, FinBit: false, Offset: 0x30d8a, Data length: 0x3e8, Offset + Data length: 0x31172}
+[2KReceived: 201000 / 3562600 
+2023/05/17 17:53:49 <- Reading packet 0xfd (1029 bytes) for connection 3dc6f636f8281bf5 on path 2, forward-secure
+2023/05/17 17:53:49 	<- &wire.StreamFrame{StreamID: 3, FinBit: false, Offset: 0x31172, Data length: 0x3e8, Offset + Data length: 0x3155a}
+2023/05/17 17:53:49 -> Sending packet 0x93 (31 bytes) for connection 3dc6f636f8281bf5 on path 2, forward-secure
+2023/05/17 17:53:49 	-> &wire.AckFrame{PathID: 0x2, LargestAcked: 0xfd, LowestAcked: 0xc6, AckRanges: []wire.AckRange(nil), DelayTime: 11.922µs}
+[2KReceived: 202000 / 3562600 
+2023/05/17 17:53:49 <- Reading packet 0xfe (1029 bytes) for connection 3dc6f636f8281bf5 on path 2, forward-secure
+2023/05/17 17:53:49 	<- &wire.StreamFrame{StreamID: 3, FinBit: false, Offset: 0x3155a, Data length: 0x3e8, Offset + Data length: 0x31942}
+[2KReceived: 203000 / 3562600 
+2023/05/17 17:53:49 <- Reading packet 0xff (1029 bytes) for connection 3dc6f636f8281bf5 on path 2, forward-secure
+2023/05/17 17:53:49 	<- &wire.StreamFrame{StreamID: 3, FinBit: false, Offset: 0x31942, Data length: 0x3e8, Offset + Data length: 0x31d2a}
+2023/05/17 17:53:49 -> Sending packet 0x94 (31 bytes) for connection 3dc6f636f8281bf5 on path 2, forward-secure
+2023/05/17 17:53:49 	-> &wire.AckFrame{PathID: 0x2, LargestAcked: 0xff, LowestAcked: 0xc6, AckRanges: []wire.AckRange(nil), DelayTime: 12.233µs}
+[2KReceived: 204000 / 3562600 
+2023/05/17 17:53:49 <- Reading packet 0x100 (1029 bytes) for connection 3dc6f636f8281bf5 on path 2, forward-secure
+2023/05/17 17:53:49 	<- &wire.StreamFrame{StreamID: 3, FinBit: false, Offset: 0x31d2a, Data length: 0x3e8, Offset + Data length: 0x32112}
+[2KReceived: 205000 / 3562600 
+2023/05/17 17:53:49 <- Reading packet 0x101 (1029 bytes) for connection 3dc6f636f8281bf5 on path 2, forward-secure
+2023/05/17 17:53:49 	<- &wire.StreamFrame{StreamID: 3, FinBit: false, Offset: 0x32112, Data length: 0x3e8, Offset + Data length: 0x324fa}
+2023/05/17 17:53:49 -> Sending packet 0x95 (32 bytes) for connection 3dc6f636f8281bf5 on path 2, forward-secure
+2023/05/17 17:53:49 	-> &wire.AckFrame{PathID: 0x2, LargestAcked: 0x101, LowestAcked: 0xc6, AckRanges: []wire.AckRange(nil), DelayTime: 13.417µs}
+[2KReceived: 206000 / 3562600 
+2023/05/17 17:53:49 <- Reading packet 0x102 (1029 bytes) for connection 3dc6f636f8281bf5 on path 2, forward-secure
+2023/05/17 17:53:49 	<- &wire.StreamFrame{StreamID: 3, FinBit: false, Offset: 0x324fa, Data length: 0x3e8, Offset + Data length: 0x328e2}
+[2KReceived: 207000 / 3562600 
+2023/05/17 17:53:49 <- Reading packet 0x103 (1029 bytes) for connection 3dc6f636f8281bf5 on path 2, forward-secure
+2023/05/17 17:53:49 	<- &wire.StreamFrame{StreamID: 3, FinBit: false, Offset: 0x328e2, Data length: 0x3e8, Offset + Data length: 0x32cca}
+2023/05/17 17:53:49 -> Sending packet 0x96 (32 bytes) for connection 3dc6f636f8281bf5 on path 2, forward-secure
+2023/05/17 17:53:49 	-> &wire.AckFrame{PathID: 0x2, LargestAcked: 0x103, LowestAcked: 0xc6, AckRanges: []wire.AckRange(nil), DelayTime: 12.473µs}
+[2KReceived: 208000 / 3562600 
+2023/05/17 17:53:49 <- Reading packet 0x104 (1029 bytes) for connection 3dc6f636f8281bf5 on path 2, forward-secure
+2023/05/17 17:53:49 	<- &wire.StreamFrame{StreamID: 3, FinBit: false, Offset: 0x32cca, Data length: 0x3e8, Offset + Data length: 0x330b2}
+[2KReceived: 209000 / 3562600 
+2023/05/17 17:53:49 <- Reading packet 0x105 (1029 bytes) for connection 3dc6f636f8281bf5 on path 2, forward-secure
+2023/05/17 17:53:49 	<- &wire.StreamFrame{StreamID: 3, FinBit: false, Offset: 0x330b2, Data length: 0x3e8, Offset + Data length: 0x3349a}
+2023/05/17 17:53:49 -> Sending packet 0x97 (32 bytes) for connection 3dc6f636f8281bf5 on path 2, forward-secure
+2023/05/17 17:53:49 	-> &wire.AckFrame{PathID: 0x2, LargestAcked: 0x105, LowestAcked: 0xc6, AckRanges: []wire.AckRange(nil), DelayTime: 14.115µs}
+[2KReceived: 210000 / 3562600 
+2023/05/17 17:53:49 <- Reading packet 0x106 (1029 bytes) for connection 3dc6f636f8281bf5 on path 2, forward-secure
+2023/05/17 17:53:49 	<- &wire.StreamFrame{StreamID: 3, FinBit: false, Offset: 0x3349a, Data length: 0x3e8, Offset + Data length: 0x33882}
+[2KReceived: 211000 / 3562600 
+2023/05/17 17:53:49 <- Reading packet 0x107 (1029 bytes) for connection 3dc6f636f8281bf5 on path 2, forward-secure
+2023/05/17 17:53:49 	<- &wire.StreamFrame{StreamID: 3, FinBit: false, Offset: 0x33882, Data length: 0x3e8, Offset + Data length: 0x33c6a}
+2023/05/17 17:53:49 -> Sending packet 0x98 (32 bytes) for connection 3dc6f636f8281bf5 on path 2, forward-secure
+2023/05/17 17:53:49 	-> &wire.AckFrame{PathID: 0x2, LargestAcked: 0x107, LowestAcked: 0xc6, AckRanges: []wire.AckRange(nil), DelayTime: 14.563µs}
+[2KReceived: 212000 / 3562600 
+2023/05/17 17:53:49 <- Reading packet 0x108 (1029 bytes) for connection 3dc6f636f8281bf5 on path 2, forward-secure
+2023/05/17 17:53:49 	<- &wire.StreamFrame{StreamID: 3, FinBit: false, Offset: 0x33c6a, Data length: 0x3e8, Offset + Data length: 0x34052}
+[2KReceived: 213000 / 3562600 
+2023/05/17 17:53:49 <- Reading packet 0x109 (1029 bytes) for connection 3dc6f636f8281bf5 on path 2, forward-secure
+2023/05/17 17:53:49 	<- &wire.StreamFrame{StreamID: 3, FinBit: false, Offset: 0x34052, Data length: 0x3e8, Offset + Data length: 0x3443a}
+2023/05/17 17:53:49 -> Sending packet 0x99 (32 bytes) for connection 3dc6f636f8281bf5 on path 2, forward-secure
+2023/05/17 17:53:49 	-> &wire.AckFrame{PathID: 0x2, LargestAcked: 0x109, LowestAcked: 0xc6, AckRanges: []wire.AckRange(nil), DelayTime: 12.628µs}
+[2KReceived: 214000 / 3562600 
+2023/05/17 17:53:49 <- Reading packet 0x10a (1029 bytes) for connection 3dc6f636f8281bf5 on path 2, forward-secure
+2023/05/17 17:53:49 	<- &wire.StreamFrame{StreamID: 3, FinBit: false, Offset: 0x3443a, Data length: 0x3e8, Offset + Data length: 0x34822}
+[2KReceived: 215000 / 3562600 
+2023/05/17 17:53:49 <- Reading packet 0x10b (1029 bytes) for connection 3dc6f636f8281bf5 on path 2, forward-secure
+2023/05/17 17:53:49 	<- &wire.StreamFrame{StreamID: 3, FinBit: false, Offset: 0x34822, Data length: 0x3e8, Offset + Data length: 0x34c0a}
+2023/05/17 17:53:49 -> Sending packet 0x9a (32 bytes) for connection 3dc6f636f8281bf5 on path 2, forward-secure
+2023/05/17 17:53:49 	-> &wire.AckFrame{PathID: 0x2, LargestAcked: 0x10b, LowestAcked: 0xc6, AckRanges: []wire.AckRange(nil), DelayTime: 14.211µs}
+[2KReceived: 216000 / 3562600 
+2023/05/17 17:53:49 <- Reading packet 0x10c (1029 bytes) for connection 3dc6f636f8281bf5 on path 2, forward-secure
+2023/05/17 17:53:49 	<- &wire.StreamFrame{StreamID: 3, FinBit: false, Offset: 0x34c0a, Data length: 0x3e8, Offset + Data length: 0x34ff2}
+[2KReceived: 217000 / 3562600 
+2023/05/17 17:53:49 <- Reading packet 0x10d (1029 bytes) for connection 3dc6f636f8281bf5 on path 2, forward-secure
+2023/05/17 17:53:49 	<- &wire.StreamFrame{StreamID: 3, FinBit: false, Offset: 0x34ff2, Data length: 0x3e8, Offset + Data length: 0x353da}
+2023/05/17 17:53:49 -> Sending packet 0x9b (32 bytes) for connection 3dc6f636f8281bf5 on path 2, forward-secure
+2023/05/17 17:53:49 	-> &wire.AckFrame{PathID: 0x2, LargestAcked: 0x10d, LowestAcked: 0xc6, AckRanges: []wire.AckRange(nil), DelayTime: 15.695µs}
+[2KReceived: 218000 / 3562600 
+2023/05/17 17:53:49 <- Reading packet 0x10e (1029 bytes) for connection 3dc6f636f8281bf5 on path 2, forward-secure
+2023/05/17 17:53:49 	<- &wire.StreamFrame{StreamID: 3, FinBit: false, Offset: 0x353da, Data length: 0x3e8, Offset + Data length: 0x357c2}
+[2KReceived: 219000 / 3562600 
+2023/05/17 17:53:49 <- Reading packet 0x10f (1029 bytes) for connection 3dc6f636f8281bf5 on path 2, forward-secure
+2023/05/17 17:53:49 	<- &wire.StreamFrame{StreamID: 3, FinBit: false, Offset: 0x357c2, Data length: 0x3e8, Offset + Data length: 0x35baa}
+2023/05/17 17:53:49 -> Sending packet 0x9c (32 bytes) for connection 3dc6f636f8281bf5 on path 2, forward-secure
+2023/05/17 17:53:49 	-> &wire.AckFrame{PathID: 0x2, LargestAcked: 0x10f, LowestAcked: 0xc6, AckRanges: []wire.AckRange(nil), DelayTime: 13.691µs}
+[2KReceived: 220000 / 3562600 
+2023/05/17 17:53:49 <- Reading packet 0x110 (1029 bytes) for connection 3dc6f636f8281bf5 on path 2, forward-secure
+2023/05/17 17:53:49 	<- &wire.StreamFrame{StreamID: 3, FinBit: false, Offset: 0x35baa, Data length: 0x3e8, Offset + Data length: 0x35f92}
+[2KReceived: 221000 / 3562600 
+2023/05/17 17:53:49 <- Reading packet 0x111 (1029 bytes) for connection 3dc6f636f8281bf5 on path 2, forward-secure
+2023/05/17 17:53:49 	<- &wire.StreamFrame{StreamID: 3, FinBit: false, Offset: 0x35f92, Data length: 0x3e8, Offset + Data length: 0x3637a}
+2023/05/17 17:53:49 -> Sending packet 0x9d (32 bytes) for connection 3dc6f636f8281bf5 on path 2, forward-secure
+2023/05/17 17:53:49 	-> &wire.AckFrame{PathID: 0x2, LargestAcked: 0x111, LowestAcked: 0xc6, AckRanges: []wire.AckRange(nil), DelayTime: 10.308µs}
+[2KReceived: 222000 / 3562600 
+2023/05/17 17:53:49 <- Reading packet 0x112 (1029 bytes) for connection 3dc6f636f8281bf5 on path 2, forward-secure
+2023/05/17 17:53:49 	<- &wire.StreamFrame{StreamID: 3, FinBit: false, Offset: 0x3637a, Data length: 0x3e8, Offset + Data length: 0x36762}
+[2KReceived: 223000 / 3562600 
+2023/05/17 17:53:49 <- Reading packet 0x113 (1029 bytes) for connection 3dc6f636f8281bf5 on path 2, forward-secure
+2023/05/17 17:53:49 	<- &wire.StreamFrame{StreamID: 3, FinBit: false, Offset: 0x36762, Data length: 0x3e8, Offset + Data length: 0x36b4a}
+2023/05/17 17:53:49 -> Sending packet 0x9e (32 bytes) for connection 3dc6f636f8281bf5 on path 2, forward-secure
+2023/05/17 17:53:49 	-> &wire.AckFrame{PathID: 0x2, LargestAcked: 0x113, LowestAcked: 0xc6, AckRanges: []wire.AckRange(nil), DelayTime: 11.08µs}
+[2KReceived: 224000 / 3562600 
+2023/05/17 17:53:49 <- Reading packet 0x114 (1029 bytes) for connection 3dc6f636f8281bf5 on path 2, forward-secure
+2023/05/17 17:53:49 	<- &wire.StreamFrame{StreamID: 3, FinBit: false, Offset: 0x36b4a, Data length: 0x3e8, Offset + Data length: 0x36f32}
+[2KReceived: 225000 / 3562600 
+2023/05/17 17:53:49 <- Reading packet 0x115 (1039 bytes) for connection 3dc6f636f8281bf5 on path 2, forward-secure
+2023/05/17 17:53:49 	<- &wire.StopWaitingFrame{LeastUnacked: 0xec}
+2023/05/17 17:53:49 	<- &wire.AckFrame{PathID: 0x2, LargestAcked: 0x89, LowestAcked: 0x65, AckRanges: []wire.AckRange(nil), DelayTime: 22µs}
+2023/05/17 17:53:49 	<- &wire.StreamFrame{StreamID: 3, FinBit: false, Offset: 0x36f32, Data length: 0x3e8, Offset + Data length: 0x3731a}
+2023/05/17 17:53:49 -> Sending packet 0x9f (35 bytes) for connection 3dc6f636f8281bf5 on path 2, forward-secure
+2023/05/17 17:53:49 	-> &wire.StopWaitingFrame{LeastUnacked: 0x8a, PacketNumberLen: 0x2}
+2023/05/17 17:53:49 	-> &wire.AckFrame{PathID: 0x2, LargestAcked: 0x115, LowestAcked: 0xec, AckRanges: []wire.AckRange(nil), DelayTime: 21.746µs}
+[2KReceived: 226000 / 3562600 
+2023/05/17 17:53:49 <- Reading packet 0x116 (1029 bytes) for connection 3dc6f636f8281bf5 on path 2, forward-secure
+2023/05/17 17:53:49 	<- &wire.StreamFrame{StreamID: 3, FinBit: false, Offset: 0x3731a, Data length: 0x3e8, Offset + Data length: 0x37702}
+[2KReceived: 227000 / 3562600 
+2023/05/17 17:53:49 <- Reading packet 0x117 (1029 bytes) for connection 3dc6f636f8281bf5 on path 2, forward-secure
+2023/05/17 17:53:49 	<- &wire.StreamFrame{StreamID: 3, FinBit: false, Offset: 0x37702, Data length: 0x3e8, Offset + Data length: 0x37aea}
+2023/05/17 17:53:49 -> Sending packet 0xa0 (32 bytes) for connection 3dc6f636f8281bf5 on path 2, forward-secure
+2023/05/17 17:53:49 	-> &wire.AckFrame{PathID: 0x2, LargestAcked: 0x117, LowestAcked: 0xec, AckRanges: []wire.AckRange(nil), DelayTime: 12.379µs}
+[2KReceived: 228000 / 3562600 
+2023/05/17 17:53:49 <- Reading packet 0x118 (1029 bytes) for connection 3dc6f636f8281bf5 on path 2, forward-secure
+2023/05/17 17:53:49 	<- &wire.StreamFrame{StreamID: 3, FinBit: false, Offset: 0x37aea, Data length: 0x3e8, Offset + Data length: 0x37ed2}
+[2KReceived: 229000 / 3562600 
+2023/05/17 17:53:49 <- Reading packet 0x119 (1029 bytes) for connection 3dc6f636f8281bf5 on path 2, forward-secure
+2023/05/17 17:53:49 	<- &wire.StreamFrame{StreamID: 3, FinBit: false, Offset: 0x37ed2, Data length: 0x3e8, Offset + Data length: 0x382ba}
+2023/05/17 17:53:49 -> Sending packet 0xa1 (32 bytes) for connection 3dc6f636f8281bf5 on path 2, forward-secure
+2023/05/17 17:53:49 	-> &wire.AckFrame{PathID: 0x2, LargestAcked: 0x119, LowestAcked: 0xec, AckRanges: []wire.AckRange(nil), DelayTime: 14.361µs}
+[2KReceived: 230000 / 3562600 
+2023/05/17 17:53:49 -> Sending packet 0xa2 (25 bytes) for connection 3dc6f636f8281bf5 on path 2, forward-secure
+2023/05/17 17:53:49 	-> &wire.PingFrame{}
+2023/05/17 17:53:49 <- Reading packet 0x11a (1029 bytes) for connection 3dc6f636f8281bf5 on path 2, forward-secure
+2023/05/17 17:53:49 	<- &wire.StreamFrame{StreamID: 3, FinBit: false, Offset: 0x382ba, Data length: 0x3e8, Offset + Data length: 0x386a2}
+[2KReceived: 231000 / 3562600 
+2023/05/17 17:53:49 <- Reading packet 0x11b (1029 bytes) for connection 3dc6f636f8281bf5 on path 2, forward-secure
+2023/05/17 17:53:49 	<- &wire.StreamFrame{StreamID: 3, FinBit: false, Offset: 0x386a2, Data length: 0x3e8, Offset + Data length: 0x38a8a}
+2023/05/17 17:53:49 -> Sending packet 0xa3 (32 bytes) for connection 3dc6f636f8281bf5 on path 2, forward-secure
+2023/05/17 17:53:49 	-> &wire.AckFrame{PathID: 0x2, LargestAcked: 0x11b, LowestAcked: 0xec, AckRanges: []wire.AckRange(nil), DelayTime: 13.501µs}
+[2KReceived: 232000 / 3562600 
+2023/05/17 17:53:49 <- Reading packet 0x11c (1029 bytes) for connection 3dc6f636f8281bf5 on path 2, forward-secure
+2023/05/17 17:53:49 	<- &wire.StreamFrame{StreamID: 3, FinBit: false, Offset: 0x38a8a, Data length: 0x3e8, Offset + Data length: 0x38e72}
+[2KReceived: 233000 / 3562600 
+2023/05/17 17:53:49 <- Reading packet 0x11d (1029 bytes) for connection 3dc6f636f8281bf5 on path 2, forward-secure
+2023/05/17 17:53:49 	<- &wire.StreamFrame{StreamID: 3, FinBit: false, Offset: 0x38e72, Data length: 0x3e8, Offset + Data length: 0x3925a}
+2023/05/17 17:53:49 -> Sending packet 0xa4 (32 bytes) for connection 3dc6f636f8281bf5 on path 2, forward-secure
+2023/05/17 17:53:49 	-> &wire.AckFrame{PathID: 0x2, LargestAcked: 0x11d, LowestAcked: 0xec, AckRanges: []wire.AckRange(nil), DelayTime: 13.575µs}
+[2KReceived: 234000 / 3562600 
+2023/05/17 17:53:49 <- Reading packet 0x11e (1029 bytes) for connection 3dc6f636f8281bf5 on path 2, forward-secure
+2023/05/17 17:53:49 	<- &wire.StreamFrame{StreamID: 3, FinBit: false, Offset: 0x3925a, Data length: 0x3e8, Offset + Data length: 0x39642}
+[2KReceived: 235000 / 3562600 
+2023/05/17 17:53:49 <- Reading packet 0x11f (1029 bytes) for connection 3dc6f636f8281bf5 on path 2, forward-secure
+2023/05/17 17:53:49 	<- &wire.StreamFrame{StreamID: 3, FinBit: false, Offset: 0x39642, Data length: 0x3e8, Offset + Data length: 0x39a2a}
+2023/05/17 17:53:49 -> Sending packet 0xa5 (32 bytes) for connection 3dc6f636f8281bf5 on path 2, forward-secure
+2023/05/17 17:53:49 	-> &wire.AckFrame{PathID: 0x2, LargestAcked: 0x11f, LowestAcked: 0xec, AckRanges: []wire.AckRange(nil), DelayTime: 13.203µs}
+[2KReceived: 236000 / 3562600 
+2023/05/17 17:53:49 <- Reading packet 0x120 (1029 bytes) for connection 3dc6f636f8281bf5 on path 2, forward-secure
+2023/05/17 17:53:49 	<- &wire.StreamFrame{StreamID: 3, FinBit: false, Offset: 0x39a2a, Data length: 0x3e8, Offset + Data length: 0x39e12}
+[2KReceived: 237000 / 3562600 
+2023/05/17 17:53:49 <- Reading packet 0x121 (1029 bytes) for connection 3dc6f636f8281bf5 on path 2, forward-secure
+2023/05/17 17:53:49 	<- &wire.StreamFrame{StreamID: 3, FinBit: false, Offset: 0x39e12, Data length: 0x3e8, Offset + Data length: 0x3a1fa}
+2023/05/17 17:53:49 -> Sending packet 0xa6 (32 bytes) for connection 3dc6f636f8281bf5 on path 2, forward-secure
+2023/05/17 17:53:49 	-> &wire.AckFrame{PathID: 0x2, LargestAcked: 0x121, LowestAcked: 0xec, AckRanges: []wire.AckRange(nil), DelayTime: 13.824µs}
+[2KReceived: 238000 / 3562600 
+2023/05/17 17:53:49 <- Reading packet 0x122 (1029 bytes) for connection 3dc6f636f8281bf5 on path 2, forward-secure
+2023/05/17 17:53:49 	<- &wire.StreamFrame{StreamID: 3, FinBit: false, Offset: 0x3a1fa, Data length: 0x3e8, Offset + Data length: 0x3a5e2}
+[2KReceived: 239000 / 3562600 
+2023/05/17 17:53:49 <- Reading packet 0x123 (1029 bytes) for connection 3dc6f636f8281bf5 on path 2, forward-secure
+2023/05/17 17:53:49 	<- &wire.StreamFrame{StreamID: 3, FinBit: false, Offset: 0x3a5e2, Data length: 0x3e8, Offset + Data length: 0x3a9ca}
+2023/05/17 17:53:49 -> Sending packet 0xa7 (32 bytes) for connection 3dc6f636f8281bf5 on path 2, forward-secure
+2023/05/17 17:53:49 	-> &wire.AckFrame{PathID: 0x2, LargestAcked: 0x123, LowestAcked: 0xec, AckRanges: []wire.AckRange(nil), DelayTime: 16.566µs}
+[2KReceived: 240000 / 3562600 
+2023/05/17 17:53:49 <- Reading packet 0x124 (1029 bytes) for connection 3dc6f636f8281bf5 on path 2, forward-secure
+2023/05/17 17:53:49 	<- &wire.StreamFrame{StreamID: 3, FinBit: false, Offset: 0x3a9ca, Data length: 0x3e8, Offset + Data length: 0x3adb2}
+[2KReceived: 241000 / 3562600 
+2023/05/17 17:53:49 <- Reading packet 0x125 (1029 bytes) for connection 3dc6f636f8281bf5 on path 2, forward-secure
+2023/05/17 17:53:49 	<- &wire.StreamFrame{StreamID: 3, FinBit: false, Offset: 0x3adb2, Data length: 0x3e8, Offset + Data length: 0x3b19a}
+2023/05/17 17:53:49 -> Sending packet 0xa8 (32 bytes) for connection 3dc6f636f8281bf5 on path 2, forward-secure
+2023/05/17 17:53:49 	-> &wire.AckFrame{PathID: 0x2, LargestAcked: 0x125, LowestAcked: 0xec, AckRanges: []wire.AckRange(nil), DelayTime: 14.02µs}
+[2KReceived: 242000 / 3562600 
+2023/05/17 17:53:49 <- Reading packet 0x126 (1029 bytes) for connection 3dc6f636f8281bf5 on path 2, forward-secure
+2023/05/17 17:53:49 	<- &wire.StreamFrame{StreamID: 3, FinBit: false, Offset: 0x3b19a, Data length: 0x3e8, Offset + Data length: 0x3b582}
+[2KReceived: 243000 / 3562600 
+2023/05/17 17:53:49 <- Reading packet 0x127 (1029 bytes) for connection 3dc6f636f8281bf5 on path 2, forward-secure
+2023/05/17 17:53:49 	<- &wire.StreamFrame{StreamID: 3, FinBit: false, Offset: 0x3b582, Data length: 0x3e8, Offset + Data length: 0x3b96a}
+2023/05/17 17:53:49 -> Sending packet 0xa9 (32 bytes) for connection 3dc6f636f8281bf5 on path 2, forward-secure
+2023/05/17 17:53:49 	-> &wire.AckFrame{PathID: 0x2, LargestAcked: 0x127, LowestAcked: 0xec, AckRanges: []wire.AckRange(nil), DelayTime: 13.637µs}
+[2KReceived: 244000 / 3562600 
+2023/05/17 17:53:49 <- Reading packet 0x128 (1029 bytes) for connection 3dc6f636f8281bf5 on path 2, forward-secure
+2023/05/17 17:53:49 	<- &wire.StreamFrame{StreamID: 3, FinBit: false, Offset: 0x3b96a, Data length: 0x3e8, Offset + Data length: 0x3bd52}
+[2KReceived: 245000 / 3562600 
+2023/05/17 17:53:49 <- Reading packet 0x129 (1029 bytes) for connection 3dc6f636f8281bf5 on path 2, forward-secure
+2023/05/17 17:53:49 	<- &wire.StreamFrame{StreamID: 3, FinBit: false, Offset: 0x3bd52, Data length: 0x3e8, Offset + Data length: 0x3c13a}
+2023/05/17 17:53:49 -> Sending packet 0xaa (32 bytes) for connection 3dc6f636f8281bf5 on path 2, forward-secure
+2023/05/17 17:53:49 	-> &wire.AckFrame{PathID: 0x2, LargestAcked: 0x129, LowestAcked: 0xec, AckRanges: []wire.AckRange(nil), DelayTime: 13.876µs}
+[2KReceived: 246000 / 3562600 
+2023/05/17 17:53:49 <- Reading packet 0x12a (1029 bytes) for connection 3dc6f636f8281bf5 on path 2, forward-secure
+2023/05/17 17:53:49 	<- &wire.StreamFrame{StreamID: 3, FinBit: false, Offset: 0x3c13a, Data length: 0x3e8, Offset + Data length: 0x3c522}
+[2KReceived: 247000 / 3562600 
+2023/05/17 17:53:49 <- Reading packet 0x12b (1029 bytes) for connection 3dc6f636f8281bf5 on path 2, forward-secure
+2023/05/17 17:53:49 	<- &wire.StreamFrame{StreamID: 3, FinBit: false, Offset: 0x3c522, Data length: 0x3e8, Offset + Data length: 0x3c90a}
+2023/05/17 17:53:49 -> Sending packet 0xab (32 bytes) for connection 3dc6f636f8281bf5 on path 2, forward-secure
+2023/05/17 17:53:49 	-> &wire.AckFrame{PathID: 0x2, LargestAcked: 0x12b, LowestAcked: 0xec, AckRanges: []wire.AckRange(nil), DelayTime: 18.289µs}
+[2KReceived: 248000 / 3562600 
+2023/05/17 17:53:49 Increasing receive flow control window increment for stream 3 to 512 kB
+2023/05/17 17:53:49 -> Sending packet 0xac (37 bytes) for connection 3dc6f636f8281bf5 on path 2, forward-secure
+2023/05/17 17:53:49 	-> &wire.WindowUpdateFrame{StreamID:0x3, ByteOffset:0xbc90a}
+2023/05/17 17:53:49 -> Sending packet 0xad (37 bytes) for connection 3dc6f636f8281bf5 on path 2, forward-secure
+2023/05/17 17:53:49 	-> &wire.WindowUpdateFrame{StreamID:0x3, ByteOffset:0xbc90a}
+2023/05/17 17:53:49 <- Reading packet 0x12c (1029 bytes) for connection 3dc6f636f8281bf5 on path 2, forward-secure
+2023/05/17 17:53:49 	<- &wire.StreamFrame{StreamID: 3, FinBit: false, Offset: 0x3c90a, Data length: 0x3e8, Offset + Data length: 0x3ccf2}
+[2KReceived: 249000 / 3562600 
+2023/05/17 17:53:49 <- Reading packet 0x12d (1029 bytes) for connection 3dc6f636f8281bf5 on path 2, forward-secure
+2023/05/17 17:53:49 	<- &wire.StreamFrame{StreamID: 3, FinBit: false, Offset: 0x3ccf2, Data length: 0x3e8, Offset + Data length: 0x3d0da}
+2023/05/17 17:53:49 -> Sending packet 0xae (32 bytes) for connection 3dc6f636f8281bf5 on path 2, forward-secure
+2023/05/17 17:53:49 	-> &wire.AckFrame{PathID: 0x2, LargestAcked: 0x12d, LowestAcked: 0xec, AckRanges: []wire.AckRange(nil), DelayTime: 18.007µs}
+[2KReceived: 250000 / 3562600 
+2023/05/17 17:53:49 <- Reading packet 0x12e (1029 bytes) for connection 3dc6f636f8281bf5 on path 2, forward-secure
+2023/05/17 17:53:49 	<- &wire.StreamFrame{StreamID: 3, FinBit: false, Offset: 0x3d0da, Data length: 0x3e8, Offset + Data length: 0x3d4c2}
+[2KReceived: 251000 / 3562600 
+2023/05/17 17:53:49 <- Reading packet 0x12f (1029 bytes) for connection 3dc6f636f8281bf5 on path 2, forward-secure
+2023/05/17 17:53:49 	<- &wire.StreamFrame{StreamID: 3, FinBit: false, Offset: 0x3d4c2, Data length: 0x3e8, Offset + Data length: 0x3d8aa}
+2023/05/17 17:53:49 -> Sending packet 0xaf (32 bytes) for connection 3dc6f636f8281bf5 on path 2, forward-secure
+2023/05/17 17:53:49 	-> &wire.AckFrame{PathID: 0x2, LargestAcked: 0x12f, LowestAcked: 0xec, AckRanges: []wire.AckRange(nil), DelayTime: 21.732µs}
+[2KReceived: 252000 / 3562600 
+2023/05/17 17:53:49 <- Reading packet 0x130 (1029 bytes) for connection 3dc6f636f8281bf5 on path 2, forward-secure
+2023/05/17 17:53:49 	<- &wire.StreamFrame{StreamID: 3, FinBit: false, Offset: 0x3d8aa, Data length: 0x3e8, Offset + Data length: 0x3dc92}
+[2KReceived: 253000 / 3562600 
+2023/05/17 17:53:49 <- Reading packet 0x131 (1029 bytes) for connection 3dc6f636f8281bf5 on path 2, forward-secure
+2023/05/17 17:53:49 	<- &wire.StreamFrame{StreamID: 3, FinBit: false, Offset: 0x3dc92, Data length: 0x3e8, Offset + Data length: 0x3e07a}
+2023/05/17 17:53:49 -> Sending packet 0xb0 (32 bytes) for connection 3dc6f636f8281bf5 on path 2, forward-secure
+2023/05/17 17:53:49 	-> &wire.AckFrame{PathID: 0x2, LargestAcked: 0x131, LowestAcked: 0xec, AckRanges: []wire.AckRange(nil), DelayTime: 13.527µs}
+[2KReceived: 254000 / 3562600 
+2023/05/17 17:53:49 <- Reading packet 0x132 (1029 bytes) for connection 3dc6f636f8281bf5 on path 2, forward-secure
+2023/05/17 17:53:49 	<- &wire.StreamFrame{StreamID: 3, FinBit: false, Offset: 0x3e07a, Data length: 0x3e8, Offset + Data length: 0x3e462}
+[2KReceived: 255000 / 3562600 
+2023/05/17 17:53:49 <- Reading packet 0x133 (1029 bytes) for connection 3dc6f636f8281bf5 on path 2, forward-secure
+2023/05/17 17:53:49 	<- &wire.StreamFrame{StreamID: 3, FinBit: false, Offset: 0x3e462, Data length: 0x3e8, Offset + Data length: 0x3e84a}
+2023/05/17 17:53:49 -> Sending packet 0xb1 (32 bytes) for connection 3dc6f636f8281bf5 on path 2, forward-secure
+2023/05/17 17:53:49 	-> &wire.AckFrame{PathID: 0x2, LargestAcked: 0x133, LowestAcked: 0xec, AckRanges: []wire.AckRange(nil), DelayTime: 19.702µs}
+[2KReceived: 256000 / 3562600 
+2023/05/17 17:53:49 <- Reading packet 0x134 (1029 bytes) for connection 3dc6f636f8281bf5 on path 2, forward-secure
+2023/05/17 17:53:49 	<- &wire.StreamFrame{StreamID: 3, FinBit: false, Offset: 0x3e84a, Data length: 0x3e8, Offset + Data length: 0x3ec32}
+[2KReceived: 257000 / 3562600 
+2023/05/17 17:53:49 <- Reading packet 0x135 (1029 bytes) for connection 3dc6f636f8281bf5 on path 2, forward-secure
+2023/05/17 17:53:49 	<- &wire.StreamFrame{StreamID: 3, FinBit: false, Offset: 0x3ec32, Data length: 0x3e8, Offset + Data length: 0x3f01a}
+2023/05/17 17:53:49 -> Sending packet 0xb2 (32 bytes) for connection 3dc6f636f8281bf5 on path 2, forward-secure
+2023/05/17 17:53:49 	-> &wire.AckFrame{PathID: 0x2, LargestAcked: 0x135, LowestAcked: 0xec, AckRanges: []wire.AckRange(nil), DelayTime: 20.212µs}
+[2KReceived: 258000 / 3562600 
+2023/05/17 17:53:49 <- Reading packet 0x136 (1029 bytes) for connection 3dc6f636f8281bf5 on path 2, forward-secure
+2023/05/17 17:53:49 	<- &wire.StreamFrame{StreamID: 3, FinBit: false, Offset: 0x3f01a, Data length: 0x3e8, Offset + Data length: 0x3f402}
+[2KReceived: 259000 / 3562600 
+2023/05/17 17:53:49 <- Reading packet 0x137 (1029 bytes) for connection 3dc6f636f8281bf5 on path 2, forward-secure
+2023/05/17 17:53:49 	<- &wire.StreamFrame{StreamID: 3, FinBit: false, Offset: 0x3f402, Data length: 0x3e8, Offset + Data length: 0x3f7ea}
+2023/05/17 17:53:49 -> Sending packet 0xb3 (32 bytes) for connection 3dc6f636f8281bf5 on path 2, forward-secure
+2023/05/17 17:53:49 	-> &wire.AckFrame{PathID: 0x2, LargestAcked: 0x137, LowestAcked: 0xec, AckRanges: []wire.AckRange(nil), DelayTime: 39.81µs}
+[2KReceived: 260000 / 3562600 
+2023/05/17 17:53:49 <- Reading packet 0x138 (1029 bytes) for connection 3dc6f636f8281bf5 on path 2, forward-secure
+2023/05/17 17:53:49 	<- &wire.StreamFrame{StreamID: 3, FinBit: false, Offset: 0x3f7ea, Data length: 0x3e8, Offset + Data length: 0x3fbd2}
+[2KReceived: 261000 / 3562600 
+2023/05/17 17:53:49 <- Reading packet 0x139 (1029 bytes) for connection 3dc6f636f8281bf5 on path 2, forward-secure
+2023/05/17 17:53:49 	<- &wire.StreamFrame{StreamID: 3, FinBit: false, Offset: 0x3fbd2, Data length: 0x3e8, Offset + Data length: 0x3ffba}
+2023/05/17 17:53:49 -> Sending packet 0xb4 (32 bytes) for connection 3dc6f636f8281bf5 on path 2, forward-secure
+2023/05/17 17:53:49 	-> &wire.AckFrame{PathID: 0x2, LargestAcked: 0x139, LowestAcked: 0xec, AckRanges: []wire.AckRange(nil), DelayTime: 39.077µs}
+[2KReceived: 262000 / 3562600 
+2023/05/17 17:53:49 <- Reading packet 0x13a (1029 bytes) for connection 3dc6f636f8281bf5 on path 2, forward-secure
+2023/05/17 17:53:49 	<- &wire.StreamFrame{StreamID: 3, FinBit: false, Offset: 0x3ffba, Data length: 0x3e8, Offset + Data length: 0x403a2}
+[2KReceived: 263000 / 3562600 
+2023/05/17 17:53:49 <- Reading packet 0x13b (1029 bytes) for connection 3dc6f636f8281bf5 on path 2, forward-secure
+2023/05/17 17:53:49 	<- &wire.StreamFrame{StreamID: 3, FinBit: false, Offset: 0x403a2, Data length: 0x3e8, Offset + Data length: 0x4078a}
+2023/05/17 17:53:49 -> Sending packet 0xb5 (32 bytes) for connection 3dc6f636f8281bf5 on path 2, forward-secure
+2023/05/17 17:53:49 	-> &wire.AckFrame{PathID: 0x2, LargestAcked: 0x13b, LowestAcked: 0xec, AckRanges: []wire.AckRange(nil), DelayTime: 20.923µs}
+[2KReceived: 264000 / 3562600 
+2023/05/17 17:53:49 <- Reading packet 0x13c (1039 bytes) for connection 3dc6f636f8281bf5 on path 2, forward-secure
+2023/05/17 17:53:49 	<- &wire.StopWaitingFrame{LeastUnacked: 0x112}
+2023/05/17 17:53:49 	<- &wire.AckFrame{PathID: 0x2, LargestAcked: 0x9d, LowestAcked: 0x76, AckRanges: []wire.AckRange(nil), DelayTime: 22µs}
+2023/05/17 17:53:49 	<- &wire.StreamFrame{StreamID: 3, FinBit: false, Offset: 0x4078a, Data length: 0x3e8, Offset + Data length: 0x40b72}
+[2KReceived: 265000 / 3562600 
+2023/05/17 17:53:49 <- Reading packet 0x13d (1029 bytes) for connection 3dc6f636f8281bf5 on path 2, forward-secure
+2023/05/17 17:53:49 	<- &wire.StreamFrame{StreamID: 3, FinBit: false, Offset: 0x40b72, Data length: 0x3e8, Offset + Data length: 0x40f5a}
+2023/05/17 17:53:49 -> Sending packet 0xb6 (35 bytes) for connection 3dc6f636f8281bf5 on path 2, forward-secure
+2023/05/17 17:53:49 	-> &wire.StopWaitingFrame{LeastUnacked: 0x9e, PacketNumberLen: 0x2}
+2023/05/17 17:53:49 	-> &wire.AckFrame{PathID: 0x2, LargestAcked: 0x13d, LowestAcked: 0x112, AckRanges: []wire.AckRange(nil), DelayTime: 33.029µs}
+[2KReceived: 266000 / 3562600 
+2023/05/17 17:53:49 <- Reading packet 0x13e (1029 bytes) for connection 3dc6f636f8281bf5 on path 2, forward-secure
+2023/05/17 17:53:49 	<- &wire.StreamFrame{StreamID: 3, FinBit: false, Offset: 0x40f5a, Data length: 0x3e8, Offset + Data length: 0x41342}
+[2KReceived: 267000 / 3562600 
+2023/05/17 17:53:49 <- Reading packet 0x13f (1029 bytes) for connection 3dc6f636f8281bf5 on path 2, forward-secure
+2023/05/17 17:53:49 	<- &wire.StreamFrame{StreamID: 3, FinBit: false, Offset: 0x41342, Data length: 0x3e8, Offset + Data length: 0x4172a}
+2023/05/17 17:53:49 -> Sending packet 0xb7 (32 bytes) for connection 3dc6f636f8281bf5 on path 2, forward-secure
+2023/05/17 17:53:49 	-> &wire.AckFrame{PathID: 0x2, LargestAcked: 0x13f, LowestAcked: 0x112, AckRanges: []wire.AckRange(nil), DelayTime: 30.164µs}
+[2KReceived: 268000 / 3562600 
+2023/05/17 17:53:49 <- Reading packet 0x140 (1029 bytes) for connection 3dc6f636f8281bf5 on path 2, forward-secure
+2023/05/17 17:53:49 	<- &wire.StreamFrame{StreamID: 3, FinBit: false, Offset: 0x4172a, Data length: 0x3e8, Offset + Data length: 0x41b12}
+[2KReceived: 269000 / 3562600 
+2023/05/17 17:53:49 <- Reading packet 0x141 (1029 bytes) for connection 3dc6f636f8281bf5 on path 2, forward-secure
+2023/05/17 17:53:49 	<- &wire.StreamFrame{StreamID: 3, FinBit: false, Offset: 0x41b12, Data length: 0x3e8, Offset + Data length: 0x41efa}
+2023/05/17 17:53:49 -> Sending packet 0xb8 (32 bytes) for connection 3dc6f636f8281bf5 on path 2, forward-secure
+2023/05/17 17:53:49 	-> &wire.AckFrame{PathID: 0x2, LargestAcked: 0x141, LowestAcked: 0x112, AckRanges: []wire.AckRange(nil), DelayTime: 35.595µs}
+[2KReceived: 270000 / 3562600 
+2023/05/17 17:53:49 <- Reading packet 0x142 (1029 bytes) for connection 3dc6f636f8281bf5 on path 2, forward-secure
+2023/05/17 17:53:49 	<- &wire.StreamFrame{StreamID: 3, FinBit: false, Offset: 0x41efa, Data length: 0x3e8, Offset + Data length: 0x422e2}
+[2KReceived: 271000 / 3562600 
+2023/05/17 17:53:49 <- Reading packet 0x143 (1029 bytes) for connection 3dc6f636f8281bf5 on path 2, forward-secure
+2023/05/17 17:53:49 	<- &wire.StreamFrame{StreamID: 3, FinBit: false, Offset: 0x422e2, Data length: 0x3e8, Offset + Data length: 0x426ca}
+2023/05/17 17:53:49 -> Sending packet 0xb9 (32 bytes) for connection 3dc6f636f8281bf5 on path 2, forward-secure
+2023/05/17 17:53:49 	-> &wire.AckFrame{PathID: 0x2, LargestAcked: 0x143, LowestAcked: 0x112, AckRanges: []wire.AckRange(nil), DelayTime: 22.999µs}
+[2KReceived: 272000 / 3562600 
+2023/05/17 17:53:49 <- Reading packet 0x144 (1029 bytes) for connection 3dc6f636f8281bf5 on path 2, forward-secure
+2023/05/17 17:53:49 	<- &wire.StreamFrame{StreamID: 3, FinBit: false, Offset: 0x426ca, Data length: 0x3e8, Offset + Data length: 0x42ab2}
+[2KReceived: 273000 / 3562600 
+2023/05/17 17:53:49 <- Reading packet 0x145 (1029 bytes) for connection 3dc6f636f8281bf5 on path 2, forward-secure
+2023/05/17 17:53:49 	<- &wire.StreamFrame{StreamID: 3, FinBit: false, Offset: 0x42ab2, Data length: 0x3e8, Offset + Data length: 0x42e9a}
+2023/05/17 17:53:49 -> Sending packet 0xba (32 bytes) for connection 3dc6f636f8281bf5 on path 2, forward-secure
+2023/05/17 17:53:49 	-> &wire.AckFrame{PathID: 0x2, LargestAcked: 0x145, LowestAcked: 0x112, AckRanges: []wire.AckRange(nil), DelayTime: 25.702µs}
+[2KReceived: 274000 / 3562600 
+2023/05/17 17:53:49 <- Reading packet 0x146 (1029 bytes) for connection 3dc6f636f8281bf5 on path 2, forward-secure
+2023/05/17 17:53:49 	<- &wire.StreamFrame{StreamID: 3, FinBit: false, Offset: 0x42e9a, Data length: 0x3e8, Offset + Data length: 0x43282}
+[2KReceived: 275000 / 3562600 
+2023/05/17 17:53:49 <- Reading packet 0x147 (1029 bytes) for connection 3dc6f636f8281bf5 on path 2, forward-secure
+2023/05/17 17:53:49 	<- &wire.StreamFrame{StreamID: 3, FinBit: false, Offset: 0x43282, Data length: 0x3e8, Offset + Data length: 0x4366a}
+2023/05/17 17:53:49 -> Sending packet 0xbb (32 bytes) for connection 3dc6f636f8281bf5 on path 2, forward-secure
+2023/05/17 17:53:49 	-> &wire.AckFrame{PathID: 0x2, LargestAcked: 0x147, LowestAcked: 0x112, AckRanges: []wire.AckRange(nil), DelayTime: 17.404µs}
+[2KReceived: 276000 / 3562600 
+2023/05/17 17:53:49 <- Reading packet 0x148 (1029 bytes) for connection 3dc6f636f8281bf5 on path 2, forward-secure
+2023/05/17 17:53:49 	<- &wire.StreamFrame{StreamID: 3, FinBit: false, Offset: 0x4366a, Data length: 0x3e8, Offset + Data length: 0x43a52}
+[2KReceived: 277000 / 3562600 
+2023/05/17 17:53:49 <- Reading packet 0x149 (1029 bytes) for connection 3dc6f636f8281bf5 on path 2, forward-secure
+2023/05/17 17:53:49 	<- &wire.StreamFrame{StreamID: 3, FinBit: false, Offset: 0x43a52, Data length: 0x3e8, Offset + Data length: 0x43e3a}
+2023/05/17 17:53:49 -> Sending packet 0xbc (32 bytes) for connection 3dc6f636f8281bf5 on path 2, forward-secure
+2023/05/17 17:53:49 	-> &wire.AckFrame{PathID: 0x2, LargestAcked: 0x149, LowestAcked: 0x112, AckRanges: []wire.AckRange(nil), DelayTime: 18.668µs}
+[2KReceived: 278000 / 3562600 
+2023/05/17 17:53:49 <- Reading packet 0x14a (1029 bytes) for connection 3dc6f636f8281bf5 on path 2, forward-secure
+2023/05/17 17:53:49 	<- &wire.StreamFrame{StreamID: 3, FinBit: false, Offset: 0x43e3a, Data length: 0x3e8, Offset + Data length: 0x44222}
+[2KReceived: 279000 / 3562600 
+2023/05/17 17:53:49 <- Reading packet 0x14b (1029 bytes) for connection 3dc6f636f8281bf5 on path 2, forward-secure
+2023/05/17 17:53:49 	<- &wire.StreamFrame{StreamID: 3, FinBit: false, Offset: 0x44222, Data length: 0x3e8, Offset + Data length: 0x4460a}
+2023/05/17 17:53:49 -> Sending packet 0xbd (32 bytes) for connection 3dc6f636f8281bf5 on path 2, forward-secure
+2023/05/17 17:53:49 	-> &wire.AckFrame{PathID: 0x2, LargestAcked: 0x14b, LowestAcked: 0x112, AckRanges: []wire.AckRange(nil), DelayTime: 23.818µs}
+[2KReceived: 280000 / 3562600 
+2023/05/17 17:53:49 <- Reading packet 0x14c (1029 bytes) for connection 3dc6f636f8281bf5 on path 2, forward-secure
+2023/05/17 17:53:49 	<- &wire.StreamFrame{StreamID: 3, FinBit: false, Offset: 0x4460a, Data length: 0x3e8, Offset + Data length: 0x449f2}
+[2KReceived: 281000 / 3562600 
+2023/05/17 17:53:49 <- Reading packet 0x14d (1029 bytes) for connection 3dc6f636f8281bf5 on path 2, forward-secure
+2023/05/17 17:53:49 	<- &wire.StreamFrame{StreamID: 3, FinBit: false, Offset: 0x449f2, Data length: 0x3e8, Offset + Data length: 0x44dda}
+2023/05/17 17:53:49 -> Sending packet 0xbe (32 bytes) for connection 3dc6f636f8281bf5 on path 2, forward-secure
+2023/05/17 17:53:49 	-> &wire.AckFrame{PathID: 0x2, LargestAcked: 0x14d, LowestAcked: 0x112, AckRanges: []wire.AckRange(nil), DelayTime: 20.627µs}
+[2KReceived: 282000 / 3562600 
+2023/05/17 17:53:49 <- Reading packet 0x14e (1029 bytes) for connection 3dc6f636f8281bf5 on path 2, forward-secure
+2023/05/17 17:53:49 	<- &wire.StreamFrame{StreamID: 3, FinBit: false, Offset: 0x44dda, Data length: 0x3e8, Offset + Data length: 0x451c2}
+[2KReceived: 283000 / 3562600 
+2023/05/17 17:53:49 <- Reading packet 0x14f (1029 bytes) for connection 3dc6f636f8281bf5 on path 2, forward-secure
+2023/05/17 17:53:49 	<- &wire.StreamFrame{StreamID: 3, FinBit: false, Offset: 0x451c2, Data length: 0x3e8, Offset + Data length: 0x455aa}
+2023/05/17 17:53:49 -> Sending packet 0xbf (32 bytes) for connection 3dc6f636f8281bf5 on path 2, forward-secure
+2023/05/17 17:53:49 	-> &wire.AckFrame{PathID: 0x2, LargestAcked: 0x14f, LowestAcked: 0x112, AckRanges: []wire.AckRange(nil), DelayTime: 20.931µs}
+[2KReceived: 284000 / 3562600 
+2023/05/17 17:53:49 <- Reading packet 0x150 (1029 bytes) for connection 3dc6f636f8281bf5 on path 2, forward-secure
+2023/05/17 17:53:49 	<- &wire.StreamFrame{StreamID: 3, FinBit: false, Offset: 0x455aa, Data length: 0x3e8, Offset + Data length: 0x45992}
+[2KReceived: 285000 / 3562600 
+2023/05/17 17:53:49 <- Reading packet 0x151 (1029 bytes) for connection 3dc6f636f8281bf5 on path 2, forward-secure
+2023/05/17 17:53:49 	<- &wire.StreamFrame{StreamID: 3, FinBit: false, Offset: 0x45992, Data length: 0x3e8, Offset + Data length: 0x45d7a}
+2023/05/17 17:53:49 -> Sending packet 0xc0 (32 bytes) for connection 3dc6f636f8281bf5 on path 2, forward-secure
+2023/05/17 17:53:49 	-> &wire.AckFrame{PathID: 0x2, LargestAcked: 0x151, LowestAcked: 0x112, AckRanges: []wire.AckRange(nil), DelayTime: 15.474µs}
+2023/05/17 17:53:49 -> Sending packet 0xc1 (25 bytes) for connection 3dc6f636f8281bf5 on path 2, forward-secure
+2023/05/17 17:53:49 	-> &wire.PingFrame{}
+[2KReceived: 286000 / 3562600 
+2023/05/17 17:53:49 <- Reading packet 0x152 (1029 bytes) for connection 3dc6f636f8281bf5 on path 2, forward-secure
+2023/05/17 17:53:49 	<- &wire.StreamFrame{StreamID: 3, FinBit: false, Offset: 0x45d7a, Data length: 0x3e8, Offset + Data length: 0x46162}
+[2KReceived: 287000 / 3562600 
+2023/05/17 17:53:49 <- Reading packet 0x153 (1029 bytes) for connection 3dc6f636f8281bf5 on path 2, forward-secure
+2023/05/17 17:53:49 	<- &wire.StreamFrame{StreamID: 3, FinBit: false, Offset: 0x46162, Data length: 0x3e8, Offset + Data length: 0x4654a}
+2023/05/17 17:53:49 -> Sending packet 0xc2 (32 bytes) for connection 3dc6f636f8281bf5 on path 2, forward-secure
+2023/05/17 17:53:49 	-> &wire.AckFrame{PathID: 0x2, LargestAcked: 0x153, LowestAcked: 0x112, AckRanges: []wire.AckRange(nil), DelayTime: 30.591µs}
+[2KReceived: 288000 / 3562600 
+2023/05/17 17:53:49 <- Reading packet 0x154 (1029 bytes) for connection 3dc6f636f8281bf5 on path 2, forward-secure
+2023/05/17 17:53:49 	<- &wire.StreamFrame{StreamID: 3, FinBit: false, Offset: 0x4654a, Data length: 0x3e8, Offset + Data length: 0x46932}
+[2KReceived: 289000 / 3562600 
+2023/05/17 17:53:49 <- Reading packet 0x155 (1029 bytes) for connection 3dc6f636f8281bf5 on path 2, forward-secure
+2023/05/17 17:53:49 	<- &wire.StreamFrame{StreamID: 3, FinBit: false, Offset: 0x46932, Data length: 0x3e8, Offset + Data length: 0x46d1a}
+2023/05/17 17:53:49 -> Sending packet 0xc3 (32 bytes) for connection 3dc6f636f8281bf5 on path 2, forward-secure
+2023/05/17 17:53:49 	-> &wire.AckFrame{PathID: 0x2, LargestAcked: 0x155, LowestAcked: 0x112, AckRanges: []wire.AckRange(nil), DelayTime: 25.539µs}
+[2KReceived: 290000 / 3562600 
+2023/05/17 17:53:49 <- Reading packet 0x156 (1029 bytes) for connection 3dc6f636f8281bf5 on path 2, forward-secure
+2023/05/17 17:53:49 	<- &wire.StreamFrame{StreamID: 3, FinBit: false, Offset: 0x46d1a, Data length: 0x3e8, Offset + Data length: 0x47102}
+[2KReceived: 291000 / 3562600 
+2023/05/17 17:53:49 <- Reading packet 0x157 (1039 bytes) for connection 3dc6f636f8281bf5 on path 2, forward-secure
+2023/05/17 17:53:49 	<- &wire.StopWaitingFrame{LeastUnacked: 0x12c}
+2023/05/17 17:53:49 	<- &wire.AckFrame{PathID: 0x2, LargestAcked: 0xac, LowestAcked: 0x8a, AckRanges: []wire.AckRange(nil), DelayTime: 16µs}
+2023/05/17 17:53:49 	<- &wire.StreamFrame{StreamID: 3, FinBit: false, Offset: 0x47102, Data length: 0x3e8, Offset + Data length: 0x474ea}
+2023/05/17 17:53:49 -> Sending packet 0xc4 (35 bytes) for connection 3dc6f636f8281bf5 on path 2, forward-secure
+2023/05/17 17:53:49 	-> &wire.StopWaitingFrame{LeastUnacked: 0xad, PacketNumberLen: 0x2}
+2023/05/17 17:53:49 	-> &wire.AckFrame{PathID: 0x2, LargestAcked: 0x157, LowestAcked: 0x12c, AckRanges: []wire.AckRange(nil), DelayTime: 33.979µs}
+[2KReceived: 292000 / 3562600 
+2023/05/17 17:53:49 <- Reading packet 0x158 (1029 bytes) for connection 3dc6f636f8281bf5 on path 2, forward-secure
+2023/05/17 17:53:49 	<- &wire.StreamFrame{StreamID: 3, FinBit: false, Offset: 0x474ea, Data length: 0x3e8, Offset + Data length: 0x478d2}
+[2KReceived: 293000 / 3562600 
+2023/05/17 17:53:49 <- Reading packet 0x159 (1029 bytes) for connection 3dc6f636f8281bf5 on path 2, forward-secure
+2023/05/17 17:53:49 	<- &wire.StreamFrame{StreamID: 3, FinBit: false, Offset: 0x478d2, Data length: 0x3e8, Offset + Data length: 0x47cba}
+2023/05/17 17:53:49 -> Sending packet 0xc5 (32 bytes) for connection 3dc6f636f8281bf5 on path 2, forward-secure
+2023/05/17 17:53:49 	-> &wire.AckFrame{PathID: 0x2, LargestAcked: 0x159, LowestAcked: 0x12c, AckRanges: []wire.AckRange(nil), DelayTime: 28.002µs}
+[2KReceived: 294000 / 3562600 
+2023/05/17 17:53:49 <- Reading packet 0x15a (1029 bytes) for connection 3dc6f636f8281bf5 on path 2, forward-secure
+2023/05/17 17:53:49 	<- &wire.StreamFrame{StreamID: 3, FinBit: false, Offset: 0x47cba, Data length: 0x3e8, Offset + Data length: 0x480a2}
+[2KReceived: 295000 / 3562600 
+2023/05/17 17:53:49 <- Reading packet 0x15b (1029 bytes) for connection 3dc6f636f8281bf5 on path 2, forward-secure
+2023/05/17 17:53:49 	<- &wire.StreamFrame{StreamID: 3, FinBit: false, Offset: 0x480a2, Data length: 0x3e8, Offset + Data length: 0x4848a}
+2023/05/17 17:53:49 -> Sending packet 0xc6 (32 bytes) for connection 3dc6f636f8281bf5 on path 2, forward-secure
+2023/05/17 17:53:49 	-> &wire.AckFrame{PathID: 0x2, LargestAcked: 0x15b, LowestAcked: 0x12c, AckRanges: []wire.AckRange(nil), DelayTime: 19.974µs}
+[2KReceived: 296000 / 3562600 
+2023/05/17 17:53:49 <- Reading packet 0x15c (1029 bytes) for connection 3dc6f636f8281bf5 on path 2, forward-secure
+2023/05/17 17:53:49 	<- &wire.StreamFrame{StreamID: 3, FinBit: false, Offset: 0x4848a, Data length: 0x3e8, Offset + Data length: 0x48872}
+[2KReceived: 297000 / 3562600 
+2023/05/17 17:53:49 <- Reading packet 0x15d (1029 bytes) for connection 3dc6f636f8281bf5 on path 2, forward-secure
+2023/05/17 17:53:49 	<- &wire.StreamFrame{StreamID: 3, FinBit: false, Offset: 0x48872, Data length: 0x3e8, Offset + Data length: 0x48c5a}
+2023/05/17 17:53:49 -> Sending packet 0xc7 (32 bytes) for connection 3dc6f636f8281bf5 on path 2, forward-secure
+2023/05/17 17:53:49 	-> &wire.AckFrame{PathID: 0x2, LargestAcked: 0x15d, LowestAcked: 0x12c, AckRanges: []wire.AckRange(nil), DelayTime: 25.798µs}
+[2KReceived: 298000 / 3562600 
+2023/05/17 17:53:49 <- Reading packet 0x15e (1029 bytes) for connection 3dc6f636f8281bf5 on path 2, forward-secure
+2023/05/17 17:53:49 	<- &wire.StreamFrame{StreamID: 3, FinBit: false, Offset: 0x48c5a, Data length: 0x3e8, Offset + Data length: 0x49042}
+[2KReceived: 299000 / 3562600 
+2023/05/17 17:53:49 <- Reading packet 0x15f (1029 bytes) for connection 3dc6f636f8281bf5 on path 2, forward-secure
+2023/05/17 17:53:49 	<- &wire.StreamFrame{StreamID: 3, FinBit: false, Offset: 0x49042, Data length: 0x3e8, Offset + Data length: 0x4942a}
+2023/05/17 17:53:49 -> Sending packet 0xc8 (32 bytes) for connection 3dc6f636f8281bf5 on path 2, forward-secure
+2023/05/17 17:53:49 	-> &wire.AckFrame{PathID: 0x2, LargestAcked: 0x15f, LowestAcked: 0x12c, AckRanges: []wire.AckRange(nil), DelayTime: 22.09µs}
+[2KReceived: 300000 / 3562600 
+2023/05/17 17:53:49 	Dequeueing retransmission of packet 0xc1 from path 2
+2023/05/17 17:53:49 -> Sending packet 0xc9 (25 bytes) for connection 3dc6f636f8281bf5 on path 2, forward-secure
+2023/05/17 17:53:49 	-> &wire.PingFrame{}
+2023/05/17 17:53:49 	Dequeueing retransmission of packet 0xc9 from path 2
+2023/05/17 17:53:49 -> Sending packet 0xca (25 bytes) for connection 3dc6f636f8281bf5 on path 2, forward-secure
+2023/05/17 17:53:49 	-> &wire.PingFrame{}
+2023/05/17 17:53:50 	Queueing packet 0xad for retransmission (RTO), 2 outstanding
+2023/05/17 17:53:50 	Queueing packet 0xca for retransmission (RTO), 1 outstanding
+2023/05/17 17:53:50 	Dequeueing retransmission of packet 0xad from path 2
+2023/05/17 17:53:50 	Dequeueing retransmission of packet 0xca from path 2
+2023/05/17 17:53:50 	Queueing packet 0x9 for retransmission (RTO), 4 outstanding
+2023/05/17 17:53:50 	Queueing packet 0xa for retransmission (RTO), 3 outstanding
+2023/05/17 17:53:50 	Queueing packet 0xb for retransmission (RTO), 2 outstanding
+2023/05/17 17:53:50 	Queueing packet 0xc for retransmission (RTO), 1 outstanding
+2023/05/17 17:53:50 	Dequeueing retransmission of packet 0x9 from path 1
+2023/05/17 17:53:50 	Dequeueing retransmission of packet 0xa from path 1
+2023/05/17 17:53:50 	Dequeueing retransmission of packet 0xb from path 1
+2023/05/17 17:53:50 	Dequeueing retransmission of packet 0xc from path 1
+signal: interrupt

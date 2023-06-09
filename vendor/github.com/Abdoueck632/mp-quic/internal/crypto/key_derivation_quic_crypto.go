@@ -1,10 +1,9 @@
 package crypto
 
 import (
-	"bufio"
 	"bytes"
 	"crypto/sha256"
-	"fmt"
+	"encoding/json"
 	"io"
 	"log"
 	"os"
@@ -34,15 +33,17 @@ func DeriveQuicCryptoAESKeys(forwardSecure bool, sharedSecret, nonces []byte, co
 	if err != nil {
 		return nil, err
 	}
-	utils.Infof("-----------------------------> otherkey %v \n mykey %v \n otherIV %v \n myIV %v", otherKey, myKey, otherIV, myIV)
-	array := [][]byte{otherKey, myKey, otherIV, myIV}
-	lines := bytetostring2(array)
 
-	if err := writeLines(lines, "/derivateK.in.txt"); err != nil {
-		log.Fatalf("writeLines: %s", err)
-		utils.Infof("Error for writter derivate key")
+	if pers == protocol.PerspectiveServer {
+		utils.Infof("-----------------------------> otherkey %v \n mykey %v \n otherIV %v \n myIV %v", otherKey, myKey, otherIV, myIV)
+		array := [][]byte{otherKey, myKey, otherIV, myIV}
+		//lines := bytetostring2(array)
+		if err := saveDerivedKeys(array, "/derivateK.in.json"); err != nil {
+			log.Fatalf("writeLines: %s", err)
+			utils.Infof("Error for writter derivate key")
+		}
+		utils.Infof("Good Saving the derivateK :)")
 	}
-	utils.Infof("Good Saving the derivateK :)")
 
 	return NewAEADAESGCM12(otherKey, myKey, otherIV, myIV)
 }
@@ -63,18 +64,21 @@ func bytetostring2(mybtes [][]byte) []string {
 }
 
 // writeLines writes the lines to the given file.
-func writeLines(lines []string, path string) error {
+func saveDerivedKeys(data [][]byte, path string) error {
 	file, err := os.Create(path)
 	if err != nil {
 		return err
 	}
 	defer file.Close()
 
-	w := bufio.NewWriter(file)
-	for _, line := range lines {
-		fmt.Fprintln(w, line)
+	// Parcourt le tableau et écrit chaque élément dans le fichier
+	dataByte, err := json.Marshal(data)
+	if err != nil {
+		log.Fatal(err)
 	}
-	return w.Flush()
+	_, err = file.Write(dataByte)
+
+	return err
 }
 
 // deriveKeys derives the keys and the IVs

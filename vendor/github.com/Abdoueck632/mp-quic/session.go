@@ -535,11 +535,20 @@ func (s *session) handleFrames(fs []wire.Frame, p *path) error {
 		case *wire.PathsFrame:
 			// So far, do nothing
 			s.pathsLock.RLock()
+			if utils.Debug() {
+				// We don't need to allocate the slices for calling the format functions
+				utils.Debugf("%+v", frame)
+
+			}
 			for i := 0; i < int(frame.NumPaths); i++ {
+				if _, ok := s.paths[frame.PathIDs[i]]; !ok {
+					continue
+				}
 				s.remoteRTTs[frame.PathIDs[i]] = frame.RemoteRTTs[i]
 				if frame.RemoteRTTs[i] >= 30*time.Minute {
 					// Path is potentially failed
 					s.paths[frame.PathIDs[i]].potentiallyFailed.Set(true)
+
 				}
 			}
 			s.pathsLock.RUnlock()
@@ -960,24 +969,23 @@ func (s *session) GetConnectionID() protocol.ConnectionID {
 }
 
 // add function to set the current remote address
-func (s *session) SetIPAddress(addr string) {
+func (s *session) SetIPAddress(addr string, i int) {
 	udpAddr, _ := net.ResolveUDPAddr("udp", addr)
-	s.paths[0].conn.SetCurrentRemoteAddr(udpAddr)
+	s.paths[protocol.PathID(i)].conn.SetCurrentRemoteAddr(udpAddr)
 }
 
 // Get the number of paths un order to see the creation of the path
-func (s *session) GetPaths() [3]*path {
-	var paths [3]*path
+func (s *session) GetPaths() []*path {
+	var paths []*path
 	for key, value := range s.paths {
 		paths[key] = value
 	}
 	return paths
 }
-func (s *session) CreationRelayPath(addr string) {
-	s.pathManager.AddPaths(addr)
-	if utils.Debug() {
-		utils.Debugf("Created remote path with %s ", addr)
-	}
+func (s *session) CreationRelayPath(remoteaddr, locAddr string, pathID int) error {
+	err := s.pathManager.AddPaths(remoteaddr, locAddr, pathID)
+	return err
+
 }
 func (s *session) SetDerivateKey(otherKey []byte, myKey []byte, otherIV []byte, myIV []byte) {
 	s.cryptoSetup.SetDerivationKey(otherKey, myKey, otherIV, myIV)
@@ -987,13 +995,52 @@ func (s *session) SetDerivateKey(otherKey []byte, myKey []byte, otherIV []byte, 
 func (s *session) GetCryptoSetup() handshake.CryptoSetup {
 	return s.cryptoSetup
 }
-func (s *session) GetpathsAndLen() *path {
-	return s.paths[0]
+func (s *session) GetLenPaths() int {
+	return len(s.paths)
+}
+func (s *session) GetpathsAndLen(pthId int) *path {
+	return s.paths[protocol.PathID(pthId)]
 }
 
 func (s *session) GetPerspectives() protocol.Perspective {
 	return s.perspective
 }
+func (s *session) GetPathManager() pathManager {
+	return *s.pathManager
+}
 func (s *session) SetPerspectives(perspective int) {
 	s.perspective = protocol.Perspective(perspective)
+}
+func (s *session) AdvertiseAddress(ipaddr string) {
+	s.pathManager.AdvertiseRelayAddresses(ipaddr)
+}
+func (s *session) ClosePath(pthID int) {
+	s.closePath(protocol.PathID(pthID), true)
+}
+func (s *session) OpenPath(pthID int) {
+	s.closePath(protocol.PathID(pthID), false)
+}
+func (s *session) GetClosePath(pthID int) bool {
+	return s.closedPaths[protocol.PathID(pthID)]
+}
+
+func (s *session) RemoteAddrById(i int) net.Addr {
+	// XXX (QDC): do it like with MPTCP (master initial path), what if it is closed?
+	if val, ok := s.paths[protocol.PathID(i)]; ok {
+		return val.conn.RemoteAddr()
+	}
+	return nil
+}
+func (s *session) LocalAddrById(i int) net.Addr {
+	// XXX (QDC): do it like with MPTCP (master initial path), what if it is closed?
+	if val, ok := s.paths[protocol.PathID(i)]; ok {
+		return val.conn.GetPconn().LocalAddr()
+	}
+	return nil
+}
+func (s *session) GetHandshakeComplete() bool {
+	return s.handshakeComplete
+}
+func (s *session) SetHandshakeComplete(handshake bool) {
+	s.handshakeComplete = handshake
 }

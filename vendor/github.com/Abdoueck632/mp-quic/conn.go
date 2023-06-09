@@ -12,6 +12,8 @@ type connection interface {
 	LocalAddr() net.Addr
 	RemoteAddr() net.Addr
 	SetCurrentRemoteAddr(net.Addr)
+	GetPconn() net.PacketConn
+	SetPconn(pconn net.PacketConn)
 }
 
 type conn struct {
@@ -51,4 +53,10 @@ func (c *conn) RemoteAddr() net.Addr {
 
 func (c *conn) Close() error {
 	return c.pconn.Close()
+}
+func (c *conn) GetPconn() net.PacketConn {
+	return c.pconn
+}
+func (c *conn) SetPconn(pconn net.PacketConn) {
+	c.pconn = pconn
 }
