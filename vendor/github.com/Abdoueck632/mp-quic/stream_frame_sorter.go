@@ -153,9 +153,19 @@ func (s *streamFrameSorter) Pop() *wire.StreamFrame {
 }
 
 func (s *streamFrameSorter) Head() *wire.StreamFrame {
+	utils.Infof(" ((Head)    %+v", s)
 	frame, ok := s.queuedFrames[s.readPosition]
 	if ok {
 		return frame
 	}
 	return nil
+}
+func (s *streamFrameSorter) Remove(offset uint64) {
+	for i, frame := range s.queuedFrames {
+		if frame.Offset == protocol.ByteCount(offset) {
+			s.readPosition += frame.DataLen()
+			delete(s.queuedFrames, i)
+			return
+		}
+	}
 }

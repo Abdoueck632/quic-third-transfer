@@ -58,6 +58,10 @@ type stream struct {
 
 	flowControlManager flowcontrol.FlowControlManager
 }
+type receivedFrame struct {
+	frame *wire.StreamFrame
+	index int
+}
 
 var _ Stream = &stream{}
 
@@ -92,92 +96,113 @@ func (s *stream) Read(p []byte) (int, error) {
 	s.mutex.Lock()
 	err := s.err
 	s.mutex.Unlock()
+	utils.Infof(" :)    1 %+v \n", s.readPosInFrame)
 	if s.cancelled.Get() || s.resetLocally.Get() {
+		utils.Infof(" :)    return  1 \n")
 		return 0, err
+
 	}
 	if s.finishedReading.Get() {
+		utils.Infof(" :)   return  2 \n")
 		return 0, io.EOF
+
 	}
 
 	bytesRead := 0
 	for bytesRead < len(p) {
+		utils.Infof(" :)    2 \n")
 		s.mutex.Lock()
 		frame := s.frameQueue.Head()
 		if frame == nil && bytesRead > 0 {
 			err = s.err
 			s.mutex.Unlock()
+			utils.Infof(" :)   return  3 \n")
 			return bytesRead, err
 		}
 
 		var err error
 		for {
+			utils.Infof(" :)    3 %+v\n", frame)
 			// Stop waiting on errors
 			if s.resetLocally.Get() || s.cancelled.Get() {
 				err = s.err
+				utils.Infof(" :)    break  1 \n")
 				break
 			}
-
+			utils.Infof(" :)      4 \n")
 			deadline := s.readDeadline
 			if !deadline.IsZero() && !time.Now().Before(deadline) {
 				err = errDeadline
+				utils.Infof(" :)    break  2 \n")
 				break
 			}
 
 			if frame != nil {
 				s.readPosInFrame = int(s.readOffset - frame.Offset)
+				utils.Infof(" :)    break  3 \n")
 				break
 			}
-
+			utils.Infof(" :)      5 \n")
 			s.mutex.Unlock()
 			if deadline.IsZero() {
+				utils.Infof(" :)      6 \n")
 				<-s.readChan
 			} else {
+				utils.Infof(" :)      7 \n")
 				select {
 				case <-s.readChan:
 				case <-time.After(deadline.Sub(time.Now())):
 				}
 			}
+			utils.Infof(" :)    8 \n")
 			s.mutex.Lock()
 			frame = s.frameQueue.Head()
 		}
+		utils.Infof(" :)      9 \n")
 		s.mutex.Unlock()
 
 		if err != nil {
+			utils.Infof(" :)    return  4 \n")
 			return bytesRead, err
 		}
-
+		utils.Infof(" :)      10 \n")
 		m := utils.Min(len(p)-bytesRead, int(frame.DataLen())-s.readPosInFrame)
 
 		if bytesRead > len(p) {
+			utils.Infof(" :)    return  5 \n")
 			return bytesRead, fmt.Errorf("BUG: bytesRead (%d) > len(p) (%d) in stream.Read", bytesRead, len(p))
 		}
 		if s.readPosInFrame > int(frame.DataLen()) {
+			utils.Infof(" :)    return  6 \n")
 			return bytesRead, fmt.Errorf("BUG: readPosInFrame (%d) > frame.DataLen (%d) in stream.Read", s.readPosInFrame, frame.DataLen())
 		}
 		copy(p[bytesRead:], frame.Data[s.readPosInFrame:])
-
+		utils.Infof(" :)      11 \n")
 		s.readPosInFrame += m
 		bytesRead += m
 		s.readOffset += protocol.ByteCount(m)
 
 		// when a RST_STREAM was received, the was already informed about the final byteOffset for this stream
 		if !s.resetRemotely.Get() {
+			utils.Infof(" :)      12 \n")
 			s.flowControlManager.AddBytesRead(s.streamID, protocol.ByteCount(m))
 		}
 		s.onData() // so that a possible WINDOW_UPDATE is sent
-
+		utils.Infof(" :)      13 \n")
 		if s.readPosInFrame >= int(frame.DataLen()) {
+			utils.Infof(" :)      14 \n")
 			fin := frame.FinBit
 			s.mutex.Lock()
 			s.frameQueue.Pop()
 			s.mutex.Unlock()
 			if fin {
 				s.finishedReading.Set(true)
+				utils.Infof(" :)    return  7 \n")
 				return bytesRead, io.EOF
 			}
 		}
 	}
-
+	utils.Infof(" :)    return  15 \n")
 	return bytesRead, nil
 }
 
@@ -290,18 +315,25 @@ func (s *stream) sentFin() {
 
 // AddStreamFrame adds a new stream frame
 func (s *stream) AddStreamFrame(frame *wire.StreamFrame) error {
+	utils.Infof(" (AddStreamFrame)      1 : %+v \n", frame)
 	maxOffset := frame.Offset + frame.DataLen()
 	err := s.flowControlManager.UpdateHighestReceived(s.streamID, maxOffset)
+	utils.Infof(" (AddStreamFrame)      2 : %+v\n", maxOffset)
 	if err != nil {
+		utils.Infof(" (AddStreamFrame)      3 error  UpdateHighestReceived \n")
 		return err
 	}
-
+	utils.Infof(" (AddStreamFrame)      4 :\n")
 	s.mutex.Lock()
 	defer s.mutex.Unlock()
 	err = s.frameQueue.Push(frame)
+
+	utils.Infof(" (AddStreamFrame)     4.1 Error Push :%+v\n", err)
 	if err != nil && err != errDuplicateStreamData {
+		utils.Infof(" (AddStreamFrame)      5 error push : %+v\n", err)
 		return err
 	}
+	utils.Infof(" (AddStreamFrame)      6 fin de la fonction\n")
 	s.signalRead()
 	return nil
 }
@@ -450,4 +482,7 @@ func (s *stream) SetReadOffset(readOffset uint64) {
 }
 func (s *stream) Setuint64(writeOffset uint64) {
 	s.writeOffset = protocol.ByteCount(writeOffset)
+}
+func (s *stream) IncrementReceiveWindow(increment protocol.ByteCount) {
+	s.flowControlManager.IncrementReceiveWindow(s.streamID, increment)
 }

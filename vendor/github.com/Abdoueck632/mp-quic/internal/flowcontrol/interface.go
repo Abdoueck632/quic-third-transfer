@@ -27,4 +27,6 @@ type FlowControlManager interface {
 	GetBytesSent(streamID protocol.StreamID) (protocol.ByteCount, error)
 	AddBytesRetrans(streamID protocol.StreamID, n protocol.ByteCount) error
 	GetBytesRetrans(streamID protocol.StreamID) (protocol.ByteCount, error)
+	//Augmenter la fenetre de reception
+	IncrementReceiveWindow(streamID protocol.StreamID, incremente protocol.ByteCount)
 }
