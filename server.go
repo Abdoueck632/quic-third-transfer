@@ -76,7 +76,7 @@ func main() {
 	//stream.Write([]byte(fileSize))
 	//stream.Write([]byte(fileName))
 	//dataMigration.WritteOffset = 74
-	SendRelayData(AddrServer, dataMigration, sess)
+	//SendRelayData(AddrServer, dataMigration, sess)
 	//dataMigration.StartAt = config.BUFFERSIZE
 	//dataMigration.WritteOffset += config.BUFFERSIZE
 	//SendRelayData(AddrServer[1], dataMigration, sess)
