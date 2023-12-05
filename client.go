@@ -28,11 +28,11 @@ func main() {
 	serverAddr := os.Args[3]
 
 	fmt.Println("Attaching to: ", config.Addr)
-	sess, stream := SendfileName(serverAddr, fileToReceive)
+	_, stream := SendfileName(serverAddr, fileToReceive)
 	stream.IncrementReceiveWindow(30000000000)
 	//receiveFile(stream, savePath, sess)
 
-	fmt.Printf(" \n Perspective %+v \n ", sess.GetPerspectives())
+	//fmt.Printf(" \n Perspective %+v \n ", sess.GetPerspectives())
 }
 func receiveFile(stream quic.Stream, savePath string, sess quic.Session) {
 
