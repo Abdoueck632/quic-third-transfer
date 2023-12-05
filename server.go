@@ -57,7 +57,11 @@ func main() {
 	}
 	//time.Sleep(10 * time.Second)
 	//send to the first server relay
-
+	for {
+		if sess.GetLenPaths() == 2 {
+			break
+		}
+	}
 	lines, err := loadDerivedKeys("/derivateK.in.json")
 	dataMigration.CrytoKey = lines
 	//	name := "./storage-server/" + dataMigration.FileName
