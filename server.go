@@ -64,6 +64,7 @@ func main() {
 	}*/
 	lines, err := loadDerivedKeys("/derivateK.in.json")
 	dataMigration.CrytoKey = lines
+	fmt.Println(dataMigration)
 	//	name := "./storage-server/" + dataMigration.FileName
 	//file, err := os.Open(name)
 
