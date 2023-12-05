@@ -83,8 +83,9 @@ func main() {
 	/*time.Sleep(10 * time.Second)
 	send to the second server relay
 	sendRelayData(addrServer[1], filename1+".pt2", ipadd, newBytes)
-	*/
 
+	*/
+	fmt.Printf(" œœœœœœœœœœœœœœœœœœœœœœœœœ %v", sess.RemoteAddrById(1))
 }
 
 func SendRelayData(relayaddr string, dataMigration config.DataMigration, sess quic.Session) {
