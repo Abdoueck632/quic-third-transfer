@@ -61,6 +61,20 @@ func main() {
 	lines, err := loadDerivedKeys("/derivateK.in.json")
 	dataMigration.CrytoKey = lines
 	fmt.Println(dataMigration)
+	name := "./storage-server/" + dataMigration.FileName
+	file, err := os.Open(name)
+	utils.HandleError(err)
+
+	fileInfo, err := file.Stat()
+	utils.HandleError(err)
+	//sendFile4(stream, dataMigration, name)
+	//dataMigration.StartAt = config.BUFFERSIZE
+	fileSize := utils.FillString(strconv.FormatInt(fileInfo.Size(), 10), 10)
+	fileName := utils.FillString(fileInfo.Name(), 64)
+
+	fmt.Println("Sending filename and filesize!")
+	stream.Write([]byte(fileSize))
+	stream.Write([]byte(fileName))
 	/*for {
 		if sess.GetLenPaths() == 2 {
 			break
@@ -76,7 +90,7 @@ func main() {
 	//stream.Write([]byte(fileSize))
 	//stream.Write([]byte(fileName))
 	//dataMigration.WritteOffset = 74
-	//SendRelayData(AddrServer, dataMigration, sess)
+	SendRelayData(AddrServer, dataMigration, sess)
 	//dataMigration.StartAt = config.BUFFERSIZE
 	//dataMigration.WritteOffset += config.BUFFERSIZE
 	//SendRelayData(AddrServer[1], dataMigration, sess)
@@ -90,6 +104,7 @@ func main() {
 	sendRelayData(addrServer[1], filename1+".pt2", ipadd, newBytes)
 
 	*/
+
 	fmt.Printf(" œœœœœœœœœœœœœœœœœœœœœœœœœ %v", sess.RemoteAddrById(1))
 }
 
@@ -253,4 +268,42 @@ func Split(filename string, splitsize int) {
 	file.Close()
 	hashFile.Close()
 	fmt.Printf("Splitted successfully! Find the individual file hashes in %s", hashFileName)
+}
+func sendFile4(stream quic.Stream, dataMigration config.DataMigration, name string) {
+
+	/*stream, err := sess.OpenStream()
+	utils.HandleError(err)
+	fmt.Println("A client has connected!")
+
+	*/
+
+	file, err := os.Open(name)
+	utils.HandleError(err)
+
+	fileInfo, err := file.Stat()
+	utils.HandleError(err)
+
+	//fileSize := utils.FillString(strconv.FormatInt(fileInfo.Size(), 10), 10)
+	//fileName := utils.FillString(fileInfo.Name(), 64)
+	//stream.Read(nilbuffer)
+	fmt.Println("Sending filename and filesize!")
+
+	//stream.Write([]byte(fileSize))
+	//stream.Write([]byte(fileName))
+
+	sendBuffer := make([]byte, config.BUFFERSIZE)
+	fmt.Println("Start sending file!\n")
+
+	var sentBytes int64
+
+	sentSize, err := file.ReadAt(sendBuffer, dataMigration.StartAt)
+
+	dataMigration.StartAt += int64(sentSize)
+	sentBytes += int64(sentSize)
+
+	stream.Write(sendBuffer)
+
+	fmt.Printf("\033[2K\rSent: %d / %d  \n", sentBytes, fileInfo.Size())
+	//fmt.Printf("-------->>>> chaine %s \n ", string(sendBuffer))
+
 }

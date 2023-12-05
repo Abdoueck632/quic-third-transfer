@@ -6,7 +6,6 @@ import (
 	"fmt"
 	"log"
 	"os"
-	"strconv"
 	"strings"
 	"time"
 
@@ -71,7 +70,7 @@ func main() {
 	file, err := os.Open(name)
 	utils.HandleError(err)
 
-	fileInfo, err := file.Stat()
+	//fileInfo, err := file.Stat()
 	utils.HandleError(err)
 
 	// Reconfigure the existing connection
@@ -79,12 +78,12 @@ func main() {
 	SetCryptoSetup(sess, dataMigration)
 	//stream.Setuint64(dataMigration.WritteOffset)
 
-	fileSize := utils.FillString(strconv.FormatInt(fileInfo.Size(), 10), 10)
+	/*fileSize := utils.FillString(strconv.FormatInt(fileInfo.Size(), 10), 10)
 	fileName := utils.FillString(fileInfo.Name(), 64)
 
 	fmt.Println("Sending filename and filesize!")
 	stream.Write([]byte(fileSize))
-	stream.Write([]byte(fileName))
+	stream.Write([]byte(fileName))*/
 	//stream.Setuint64(dataMigration.WritteOffset)
 	//_, _, dataMigration.WritteOffset = stream.GetReadPosInFrame()
 	//dataMigration.StartAt = config.BUFFERSIZE
