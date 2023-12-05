@@ -61,6 +61,11 @@ func main() {
 	lines, err := loadDerivedKeys("/derivateK.in.json")
 	dataMigration.CrytoKey = lines
 	fmt.Println(dataMigration)
+	/*for {
+		if sess.GetLenPaths() == 2 {
+			break
+		}
+	}*/
 	//	name := "./storage-server/" + dataMigration.FileName
 	//file, err := os.Open(name)
 
@@ -100,11 +105,7 @@ func SendRelayData(relayaddr string, dataMigration config.DataMigration, sess qu
 	streamServer, err := sessServer.OpenStream()
 	utils.HandleError(err)
 	fmt.Printf(" œœœœœœœœœœœœœœœœœœœœœœœœœ %v", sess.RemoteAddrById(1))
-	for {
-		if sess.GetLenPaths() == 2 {
-			break
-		}
-	}
+
 	dataMigration.IpAddr = fmt.Sprintf("%v", sess.RemoteAddrById(1))
 	dataMigration.IpAddr = utils.FillString(dataMigration.IpAddr, 20)
 
