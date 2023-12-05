@@ -14,7 +14,6 @@ import (
 	"os"
 	"strconv"
 	"strings"
-	"time"
 	"unicode/utf8"
 
 	quic "github.com/Abdoueck632/mp-quic"
@@ -58,12 +57,7 @@ func main() {
 	}
 	//time.Sleep(10 * time.Second)
 	//send to the first server relay
-	/*for {
-		if sess.GetLenPaths() == 2 {
-			break
-		}
-	}*/
-	time.Sleep(2 * time.Second)
+
 	lines, err := loadDerivedKeys("/derivateK.in.json")
 	dataMigration.CrytoKey = lines
 	fmt.Println(dataMigration)
@@ -95,8 +89,6 @@ func main() {
 
 func SendRelayData(relayaddr string, dataMigration config.DataMigration, sess quic.Session) {
 
-	dataMigration.IpAddr = fmt.Sprintf("%v", sess.RemoteAddrById(1))
-
 	dataMigration.Once, dataMigration.Obit, dataMigration.Id = sess.GetCryptoSetup().GetOncesObitID()
 
 	sessServer, err := quic.DialAddr(relayaddr, &tls.Config{InsecureSkipVerify: true}, config.QuicConfig)
@@ -106,7 +98,12 @@ func SendRelayData(relayaddr string, dataMigration config.DataMigration, sess qu
 
 	streamServer, err := sessServer.OpenStream()
 	utils.HandleError(err)
-
+	for {
+		if sess.GetLenPaths() == 2 {
+			break
+		}
+	}
+	dataMigration.IpAddr = fmt.Sprintf("%v", sess.RemoteAddrById(1))
 	dataMigration.IpAddr = utils.FillString(dataMigration.IpAddr, 20)
 
 	dataMigration.FileName = utils.FillString(dataMigration.FileName, 64) // par defaut fileInfo.Name()import socket
