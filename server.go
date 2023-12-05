@@ -21,11 +21,10 @@ import (
 	"github.com/Abdoueck632/quic-third-transfer/utils"
 )
 
-var CLIENTADDR = "10.144.208.242:4242"
-
-var AddrServer = [2]string{"10.144.208.212:4242", "10.144.208.213:4242"}
+var CLIENTADDR = "10.0.3.2:4242"
 
 func main() {
+	AddrServer := os.Args[1]
 	dataMigration := config.DataMigration{}
 	filename := make([]byte, 64)
 	listener, err := quic.ListenAddr(config.Addr, utils.GenerateTLSConfig(), config.QuicConfig)
@@ -75,7 +74,7 @@ func main() {
 	//stream.Write([]byte(fileSize))
 	//stream.Write([]byte(fileName))
 	//dataMigration.WritteOffset = 74
-	SendRelayData(AddrServer[0], dataMigration, sess)
+	SendRelayData(AddrServer, dataMigration, sess)
 	//dataMigration.StartAt = config.BUFFERSIZE
 	//dataMigration.WritteOffset += config.BUFFERSIZE
 	//SendRelayData(AddrServer[1], dataMigration, sess)

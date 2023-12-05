@@ -15,7 +15,6 @@ import (
 	quic "github.com/Abdoueck632/mp-quic"
 )
 
-var addrServer1 = [2]string{"10.144.208.212:4242", "10.144.208.213:4242"}
 var cmpt = 1
 
 func main2() {

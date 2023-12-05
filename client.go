@@ -25,7 +25,7 @@ func main() {
 	fileToReceive := os.Args[1]
 	savePath := os.Args[2]
 	fmt.Println("Saving file to: ", savePath)
-	serverAddr := "10.144.208.205:4242"
+	serverAddr := os.Args[3]
 
 	fmt.Println("Attaching to: ", config.Addr)
 	sess, stream := SendfileName(serverAddr, fileToReceive)

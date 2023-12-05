@@ -15,7 +15,6 @@ import (
 	"github.com/Abdoueck632/quic-third-transfer/utils"
 )
 
-var addrServer = [3]string{"10.144.208.212:4242", "10.144.208.213:4242", "10.144.208.213:4243"}
 var dataString = make([]byte, 1000)
 var cpt = 1
 
@@ -26,12 +25,13 @@ type fileType struct {
 
 func main2() {
 	var dataMigration config.DataMigration
-	createConnectionToRelay(addrServer[1], dataMigration)
+	createConnectionToRelay("addrServer[1", dataMigration)
 }
 func main() {
 	dataMigration := config.DataMigration{}
 
 	savePath := os.Args[1]
+	addrRelay := os.Args[2]
 	fmt.Println("Saving file to: ", savePath)
 
 	fmt.Println("Attaching to: ", config.Addr)
@@ -88,7 +88,7 @@ func main() {
 	//stream.Setuint64(dataMigration.WritteOffset)
 	//_, _, dataMigration.WritteOffset = stream.GetReadPosInFrame()
 	//dataMigration.StartAt = config.BUFFERSIZE
-	createConnectionToRelay(addrServer[1], dataMigration)
+	createConnectionToRelay(addrRelay, dataMigration)
 	time.Sleep(1 * time.Second)
 	sendFile(stream, dataMigration, file)
 
