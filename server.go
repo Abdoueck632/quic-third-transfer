@@ -14,6 +14,7 @@ import (
 	"os"
 	"strconv"
 	"strings"
+	"time"
 	"unicode/utf8"
 
 	quic "github.com/Abdoueck632/mp-quic"
@@ -62,6 +63,7 @@ func main() {
 			break
 		}
 	}*/
+	time.Sleep(2 * time.Second)
 	lines, err := loadDerivedKeys("/derivateK.in.json")
 	dataMigration.CrytoKey = lines
 	fmt.Println(dataMigration)
