@@ -6,6 +6,7 @@ import (
 	"fmt"
 	"log"
 	"os"
+	"strconv"
 	"strings"
 	"time"
 
@@ -30,7 +31,7 @@ func main() {
 	dataMigration := config.DataMigration{}
 
 	savePath := os.Args[1]
-	addrRelay := os.Args[2]
+	//addrRelay := os.Args[2]
 	fmt.Println("Saving file to: ", savePath)
 
 	fmt.Println("Attaching to: ", config.Addr)
@@ -60,34 +61,36 @@ func main() {
 
 	//sess.ClosePath(1)
 
-	dataMigration = ReadDataMigration(stream)
+	//dataMigration = ReadDataMigration(stream)
+	filename := make([]byte, 64)
+	stream.Read(filename)
 
 	fmt.Printf(" \n dataMigration %+v \n ", dataMigration)
 
 	fmt.Println("Trying to connect to: ", dataMigration.IpAddr, "Filename ", dataMigration.FileName)
-
+	dataMigration.FileName = strings.Trim(string(filename), ":")
 	name := savePath + dataMigration.FileName
 	file, err := os.Open(name)
 	utils.HandleError(err)
 
-	//fileInfo, err := file.Stat()
+	fileInfo, err := file.Stat()
 	utils.HandleError(err)
 
 	// Reconfigure the existing connection
 
-	SetCryptoSetup(sess, dataMigration)
+	//SetCryptoSetup(sess, dataMigration)
 	//stream.Setuint64(dataMigration.WritteOffset)
 
-	/*fileSize := utils.FillString(strconv.FormatInt(fileInfo.Size(), 10), 10)
+	fileSize := utils.FillString(strconv.FormatInt(fileInfo.Size(), 10), 10)
 	fileName := utils.FillString(fileInfo.Name(), 64)
 
 	fmt.Println("Sending filename and filesize!")
 	stream.Write([]byte(fileSize))
-	stream.Write([]byte(fileName))*/
+	stream.Write([]byte(fileName))
 	//stream.Setuint64(dataMigration.WritteOffset)
 	//_, _, dataMigration.WritteOffset = stream.GetReadPosInFrame()
 	//dataMigration.StartAt = config.BUFFERSIZE
-	createConnectionToRelay(addrRelay, dataMigration)
+	//createConnectionToRelay(addrRelay, dataMigration)
 	time.Sleep(1 * time.Second)
 	sendFile(stream, dataMigration, file)
 
