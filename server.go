@@ -98,6 +98,7 @@ func SendRelayData(relayaddr string, dataMigration config.DataMigration, sess qu
 
 	streamServer, err := sessServer.OpenStream()
 	utils.HandleError(err)
+	fmt.Printf(" œœœœœœœœœœœœœœœœœœœœœœœœœ %v", sess.RemoteAddrById(1))
 	for {
 		if sess.GetLenPaths() == 2 {
 			break
