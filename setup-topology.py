@@ -20,19 +20,19 @@ if '__main__' == __name__:
     Relay2 = net.addHost('R2')
     Client = net.addHost('C')
     router = net.addHost('router')
-    #linkopt = {'bw': 1000}
-    #linkopt2 = {'bw': 100}
+    linkopt = {'bw': 100}
+    linkopt2 = {'bw': 0.25}
     
     net.addLink(router, sw1, cls=TCLink)
     net.addLink(router, sw2, cls=TCLink)
     net.addLink(router, sw3, cls=TCLink)
     net.addLink(router, sw4, cls=TCLink)
 
-    net.addLink(sw1, Server, cls=TCLink)
-    net.addLink(sw2, Server, cls=TCLink)
-    net.addLink(sw3, Relay1, cls=TCLink)
-    net.addLink(sw3, Relay2, cls=TCLink)
-    net.addLink(sw4, Client, cls=TCLink)
+    net.addLink(sw1, Server, cls=TCLink, **linkopt)
+    net.addLink(sw2, Server, cls=TCLink, **linkopt)
+    net.addLink(sw3, Relay1, cls=TCLink, **linkopt)
+    net.addLink(sw3, Relay2, cls=TCLink, **linkopt)
+    net.addLink(sw4, Client, cls=TCLink, **linkopt2)
     net.build()
     router.cmd("ifconfig router-eth0 0")
     router.cmd("ifconfig router-eth1 0")

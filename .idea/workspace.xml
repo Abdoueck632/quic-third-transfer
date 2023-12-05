@@ -5,47 +5,18 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="1b08e152-b030-4de7-819e-57c7ac1602b1" name="Changes" comment="The first seession migration with MPQUIC :)">
-      <change afterPath="$PROJECT_DIR$/.vscode/launch.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/build_relay.sh" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/client" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/client_SSLKEYLOGFILE.bin" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/data_1000.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/data_20480.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/generate_file.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/logs/C" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/logs/R2" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/logs/client" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/logs/client1" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/logs/clientconge" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/logs/relay1" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/logs/relayconge" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/quic-third-transfer.code-workspace" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/relay" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/relay1.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/relay1_SSLKEYLOGFILE.bin" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/relay2_SSLKEYLOGFILE.bin" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/rtextDuug" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/serveur_SSLKEYLOGFILE.bin" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/test-simple-server.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/xterm.2023.05.28.04.52.56.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/xterm.2023.06.04.16.31.35.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/xterm.2023.06.04.18.55.42.xhtml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Xterm.log.thioune-ASUSPRO-P5440FA-P5440FA.2023.07.01.11.28.37.14219" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/xterm.2023.07.01.11.16.53.svg" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/client.go" beforeDir="false" afterPath="$PROJECT_DIR$/client.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/config/config.go" beforeDir="false" afterPath="$PROJECT_DIR$/config/config.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/go.mod" beforeDir="false" afterPath="$PROJECT_DIR$/go.mod" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/go.sum" beforeDir="false" afterPath="$PROJECT_DIR$/go.sum" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/relay.go" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/logs/client" beforeDir="false" afterPath="$PROJECT_DIR$/logs/client" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/relay1.go" beforeDir="false" afterPath="$PROJECT_DIR$/relay1.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/relay2.go" beforeDir="false" afterPath="$PROJECT_DIR$/relay2.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/server.go" beforeDir="false" afterPath="$PROJECT_DIR$/server.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/setup-topology.py" beforeDir="false" afterPath="$PROJECT_DIR$/setup-topology.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/vendor/github.com/Abdoueck632/mp-quic/conn.go" beforeDir="false" afterPath="$PROJECT_DIR$/vendor/github.com/Abdoueck632/mp-quic/conn.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/vendor/github.com/Abdoueck632/mp-quic/interface.go" beforeDir="false" afterPath="$PROJECT_DIR$/vendor/github.com/Abdoueck632/mp-quic/interface.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/vendor/github.com/Abdoueck632/mp-quic/internal/crypto/key_derivation_quic_crypto.go" beforeDir="false" afterPath="$PROJECT_DIR$/vendor/github.com/Abdoueck632/mp-quic/internal/crypto/key_derivation_quic_crypto.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/vendor/github.com/Abdoueck632/mp-quic/internal/handshake/crypto_setup_server.go" beforeDir="false" afterPath="$PROJECT_DIR$/vendor/github.com/Abdoueck632/mp-quic/internal/handshake/crypto_setup_server.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/vendor/github.com/Abdoueck632/mp-quic/path_manager.go" beforeDir="false" afterPath="$PROJECT_DIR$/vendor/github.com/Abdoueck632/mp-quic/path_manager.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/vendor/github.com/Abdoueck632/mp-quic/session.go" beforeDir="false" afterPath="$PROJECT_DIR$/vendor/github.com/Abdoueck632/mp-quic/session.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/vendor/modules.txt" beforeDir="false" afterPath="$PROJECT_DIR$/vendor/modules.txt" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -138,6 +109,11 @@
       <filePath value="$PROJECT_DIR$/writeFile.go" />
       <method v="2" />
     </configuration>
+    <list>
+      <item itemvalue="Go Build.go build github.com/Abdoueck632/quic-third-transfer" />
+      <item itemvalue="Go Build.go build client.go" />
+      <item itemvalue="Go Build.go build github.com/Abdoueck632/quic-third-transfer (1)" />
+    </list>
     <recent_temporary>
       <list>
         <item itemvalue="Go Build.go build client.go" />

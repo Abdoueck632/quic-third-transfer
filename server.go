@@ -7,9 +7,6 @@ import (
 	"encoding/hex"
 	"encoding/json"
 	"fmt"
-	quic "github.com/Abdoueck632/mp-quic"
-	"github.com/Abdoueck632/quic-third-transfer/config"
-	"github.com/Abdoueck632/quic-third-transfer/utils"
 	"io"
 	"io/ioutil"
 	"log"
@@ -18,11 +15,15 @@ import (
 	"strconv"
 	"strings"
 	"unicode/utf8"
+
+	quic "github.com/Abdoueck632/mp-quic"
+	"github.com/Abdoueck632/quic-third-transfer/config"
+	"github.com/Abdoueck632/quic-third-transfer/utils"
 )
 
-var CLIENTADDR = "10.0.3.2:4242"
+var CLIENTADDR = "10.144.208.242:4242"
 
-var AddrServer = [2]string{"10.0.2.2:4242", "10.0.2.3:4242"}
+var AddrServer = [2]string{"10.144.208.212:4242", "10.144.208.213:4242"}
 
 func main() {
 	dataMigration := config.DataMigration{}
@@ -64,9 +65,19 @@ func main() {
 	}
 	lines, err := loadDerivedKeys("/derivateK.in.json")
 	dataMigration.CrytoKey = lines
+	//	name := "./storage-server/" + dataMigration.FileName
+	//file, err := os.Open(name)
 
+	//fileInfo, err := file.Stat()
+
+	//fileSize := utils.FillString(strconv.FormatInt(fileInfo.Size(), 10), 10)
+	//fileName := utils.FillString(fileInfo.Name(), 64)
+	//stream.Write([]byte(fileSize))
+	//stream.Write([]byte(fileName))
+	//dataMigration.WritteOffset = 74
 	SendRelayData(AddrServer[0], dataMigration, sess)
-	//dataMigration.StartAt = int64(1700000)
+	//dataMigration.StartAt = config.BUFFERSIZE
+	//dataMigration.WritteOffset += config.BUFFERSIZE
 	//SendRelayData(AddrServer[1], dataMigration, sess)
 	//sess.ClosePath(0)
 	//	sess.AdvertiseAddress(AddrServer[0])
@@ -77,8 +88,6 @@ func main() {
 	send to the second server relay
 	sendRelayData(addrServer[1], filename1+".pt2", ipadd, newBytes)
 	*/
-
-	fmt.Println("la taille du path", sess.GetLenPaths())
 
 }
 

@@ -4,19 +4,24 @@ import (
 	"crypto/tls"
 	"encoding/json"
 	"fmt"
-	"github.com/Abdoueck632/quic-third-transfer/config"
-	"github.com/Abdoueck632/quic-third-transfer/utils"
 	"log"
 	"os"
 	"strings"
 	"time"
 
+	"github.com/Abdoueck632/quic-third-transfer/config"
+	"github.com/Abdoueck632/quic-third-transfer/utils"
+
 	quic "github.com/Abdoueck632/mp-quic"
 )
 
-var addrServer1 = [2]string{"10.0.2.2:4242", "10.0.2.3:4242"}
+var addrServer1 = [2]string{"10.144.208.212:4242", "10.144.208.213:4242"}
 var cmpt = 1
 
+func main2() {
+	//sessLocalServer, streamLocalServer :=
+	createNewConnection()
+}
 func main() {
 	dataMigration := config.DataMigration{}
 
@@ -24,6 +29,8 @@ func main() {
 	fmt.Println("Saving file to: ", savePath)
 
 	fmt.Println("Attaching to: ", config.Addr)
+	//sessLocalServer, streamLocalServer := createNewConnection()
+
 	listener, err := quic.ListenAddr(config.Addr, utils.GenerateTLSConfig(), config.QuicConfig)
 	utils.HandleError(err)
 
@@ -44,44 +51,12 @@ func main() {
 
 	//use the first session with the client and this server
 	fmt.Println("session from relay 1 created: ", dataMigration.IpAddr)
-
-	sessLocalServer, streamLocalServer := createNewConnection()
-
-	streamLocalServer.Setuint64(dataMigration.WritteOffset)
-	SetCryptoSetup2(sessLocalServer, dataMigration)
+	SetCryptoSetup2(sess, dataMigration)
+	stream.Setuint64(dataMigration.WritteOffset)
 
 	time.Sleep(1 * time.Second)
-	dataMigration.WritteOffset, dataMigration.StartAt = sendFile2(streamLocalServer, dataMigration, file)
+	sendFile2(stream, dataMigration, file)
 
-	if dataMigration.StartAt == -1 {
-		return
-	}
-	SendDataToRelayAfterInitialisation1(stream, dataMigration)
-
-	for {
-
-		dataMigration = ReadDataMigration1(stream)
-		fmt.Printf("%+v", dataMigration)
-
-		//time.Sleep(1 * time.Second)
-		streamLocalServer.Setuint64(dataMigration.WritteOffset)
-
-		dataMigration.WritteOffset, dataMigration.StartAt = sendFile2(streamLocalServer, dataMigration, file)
-
-		if dataMigration.StartAt == -1 {
-			streamLocalServer.Close()
-			stream.Close()
-			sess.Close(nil)
-			return
-		}
-		//sessLocalServer.SetIPAddress("10.0.5.2:4243", 1)
-		SendDataToRelayAfterInitialisation1(stream, dataMigration)
-		//time.Sleep(1 * time.Second)
-		//sessLocalServer.SetIPAddress(dataMigration.IpAddr, 1)
-
-	}
-
-	//}
 }
 func ReadDataMigration1(stream quic.Stream) config.DataMigration {
 	var data = make([]byte, 1000)
@@ -91,7 +66,7 @@ func ReadDataMigration1(stream quic.Stream) config.DataMigration {
 }
 func createNewConnection() (quic.Session, quic.Stream) {
 	var dataString = make([]byte, 1000)
-	listener, err := quic.ListenAddr("0.0.0.0:4243", utils.GenerateTLSConfig(), config.QuicConfig)
+	listener, err := quic.ListenAddr("0.0.0.0:4242", utils.GenerateTLSConfig(), config.QuicConfig)
 	utils.HandleError(err)
 	sess, err := listener.Accept()
 	utils.HandleError(err)
@@ -102,7 +77,23 @@ func createNewConnection() (quic.Session, quic.Stream) {
 	//fmt.Println("session created: ", sess.RemoteAddr())
 
 	stream.Read(dataString)
+	for {
+		buffer := make([]byte, config.BUFFERSIZE)
 
+		/*if err != nil {
+			// Gérer l'erreur de lecture
+			log.Fatal(err)
+		}
+
+		*/
+		if bytesRead, _ := stream.Read(buffer); bytesRead == 0 {
+			fmt.Println("...")
+		} else {
+			fmt.Println("---ABDOU SECK----------------------", string(buffer))
+
+		}
+
+	}
 	return sess, stream
 }
 func SendDataToRelayAfterInitialisation1(streamServer quic.Stream, dataMigration config.DataMigration) {
@@ -180,27 +171,30 @@ func sendFile2(stream quic.Stream, dataMigration config.DataMigration, file *os.
 	start := time.Now()
 
 	for {
-		if sentBytes == 300*config.BUFFERSIZE {
+		/*if sentBytes == 300*config.BUFFERSIZE {
 			break
 		}
 
+		*/
+
 		sentSize, err := file.ReadAt(sendBuffer, dataMigration.StartAt)
-		stream.Write(sendBuffer)
+
 		if sentSize == 0 {
 			if err != nil {
 				return 0, -1
 			}
 
 		}
+		stream.Write(sendBuffer)
 
-		dataMigration.StartAt += int64(sentSize)
 		sentBytes += int64(sentSize)
 
+		fmt.Printf("\033[2K\rSent: %d:: %d -> %d  \n", cmpt, dataMigration.StartAt, dataMigration.StartAt+config.BUFFERSIZE)
+		dataMigration.StartAt += int64(sentSize) + config.BUFFERSIZE
 		_, _, c = stream.GetReadPosInFrame()
-		fileInfo, err := file.Stat()
-		fmt.Printf("\033[2K\rSent: %d:: %d / %d  \n", cmpt, dataMigration.StartAt, fileInfo.Size())
+		stream.Setuint64(c + config.BUFFERSIZE)
 		//fmt.Printf("-------->>>> chaine %s \n ", string(sendBuffer))
-
+		cmpt++
 	}
 	elapsed := time.Since(start)
 	fmt.Println("\nTransfer took: ", elapsed)
@@ -287,14 +281,12 @@ func SetCryptoSetup2(sess quic.Session, dataMigration config.DataMigration) {
 	}
 
 	sess.SetDerivateKey(dataMigration.CrytoKey[0], dataMigration.CrytoKey[1], dataMigration.CrytoKey[2], dataMigration.CrytoKey[3])
-	sess.SetIPAddress(dataMigration.IpAddr, 1)
-	/*err := sess.CreationRelayPath(dataMigration.IpAddr, fmt.Sprintf("%v", sess.LocalAddrById(1)), 4)
-	//sess.ClosePath(1)
+	//sess.SetIPAddress(dataMigration.IpAddr, 1)
+	err := sess.CreationRelayPath(dataMigration.IpAddr, fmt.Sprintf("%v", sess.LocalAddrById(1)), 4)
+
 	if err != nil {
 		fmt.Println("Error ", err)
 	}
-
-	*/
 
 	//fmt.Printf("%+v", sess.GetPathManager())
 

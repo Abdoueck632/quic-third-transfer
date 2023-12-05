@@ -6,7 +6,7 @@ import (
 
 // BUFFERSIZE is the
 // size of max packet size
-const BUFFERSIZE = 5000
+const BUFFERSIZE = 1000
 
 // PORT the default port for communication
 const PORT = "4242"
@@ -19,6 +19,8 @@ var QuicConfig = &quic.Config{
 	//	CacheHandshake: true,
 	//IdleTimeout:      10000 * time.Hour,
 	//HandshakeTimeout: 10000 * time.Hour,
+	MaxReceiveConnectionFlowControlWindow: uint64(80000),
+	MaxReceiveStreamFlowControlWindow:     uint64(9000),
 }
 
 //var QuicConfigServer = &quic.Config{

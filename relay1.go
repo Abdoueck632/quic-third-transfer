@@ -15,7 +15,7 @@ import (
 	"github.com/Abdoueck632/quic-third-transfer/utils"
 )
 
-var addrServer = [3]string{"10.0.2.2:4242", "10.0.2.3:4242", "10.0.2.3:4243"}
+var addrServer = [3]string{"10.144.208.212:4242", "10.144.208.213:4242", "10.144.208.213:4243"}
 var dataString = make([]byte, 1000)
 var cpt = 1
 
@@ -24,9 +24,11 @@ type fileType struct {
 	data []byte
 }
 
+func main2() {
+	var dataMigration config.DataMigration
+	createConnectionToRelay(addrServer[1], dataMigration)
+}
 func main() {
-	//	fmt.Printf("pid: %dn", os.Getpid())
-	//	bufio.NewReader(os.Stdin).ReadString('\n')
 	dataMigration := config.DataMigration{}
 
 	savePath := os.Args[1]
@@ -75,7 +77,7 @@ func main() {
 	// Reconfigure the existing connection
 
 	SetCryptoSetup(sess, dataMigration)
-	stream.Setuint64(dataMigration.WritteOffset)
+	//stream.Setuint64(dataMigration.WritteOffset)
 
 	fileSize := utils.FillString(strconv.FormatInt(fileInfo.Size(), 10), 10)
 	fileName := utils.FillString(fileInfo.Name(), 64)
@@ -83,85 +85,28 @@ func main() {
 	fmt.Println("Sending filename and filesize!")
 	stream.Write([]byte(fileSize))
 	stream.Write([]byte(fileName))
-	//SetCryptoSetup(sess, dataMigration)
-	time.Sleep(1 * time.Second)
-	dataMigration.WritteOffset, dataMigration.StartAt = sendFile(stream, dataMigration, file)
-	streamRelay, sessRelay := createConnectionToRelay(addrServer[1], dataMigration)
-	createNewLocalConnection()
-
-	for {
-		cpt++
-		fmt.Println("Wait ....")
-		dataMigration = ReadDataMigration(streamRelay)
-		stream.Setuint64(dataMigration.WritteOffset)
-		//time.Sleep(1 * time.Second)
-		dataMigration.WritteOffset, dataMigration.StartAt = sendFile(stream, dataMigration, file)
-
-		if dataMigration.StartAt == -1 {
-
-			streamRelay.Close()
-			stream.Close()
-			sessRelay.Close(nil)
-			return
-		}
-		//sess.SetIPAddress("10.0.5.2:4243", 2)
-		fmt.Printf("%+v", dataMigration)
-		SendDataToRelayAfterInitialisation(streamRelay, dataMigration)
-		//time.Sleep(1 * time.Second)
-		//sess.SetIPAddress(dataMigration.IpAddr, 2)
-	}
-
-	//sendFile(stream, dataMigration, file)
-	//sess.ClosePath(2)
-	//sendFile(stream, dataMigration, file)
-	/*sess.SetIPAddress("10.0.5.2:4243", 1)
-	if dataMigration.StartAt == -1 {
-		return
-	}
-	// Change client/destination IP to disactivate any further data sens to the client on this side.
-	fmt.Println("Disactivating client connection")
-
-	//sess.ClosePath(1)
-	fmt.Println("Connecting to relay 2")
-	_, sessRelay := createConnectionToRelay(addrServer[1])
-
-	fmt.Println("sending metadata to relay 2", sessRelay)
-
-	//sendDataToRelay(streamRelay, dataMigration)
-	//sessRelay.SetIPAddress("10.0.5.2:4243", 1)
-	fmt.Println("Done sending metadata to relay 2")
-
-	//streamRelai = sendRelayData(sess, stream, nil, addrServer[1], &dataMigration)
-	//for {
-	//SetCryptoSetup(sess, dataMigration)
 	//stream.Setuint64(dataMigration.WritteOffset)
-	//dataMigration.WritteOffset, dataMigration.StartAt = sendFile(stream, dataMigration, file)
-	//if dataMigration.StartAt == -1 {
-	//	return
-	//}
+	//_, _, dataMigration.WritteOffset = stream.GetReadPosInFrame()
+	//dataMigration.StartAt = config.BUFFERSIZE
+	createConnectionToRelay(addrServer[1], dataMigration)
+	time.Sleep(1 * time.Second)
+	sendFile(stream, dataMigration, file)
 
-	//sess.SetIPAddress("10.0.5.2:4243", 2)
+}
+func activeListening(stream quic.Stream) {
+	for {
+		buffer := make([]byte, config.BUFFERSIZE)
+		bytesRead, err := stream.Read(buffer)
+		if err != nil {
+			// Gérer l'erreur de lecture
+			log.Fatal(err)
+		}
+		fmt.Println(string(bytesRead))
+	}
+}
 
-	/*listener.Close()
-	listener.Close()
-
-	listener, err := quic.ListenAddr(config.Addr, utils.GenerateTLSConfig(), config.QuicConfig)
-	utils.HandleError(err)
-
-	fmt.Println("Server started! Waiting for streams from client...")
-
-	sess, err := listener.Accept()
-	utils.HandleError(err)
-
-	fmt.Println("session created: ", sess.RemoteAddr())
-
-	stream, err = sess.AcceptStream()
-	utils.HandleError(err)
-
-	*/
-
-	//}
-
+func offsetManager(offset uint64) uint64 {
+	return offset + uint64(config.BUFFERSIZE)
 }
 func ReadDataMigration(stream quic.Stream) config.DataMigration {
 	var data = make([]byte, 1000)
@@ -234,9 +179,6 @@ func sendFile(stream quic.Stream, dataMigration config.DataMigration, file *os.F
 	start := time.Now()
 
 	for {
-		if sentBytes == 300*config.BUFFERSIZE {
-			break
-		}
 
 		sentSize, err := file.ReadAt(sendBuffer, dataMigration.StartAt)
 
@@ -247,14 +189,15 @@ func sendFile(stream quic.Stream, dataMigration config.DataMigration, file *os.F
 
 		}
 		stream.Write(sendBuffer)
-		dataMigration.StartAt += int64(sentSize)
-		sentBytes += int64(sentSize)
 
+		dataMigration.StartAt += int64(sentSize) // + config.BUFFERSIZE
+		sentBytes += int64(sentSize)
 		_, _, c = stream.GetReadPosInFrame()
+		//stream.Setuint64(c + uint64(sentSize))
+
 		//fmt.Println("°°°°°°°°°°°°°°°°°°°°°°°°°°°° ", c)
 		//fmt.Printf("-------->>>> chaine %s \n ", string(sendBuffer))
 		fmt.Printf("\033[2K\rSent: %d:  %d / %d  \n", cpt, dataMigration.StartAt, fileInfo.Size())
-
 	}
 
 	elapsed := time.Since(start)
@@ -284,13 +227,16 @@ func createConnectionToRelay(relayaddr string, dataMigration config.DataMigratio
 
 	streamServer, err := sessServer.OpenStream()
 	utils.HandleError(err)
+	dataMigration.StartAt = config.BUFFERSIZE
+	dataMigration.WritteOffset += config.BUFFERSIZE + 74
 	dataByte, err := json.Marshal(dataMigration)
 	data := []byte(utils.FillString(string(dataByte), 1000))
 	streamServer.Write(data)
 	if err != nil {
 		log.Fatal(err)
 	}
-
+	//time.Sleep(time.Second * 20)
+	//	streamServer.Write(dataString)
 	//streamServer.Write(dataString)
 	fmt.Println("stream created...")
 	fmt.Println("Client connected")
@@ -440,6 +386,7 @@ func SetCryptoSetup(sess quic.Session, dataMigration config.DataMigration) {
 	//sess.SetIPAddress(dataMigration.IpAddr, 1)
 	//sess.ClosePath(1)
 	//sess.OpenPath(1)
+
 	err := sess.CreationRelayPath(dataMigration.IpAddr, "10.0.2.2:4242", 2)
 	if err != nil {
 		fmt.Println("Error ", err)
