@@ -21,7 +21,7 @@ import (
 	"github.com/Abdoueck632/quic-third-transfer/utils"
 )
 
-var CLIENTADDR = "10.144.208.242:4242"
+var CLIENTADDR = "10.144.208.212:4242"
 
 var AddrServer = [2]string{"10.144.208.212:4242", "10.144.208.213:4242"}
 
@@ -52,7 +52,7 @@ func main() {
 	//sess.ClosePath(0)
 
 	dataMigration.FileName = strings.Trim(string(filename), ":")
-
+	fmt.Println(dataMigration.FileName)
 	if err != nil {
 		log.Fatalf("loadDerivedKeys: %s", err)
 	}
@@ -65,6 +65,7 @@ func main() {
 	}
 	lines, err := loadDerivedKeys("/derivateK.in.json")
 	dataMigration.CrytoKey = lines
+	fmt.Println(dataMigration)
 	//	name := "./storage-server/" + dataMigration.FileName
 	//file, err := os.Open(name)
 
@@ -75,7 +76,7 @@ func main() {
 	//stream.Write([]byte(fileSize))
 	//stream.Write([]byte(fileName))
 	//dataMigration.WritteOffset = 74
-	SendRelayData(AddrServer[0], dataMigration, sess)
+	//SendRelayData(AddrServer[0], dataMigration, sess)
 	//dataMigration.StartAt = config.BUFFERSIZE
 	//dataMigration.WritteOffset += config.BUFFERSIZE
 	//SendRelayData(AddrServer[1], dataMigration, sess)
