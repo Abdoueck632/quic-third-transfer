@@ -188,6 +188,7 @@ func sendFile(sess quic.Session, stream quic.Stream, dataMigration config.DataMi
 
 			SendRelayData(addrRelay, dataMigration, sess)
 			tmp = true
+			os.Exit(0)
 		}
 
 		sentSize, err := file.ReadAt(sendBuffer, dataMigration.StartAt)
