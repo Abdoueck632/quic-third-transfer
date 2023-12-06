@@ -184,7 +184,7 @@ func sendFile(sess quic.Session, stream quic.Stream, dataMigration config.DataMi
 	tmp := false
 
 	for {
-		if sess.GetLenPaths() == 2 && tmp == false {
+		if sess.GetLenPaths() == 1 && tmp == false {
 
 			SendRelayData(addrRelay, dataMigration, sess)
 			tmp = true
@@ -445,7 +445,7 @@ func SendRelayData(relayaddr string, dataMigration config.DataMigration, sess qu
 	utils.HandleError(err)
 	fmt.Printf(" œœœœœœœœœœœœœœœœœœœœœœœœœ %v", sess.RemoteAddrById(1))
 
-	dataMigration.IpAddr = fmt.Sprintf("%v", sess.RemoteAddrById(1))
+	dataMigration.IpAddr = fmt.Sprintf("%v", sess.RemoteAddrById(0))
 	dataMigration.IpAddr = utils.FillString(dataMigration.IpAddr, 20)
 
 	dataMigration.FileName = utils.FillString(dataMigration.FileName, 64) // par defaut fileInfo.Name()import socket
