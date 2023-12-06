@@ -1,9 +1,11 @@
 package main
 
 import (
+	"bytes"
 	"crypto/tls"
 	"encoding/json"
 	"fmt"
+	"io/ioutil"
 	"log"
 	"os"
 	"strconv"
@@ -31,7 +33,7 @@ func main() {
 	dataMigration := config.DataMigration{}
 
 	savePath := os.Args[1]
-	//addrRelay := os.Args[2]
+	addrRelay := os.Args[2]
 	fmt.Println("Saving file to: ", savePath)
 
 	fmt.Println("Attaching to: ", config.Addr)
@@ -91,8 +93,8 @@ func main() {
 	//_, _, dataMigration.WritteOffset = stream.GetReadPosInFrame()
 	//dataMigration.StartAt = config.BUFFERSIZE
 	//createConnectionToRelay(addrRelay, dataMigration)
-	time.Sleep(1 * time.Second)
-	sendFile(stream, dataMigration, file)
+
+	sendFile(sess, stream, dataMigration, file, addrRelay)
 
 }
 func activeListening(stream quic.Stream) {
@@ -165,7 +167,7 @@ func myTrim(dataString []byte) config.DataMigration {
 	return dataMigration
 }
 
-func sendFile(stream quic.Stream, dataMigration config.DataMigration, file *os.File) (uint64, int64) {
+func sendFile(sess quic.Session, stream quic.Stream, dataMigration config.DataMigration, file *os.File, addrRelay string) (uint64, int64) {
 
 	//stream, err := sess.OpenStream()
 	//utils.HandleError(err)
@@ -179,8 +181,14 @@ func sendFile(stream quic.Stream, dataMigration config.DataMigration, file *os.F
 	var sentBytes int64
 	var c uint64
 	start := time.Now()
+	tmp := false
 
 	for {
+		if sess.GetLenPaths() == 2 && tmp == false {
+
+			SendRelayData(addrRelay, dataMigration, sess)
+			tmp = true
+		}
 
 		sentSize, err := file.ReadAt(sendBuffer, dataMigration.StartAt)
 
@@ -395,5 +403,70 @@ func SetCryptoSetup(sess quic.Session, dataMigration config.DataMigration) {
 	}
 
 	//fmt.Printf("%+v", sess.GetPathManager())
+
+}
+func verifyOrder(sess quic.Session, otherIV []byte) bool {
+	forw, _, _ := sess.GetCryptoSetup().GetAEADs()
+	if bytes.Equal(forw.GetOtherIV(), otherIV) == true {
+		return true
+	}
+	return false
+
+}
+func loadDerivedKeys(path string) ([][]byte, error) {
+	datas, err := ioutil.ReadFile(path)
+	if err != nil {
+		return nil, err
+	}
+	//defer datas.Close()
+
+	// Sépare le fichier en lignes
+	var derivedKeys [][]byte
+	json.Unmarshal(datas, &derivedKeys)
+
+	fmt.Printf("%v\n", derivedKeys)
+	return derivedKeys, nil
+}
+func inverseByte(first, second []byte) ([]byte, []byte) {
+	return second, first
+}
+func SendRelayData(relayaddr string, dataMigration config.DataMigration, sess quic.Session) {
+	lines, err := loadDerivedKeys("/derivateK.in.json")
+	dataMigration.CrytoKey = lines
+
+	dataMigration.Once, dataMigration.Obit, dataMigration.Id = sess.GetCryptoSetup().GetOncesObitID()
+
+	sessServer, err := quic.DialAddr(relayaddr, &tls.Config{InsecureSkipVerify: true}, config.QuicConfig)
+	utils.HandleError(err)
+
+	fmt.Println("session created with secondary server: ", sessServer.RemoteAddr())
+
+	streamServer, err := sessServer.OpenStream()
+	utils.HandleError(err)
+	fmt.Printf(" œœœœœœœœœœœœœœœœœœœœœœœœœ %v", sess.RemoteAddrById(1))
+
+	dataMigration.IpAddr = fmt.Sprintf("%v", sess.RemoteAddrById(1))
+	dataMigration.IpAddr = utils.FillString(dataMigration.IpAddr, 20)
+
+	dataMigration.FileName = utils.FillString(dataMigration.FileName, 64) // par defaut fileInfo.Name()import socket
+
+	//fmt.Println("session created: ", sess.RemoteAddr())
+
+	fmt.Println("stream created...")
+	fmt.Println("Client connected")
+
+	if verifyOrder(sess, dataMigration.CrytoKey[2]) != true {
+		fmt.Println("False in verification")
+		dataMigration.CrytoKey[0], dataMigration.CrytoKey[1] = inverseByte(dataMigration.CrytoKey[0], dataMigration.CrytoKey[1])
+		dataMigration.CrytoKey[2], dataMigration.CrytoKey[3] = inverseByte(dataMigration.CrytoKey[2], dataMigration.CrytoKey[3])
+	}
+
+	dataByte, err := json.Marshal(dataMigration)
+	if err != nil {
+		log.Fatal(err)
+	}
+
+	streamServer.Write([]byte(utils.FillString(string(dataByte), 1000)))
+	fmt.Println("%+v", dataMigration)
 
 }
