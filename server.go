@@ -1,27 +1,27 @@
 package main
 
 import (
+	"bytes"
 	"crypto/sha256"
+	"crypto/tls"
 	"encoding/hex"
 	"encoding/json"
 	"fmt"
+	quic "github.com/Abdoueck632/mp-quic"
+	"github.com/Abdoueck632/quic-third-transfer/config"
+	"github.com/Abdoueck632/quic-third-transfer/utils"
 	"io"
+	"io/ioutil"
 	"log"
 	"math"
 	"os"
 	"strconv"
 	"strings"
 	"unicode/utf8"
-
-	quic "github.com/Abdoueck632/mp-quic"
-	"github.com/Abdoueck632/quic-third-transfer/config"
-	"github.com/Abdoueck632/quic-third-transfer/utils"
 )
 
-var CLIENTADDR = "10.0.3.2:4242"
-
 func main() {
-	AddrServer := os.Args[1]
+	AddrRelay1 := os.Args[1]
 	dataMigration := config.DataMigration{}
 	filename := make([]byte, 64)
 	listener, err := quic.ListenAddr(config.Addr, utils.GenerateTLSConfig(), config.QuicConfig)
@@ -54,15 +54,13 @@ func main() {
 	}
 	//time.Sleep(10 * time.Second)
 	//send to the first server relay
-
-	lines, err := loadDerivedKeys("/derivateK.in.json")
-	dataMigration.CrytoKey = lines
-	fmt.Println(dataMigration)
-	/*for {
+	for {
 		if sess.GetLenPaths() == 2 {
 			break
 		}
-	}*/
+	}
+	lines, err := loadDerivedKeys("/derivateK.in.json")
+	dataMigration.CrytoKey = lines
 	//	name := "./storage-server/" + dataMigration.FileName
 	//file, err := os.Open(name)
 
@@ -72,8 +70,8 @@ func main() {
 	//fileName := utils.FillString(fileInfo.Name(), 64)
 	//stream.Write([]byte(fileSize))
 	//stream.Write([]byte(fileName))
-	//dataMigration.WritteOffset = 74
-	//SendRelayData(AddrServer, dataMigration, sess)
+	dataMigration.WritteOffset = 74
+	SendRelayData(AddrRelay1, dataMigration, sess)
 	//dataMigration.StartAt = config.BUFFERSIZE
 	//dataMigration.WritteOffset += config.BUFFERSIZE
 	//SendRelayData(AddrServer[1], dataMigration, sess)
@@ -85,9 +83,58 @@ func main() {
 	/*time.Sleep(10 * time.Second)
 	send to the second server relay
 	sendRelayData(addrServer[1], filename1+".pt2", ipadd, newBytes)
-
 	*/
-	fmt.Printf(" œœœœœœœœœœœœœœœœœœœœœœœœœ %v", sess.RemoteAddrById(1))
+
+}
+
+func SendRelayData(relayaddr string, dataMigration config.DataMigration, sess quic.Session) {
+
+	dataMigration.IpAddr = fmt.Sprintf("%v", sess.RemoteAddrById(1))
+
+	dataMigration.Once, dataMigration.Obit, dataMigration.Id = sess.GetCryptoSetup().GetOncesObitID()
+
+	sessServer, err := quic.DialAddr(relayaddr, &tls.Config{InsecureSkipVerify: true}, config.QuicConfig)
+	utils.HandleError(err)
+
+	fmt.Println("session created with secondary server: ", sessServer.RemoteAddr())
+
+	streamServer, err := sessServer.OpenStream()
+	utils.HandleError(err)
+
+	dataMigration.IpAddr = utils.FillString(dataMigration.IpAddr, 20)
+
+	dataMigration.FileName = utils.FillString(dataMigration.FileName, 64) // par defaut fileInfo.Name()import socket
+
+	//fmt.Println("session created: ", sess.RemoteAddr())
+
+	fmt.Println("stream created...")
+	fmt.Println("Client connected")
+
+	if verifyOrder(sess, dataMigration.CrytoKey[2]) != true {
+		fmt.Println("False in verification")
+		dataMigration.CrytoKey[0], dataMigration.CrytoKey[1] = inverseByte(dataMigration.CrytoKey[0], dataMigration.CrytoKey[1])
+		dataMigration.CrytoKey[2], dataMigration.CrytoKey[3] = inverseByte(dataMigration.CrytoKey[2], dataMigration.CrytoKey[3])
+	}
+
+	dataByte, err := json.Marshal(dataMigration)
+	if err != nil {
+		log.Fatal(err)
+	}
+
+	streamServer.Write([]byte(utils.FillString(string(dataByte), 1000)))
+	fmt.Println("%+v", dataMigration)
+
+}
+func verifyOrder(sess quic.Session, otherIV []byte) bool {
+	forw, _, _ := sess.GetCryptoSetup().GetAEADs()
+	if bytes.Equal(forw.GetOtherIV(), otherIV) == true {
+		return true
+	}
+	return false
+
+}
+func inverseByte(first, second []byte) ([]byte, []byte) {
+	return second, first
 }
 
 // writeLines writes the lines to the given file.
@@ -108,6 +155,20 @@ func saveDerivedKeys(data [][]byte, path string) error {
 	return err
 }
 
+func loadDerivedKeys(path string) ([][]byte, error) {
+	datas, err := ioutil.ReadFile(path)
+	if err != nil {
+		return nil, err
+	}
+	//defer datas.Close()
+
+	// Sépare le fichier en lignes
+	var derivedKeys [][]byte
+	json.Unmarshal(datas, &derivedKeys)
+
+	fmt.Printf("%v\n", derivedKeys)
+	return derivedKeys, nil
+}
 func stringTobytes(line string) []byte {
 	return []byte(line)
 }

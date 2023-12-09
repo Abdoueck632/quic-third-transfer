@@ -2,7 +2,7 @@ module github.com/Abdoueck632/quic-third-transfer
 
 go 1.19
 
-require github.com/Abdoueck632/mp-quic v0.0.0-20230626131743-c3a900eacb21
+require github.com/Abdoueck632/mp-quic v0.0.0-20230630092453-daaeeec69697
 
 require (
 	github.com/bifurcation/mint v0.0.0-20171208133358-a6080d464fb5 // indirect
@@ -12,6 +12,6 @@ require (
 	github.com/lucas-clemente/fnv128a v0.0.0-20160504152609-393af48d3916 // indirect
 	github.com/lucas-clemente/quic-go-certificates v0.0.0-20160823095156-d2f86524cced // indirect
 	github.com/onsi/ginkgo v1.16.5 // indirect
-	github.com/onsi/gomega v1.24.2 // indirect
+	github.com/onsi/gomega v1.30.0 // indirect
 	golang.org/x/crypto v0.0.0-20210513164829-c07d793c2f9a // indirect
 )
