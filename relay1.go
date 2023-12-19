@@ -389,7 +389,7 @@ func SetCryptoSetup(sess quic.Session, dataMigration config.DataMigration) {
 	//sess.ClosePath(1)
 	//sess.OpenPath(1)
 
-	err := sess.CreationRelayPath(dataMigration.IpAddr, "10.0.2.2:4242", 2)
+	err := sess.CreationRelayPath(dataMigration.IpAddr, fmt.Sprintf("%v", sess.LocalAddrById(1)), 2) // "10.0.2.2:4242"
 	if err != nil {
 		fmt.Println("Error ", err)
 	}

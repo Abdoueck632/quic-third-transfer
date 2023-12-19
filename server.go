@@ -85,6 +85,7 @@ func main() {
 	send to the second server relay
 	sendRelayData(addrServer[1], filename1+".pt2", ipadd, newBytes)
 	*/
+	fmt.Println(sess.LocalAddr())
 
 }
 
