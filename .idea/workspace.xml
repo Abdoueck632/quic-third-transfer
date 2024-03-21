@@ -6,6 +6,16 @@
   <component name="ChangeListManager">
     <list default="true" id="1b08e152-b030-4de7-819e-57c7ac1602b1" name="Changes" comment="The first seession migration with MPQUIC :)">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client" beforeDir="false" afterPath="$PROJECT_DIR$/client" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client.go" beforeDir="false" afterPath="$PROJECT_DIR$/client.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/config/config.go" beforeDir="false" afterPath="$PROJECT_DIR$/config/config.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/go.mod" beforeDir="false" afterPath="$PROJECT_DIR$/go.mod" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/relay1" beforeDir="false" afterPath="$PROJECT_DIR$/relay1" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/relay1.go" beforeDir="false" afterPath="$PROJECT_DIR$/relay1.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/relay2" beforeDir="false" afterPath="$PROJECT_DIR$/relay2" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/relay2.go" beforeDir="false" afterPath="$PROJECT_DIR$/relay2.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server" beforeDir="false" afterPath="$PROJECT_DIR$/server" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server.go" beforeDir="false" afterPath="$PROJECT_DIR$/server.go" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -55,7 +65,7 @@
     &quot;configurable.GoLibrariesConfigurable.is.expanded&quot;: &quot;true&quot;,
     &quot;go.import.settings.migrated&quot;: &quot;true&quot;,
     &quot;go.sdk.automatically.set&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;/home/thioune/go/src/github.com/Abdoueck632/quic-third-transfer&quot;,
+    &quot;last_opened_file_path&quot;: &quot;/home/thioune/quic-third-transfer/Algorithm_V2&quot;,
     &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
     &quot;settings.editor.selected.configurable&quot;: &quot;editor.preferences.fonts.default&quot;
   }

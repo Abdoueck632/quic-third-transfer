@@ -1,5 +1,9 @@
 github.com/Abdoueck632/mp-quic v0.0.0-20230630092453-daaeeec69697 h1:Th/Pmu4FrcYNSuDkND1Aks+s5iXLFJwBCSctfkXofG8=
 github.com/Abdoueck632/mp-quic v0.0.0-20230630092453-daaeeec69697/go.mod h1:G7C8M5QKVtaTW1JO+TnlnIhaEf1A52hvYU+cfefBQCw=
+github.com/Abdoueck632/mp-quic v0.0.0-20240228151625-d04cc9139dee h1:GAEBJVaUqlXYjrdC19Dv72lgd2Hqz3wW+ejREM//+88=
+github.com/Abdoueck632/mp-quic v0.0.0-20240228151625-d04cc9139dee/go.mod h1:G7C8M5QKVtaTW1JO+TnlnIhaEf1A52hvYU+cfefBQCw=
+github.com/Abdoueck632/mp-quic v0.2.1 h1:VHnWprJXWRVeWYMYEtKbCqG0LhS42IJVOe90TsAW3Wk=
+github.com/Abdoueck632/mp-quic v0.2.1/go.mod h1:G7C8M5QKVtaTW1JO+TnlnIhaEf1A52hvYU+cfefBQCw=
 github.com/bifurcation/mint v0.0.0-20171208133358-a6080d464fb5 h1:KdsEvFq5LFgLLgw+qvdTClkF8zme3IdrrboZTy6LMvY=
 github.com/bifurcation/mint v0.0.0-20171208133358-a6080d464fb5/go.mod h1:zVt7zX3K/aDCk9Tj+VM7YymsX66ERvzCJzw8rFCX2JU=
 github.com/davecgh/go-spew v1.1.0/go.mod h1:J7Y8YcW2NihsgmVo/mv3lAwl/skON4iLHjSsI+c5H38=

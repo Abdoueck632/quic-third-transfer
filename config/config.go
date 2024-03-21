@@ -6,7 +6,7 @@ import (
 
 // BUFFERSIZE is the
 // size of max packet size
-const BUFFERSIZE = 1000
+const BUFFERSIZE = 900000000
 
 // PORT the default port for communication
 const PORT = "4242"
@@ -19,8 +19,8 @@ var QuicConfig = &quic.Config{
 	//	CacheHandshake: true,
 	//IdleTimeout:      10000 * time.Hour,
 	//HandshakeTimeout: 10000 * time.Hour,
-	MaxReceiveConnectionFlowControlWindow: uint64(80000),
-	MaxReceiveStreamFlowControlWindow:     uint64(9000),
+	//MaxReceiveConnectionFlowControlWindow: uint64(80000),
+	//MaxReceiveStreamFlowControlWindow:     uint64(9000),
 }
 
 //var QuicConfigServer = &quic.Config{
@@ -30,14 +30,17 @@ var QuicConfig = &quic.Config{
 //}
 
 type DataMigration struct {
-	CrytoKey     [][]byte
-	IpAddr       string
-	FileName     string
-	FileSize     int
-	Once         []byte
-	Obit         []byte
-	Id           []byte
-	PacketNumber map[string]uint64
-	StartAt      int64
-	WritteOffset uint64
+	CrytoKey        [][]byte
+	IpAddr          string
+	FileName        string
+	FileSize        int
+	Once            []byte
+	Obit            []byte
+	Id              []byte
+	PacketNumber    map[string]uint64
+	StartAt         int64
+	WritteOffset    uint64
+	MustSynchronise bool
+	RelayNumber     int
+	DataBeforeSend  uint64
 }

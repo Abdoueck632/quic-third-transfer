@@ -85,13 +85,14 @@ func main() {
 	fileName := utils.FillString(fileInfo.Name(), 64)
 
 	fmt.Println("Sending filename and filesize!")
+	time.Sleep(1 * time.Second)
 	stream.Write([]byte(fileSize))
 	stream.Write([]byte(fileName))
 	//stream.Setuint64(dataMigration.WritteOffset)
 	//_, _, dataMigration.WritteOffset = stream.GetReadPosInFrame()
 	//dataMigration.StartAt = config.BUFFERSIZE
 	createConnectionToRelay(addrRelay2, dataMigration)
-	time.Sleep(1 * time.Second)
+	//time.Sleep(1 * time.Second)
 	sendFile(stream, dataMigration, file)
 
 }
@@ -192,10 +193,10 @@ func sendFile(stream quic.Stream, dataMigration config.DataMigration, file *os.F
 		}
 		stream.Write(sendBuffer)
 
-		dataMigration.StartAt += int64(sentSize) // + config.BUFFERSIZE
+		dataMigration.StartAt += int64(sentSize) * int64(dataMigration.RelayNumber)
 		sentBytes += int64(sentSize)
 		_, _, c = stream.GetReadPosInFrame()
-		//stream.Setuint64(c + uint64(sentSize))
+		stream.Setuint64(c + uint64(sentSize))
 
 		//fmt.Println("°°°°°°°°°°°°°°°°°°°°°°°°°°°° ", c)
 		//fmt.Printf("-------->>>> chaine %s \n ", string(sendBuffer))
@@ -230,7 +231,7 @@ func createConnectionToRelay(relayaddr string, dataMigration config.DataMigratio
 	streamServer, err := sessServer.OpenStream()
 	utils.HandleError(err)
 	dataMigration.StartAt = config.BUFFERSIZE
-	dataMigration.WritteOffset += config.BUFFERSIZE + 74
+	dataMigration.WritteOffset += config.BUFFERSIZE
 	dataByte, err := json.Marshal(dataMigration)
 	data := []byte(utils.FillString(string(dataByte), 1000))
 	streamServer.Write(data)
@@ -242,7 +243,7 @@ func createConnectionToRelay(relayaddr string, dataMigration config.DataMigratio
 	//streamServer.Write(dataString)
 	fmt.Println("stream created...")
 	fmt.Println("Client connected")
-
+	sessServer.SetIPAddress("127.0.0.1:4242", 1)
 	return streamServer, sessServer
 }
 func SendDataToRelayAfterInitialisation(streamServer quic.Stream, dataMigration config.DataMigration) {

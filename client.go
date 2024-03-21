@@ -4,15 +4,16 @@ import (
 	"bufio"
 	"crypto/tls"
 	"fmt"
-	quic "github.com/Abdoueck632/mp-quic"
-	"github.com/Abdoueck632/quic-third-transfer/config"
-	"github.com/Abdoueck632/quic-third-transfer/utils"
 	"io"
 	"log"
 	"os"
 	"strconv"
 	"strings"
 	"time"
+
+	quic "github.com/Abdoueck632/mp-quic"
+	"github.com/Abdoueck632/quic-third-transfer/config"
+	"github.com/Abdoueck632/quic-third-transfer/utils"
 )
 
 var FILENAME = ""
@@ -28,6 +29,7 @@ func main() {
 
 	fmt.Println("Attaching to: ", config.Addr)
 	sess, stream := SendfileName(serverAddr, fileToReceive)
+	//time.Sleep(1 * time.Second)
 	stream.IncrementReceiveWindow(30000000000)
 	receiveFile(stream, savePath, sess)
 
@@ -75,7 +77,7 @@ func receiveFile(stream quic.Stream, savePath string, sess quic.Session) {
 		receivedBytes += recv
 		utils.HandleError(err)
 
-		fmt.Printf("\033[2K\rReceived: %d / %d \n", receivedBytes, fileSize)
+		//fmt.Printf("\033[2K\rReceived: %d / %d \n", receivedBytes, fileSize)
 	}
 	elapsed := time.Since(start)
 

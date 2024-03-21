@@ -94,7 +94,7 @@ func SendRelayData(relayaddr string, dataMigration config.DataMigration, sess qu
 	dataMigration.IpAddr = fmt.Sprintf("%v", sess.RemoteAddrById(1))
 
 	dataMigration.Once, dataMigration.Obit, dataMigration.Id = sess.GetCryptoSetup().GetOncesObitID()
-
+	dataMigration.RelayNumber = 2
 	sessServer, err := quic.DialAddr(relayaddr, &tls.Config{InsecureSkipVerify: true}, config.QuicConfig)
 	utils.HandleError(err)
 

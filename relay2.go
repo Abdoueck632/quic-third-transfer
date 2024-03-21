@@ -4,12 +4,13 @@ import (
 	"crypto/tls"
 	"encoding/json"
 	"fmt"
-	"github.com/Abdoueck632/quic-third-transfer/config"
-	"github.com/Abdoueck632/quic-third-transfer/utils"
 	"log"
 	"os"
 	"strings"
 	"time"
+
+	"github.com/Abdoueck632/quic-third-transfer/config"
+	"github.com/Abdoueck632/quic-third-transfer/utils"
 
 	quic "github.com/Abdoueck632/mp-quic"
 )
@@ -174,6 +175,7 @@ func sendFile2(stream quic.Stream, dataMigration config.DataMigration, file *os.
 		}
 
 		*/
+		fmt.Println("yvvghbujnuygvfgv")
 
 		sentSize, err := file.ReadAt(sendBuffer, dataMigration.StartAt)
 
@@ -191,7 +193,7 @@ func sendFile2(stream quic.Stream, dataMigration config.DataMigration, file *os.
 		dataMigration.StartAt += int64(sentSize) + config.BUFFERSIZE
 		_, _, c = stream.GetReadPosInFrame()
 		stream.Setuint64(c + config.BUFFERSIZE)
-		//fmt.Printf("-------->>>> chaine %s \n ", string(sendBuffer))
+		fmt.Printf("-------->>>> chaine %s \n ", string(sendBuffer))
 		cmpt++
 	}
 	elapsed := time.Since(start)
