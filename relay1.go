@@ -91,9 +91,22 @@ func main() {
 	//stream.Setuint64(dataMigration.WritteOffset)
 	//_, _, dataMigration.WritteOffset = stream.GetReadPosInFrame()
 	//dataMigration.StartAt = config.BUFFERSIZE
-	createConnectionToRelay(addrRelay2, dataMigration)
+	//createConnectionToRelay(addrRelay2, dataMigration)
 	//time.Sleep(1 * time.Second)
-	sendFile(stream, dataMigration, file)
+
+	done := make(chan bool)
+	go sendFile(stream, dataMigration, file, done)
+
+	for {
+		select {
+		case <-done:
+			fmt.Println("Transfer complete.")
+			return
+		case <-time.After(1 * time.Second):
+			fmt.Println("Still transferring...")
+
+		}
+	}
 
 }
 func activeListening(stream quic.Stream) {
@@ -166,11 +179,9 @@ func myTrim(dataString []byte) config.DataMigration {
 	return dataMigration
 }
 
-func sendFile(stream quic.Stream, dataMigration config.DataMigration, file *os.File) (uint64, int64) {
+func sendFile(stream quic.Stream, dataMigration config.DataMigration, file *os.File, done chan bool) {
+	defer close(done)
 
-	//stream, err := sess.OpenStream()
-	//utils.HandleError(err)
-	fmt.Println("A client has connected!")
 	fileInfo, err := file.Stat()
 	utils.HandleError(err)
 
@@ -180,37 +191,37 @@ func sendFile(stream quic.Stream, dataMigration config.DataMigration, file *os.F
 	var sentBytes int64
 	var c uint64
 	start := time.Now()
+	rateLimiter := time.NewTicker(config.THROTTLE_RATE) // Adjust THROTTLE_RATE for desired speed
 
 	for {
-
-		sentSize, err := file.ReadAt(sendBuffer, dataMigration.StartAt)
-
-		if sentSize == 0 {
-			if err != nil {
-				return 0, -1
+		select {
+		case <-done:
+			return
+		case <-rateLimiter.C: // Wait for rate limiter tick before reading/sending
+			sentSize, err := file.ReadAt(sendBuffer, dataMigration.StartAt)
+			if sentSize == 0 {
+				if err != nil {
+					done <- false
+					return
+				}
+				done <- true
+				return
 			}
-
+			stream.Write(sendBuffer)
+			dataMigration.StartAt += int64(sentSize) * int64(dataMigration.RelayNumber)
+			sentBytes += int64(sentSize)
+			_, _, c = stream.GetReadPosInFrame()
+			stream.Setuint64(c + uint64(sentSize))
+			fmt.Printf("\033[2K\rSent: %d:  %d / %d  \n", cpt, dataMigration.StartAt, fileInfo.Size())
 		}
-		stream.Write(sendBuffer)
-
-		dataMigration.StartAt += int64(sentSize) * int64(dataMigration.RelayNumber)
-		sentBytes += int64(sentSize)
-		_, _, c = stream.GetReadPosInFrame()
-		stream.Setuint64(c + uint64(sentSize))
-
-		//fmt.Println("°°°°°°°°°°°°°°°°°°°°°°°°°°°° ", c)
-		//fmt.Printf("-------->>>> chaine %s \n ", string(sendBuffer))
-		fmt.Printf("\033[2K\rSent: %d:  %d / %d  \n", cpt, dataMigration.StartAt, fileInfo.Size())
 	}
 
 	elapsed := time.Since(start)
 	fmt.Println("\nTransfer took: ", elapsed)
 
 	fmt.Println("\n\n Thioune :File has been sent, closing stream! with ", sentBytes)
-
-	return c, dataMigration.StartAt
-
 }
+
 func createSession(add string) (quic.Session, quic.Stream, error) {
 	sess, err := quic.DialAddr(add, &tls.Config{InsecureSkipVerify: true}, config.QuicConfig)
 	utils.HandleError(err)

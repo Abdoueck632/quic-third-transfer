@@ -1,12 +1,15 @@
 package config
 
 import (
+	"time"
+
 	quic "github.com/Abdoueck632/mp-quic"
 )
 
 // BUFFERSIZE is the
 // size of max packet size
-const BUFFERSIZE = 900000000
+const BUFFERSIZE = 1000
+const THROTTLE_RATE = 500 * time.Millisecond
 
 // PORT the default port for communication
 const PORT = "4242"
