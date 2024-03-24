@@ -2,15 +2,11 @@ package main
 
 import (
 	"bytes"
-	"crypto/sha256"
 	"crypto/tls"
-	"encoding/hex"
 	"encoding/json"
 	"fmt"
-	"io"
 	"io/ioutil"
 	"log"
-	"math"
 	"os"
 	"strconv"
 	"strings"
@@ -23,6 +19,7 @@ import (
 
 func main() {
 	AddrRelay1 := os.Args[1]
+	AddrRelay2 := os.Args[2]
 	dataMigration := config.DataMigration{}
 	filename := make([]byte, 64)
 	listener, err := quic.ListenAddr(config.Addr, utils.GenerateTLSConfig(), config.QuicConfig)
@@ -62,34 +59,25 @@ func main() {
 	}
 	lines, err := loadDerivedKeys("/derivateK.in.json")
 	dataMigration.CrytoKey = lines
-	//	name := "./storage-server/" + dataMigration.FileName
-	//file, err := os.Open(name)
+	name := "./storage-server/" + dataMigration.FileName
+	file, err := os.Open(name)
 
-	//fileInfo, err := file.Stat()
+	fileInfo, err := file.Stat()
 
-	//fileSize := utils.FillString(strconv.FormatInt(fileInfo.Size(), 10), 10)
-	//fileName := utils.FillString(fileInfo.Name(), 64)
-	//stream.Write([]byte(fileSize))
-	//stream.Write([]byte(fileName))
+	fileSize := utils.FillString(strconv.FormatInt(fileInfo.Size(), 10), 10)
+	fileName := utils.FillString(fileInfo.Name(), 64)
+	stream.Write([]byte(fileSize))
+	stream.Write([]byte(fileName))
 	dataMigration.WritteOffset = 74
-	SendRelayData(AddrRelay1, dataMigration, sess)
-	//dataMigration.StartAt = config.BUFFERSIZE
-	//dataMigration.WritteOffset += config.BUFFERSIZE
-	//SendRelayData(AddrServer[1], dataMigration, sess)
-	//sess.ClosePath(0)
-	//	sess.AdvertiseAddress(AddrServer[0])
+	SendRelayData(AddrRelay1, dataMigration, sess, 2)
 
-	//time.Sleep(2 * time.Second)
-
-	/*time.Sleep(10 * time.Second)
-	send to the second server relay
-	sendRelayData(addrServer[1], filename1+".pt2", ipadd, newBytes)
-	*/
-	fmt.Println(sess.LocalAddr())
+	dataMigration.WritteOffset += config.BUFFERSIZE
+	dataMigration.StartAt = config.BUFFERSIZE
+	SendRelayData(AddrRelay2, dataMigration, sess, 4)
 
 }
 
-func SendRelayData(relayaddr string, dataMigration config.DataMigration, sess quic.Session) {
+func SendRelayData(relayaddr string, dataMigration config.DataMigration, sess quic.Session, idpath int) {
 
 	dataMigration.IpAddr = fmt.Sprintf("%v", sess.RemoteAddrById(1))
 
@@ -106,7 +94,7 @@ func SendRelayData(relayaddr string, dataMigration config.DataMigration, sess qu
 	dataMigration.IpAddr = utils.FillString(dataMigration.IpAddr, 20)
 
 	dataMigration.FileName = utils.FillString(dataMigration.FileName, 64) // par defaut fileInfo.Name()import socket
-
+	dataMigration.IdPathToCreate = idpath
 	//fmt.Println("session created: ", sess.RemoteAddr())
 
 	fmt.Println("stream created...")
@@ -194,59 +182,4 @@ func convertStringSliceToByteSliceSlice(s []string) [][]byte {
 		result = append(result, bytes)
 	}
 	return result
-}
-func Hasher(filename string) string {
-	file, err := os.Open(filename)
-	if err != nil {
-		log.Fatal(err)
-	}
-	defer file.Close()
-
-	h := sha256.New()
-	if _, err := io.Copy(h, file); err != nil {
-		log.Fatal(err)
-	}
-	hash := hex.EncodeToString(h.Sum(nil))
-	return hash
-}
-func Split(filename string, splitsize int) {
-	bufferSize := 1024 // 1 KB for optimal splitting
-	fileStats, _ := os.Stat(filename)
-	pieces := int(math.Ceil(float64(fileStats.Size()) / float64(splitsize*1048576)))
-	nTimes := int(math.Ceil(float64(splitsize*1048576) / float64(bufferSize)))
-	file, err := os.Open(filename)
-	hashFileName := filename + "-split-hash.txt"
-	hashFile, err := os.OpenFile(hashFileName, os.O_CREATE, 0644)
-	if err != nil {
-		log.Fatal(err)
-	}
-	i := 1
-	for i <= pieces {
-		partFileName := filename + ".pt" + strconv.Itoa(i)
-		pfile, _ := os.OpenFile(partFileName, os.O_CREATE|os.O_WRONLY, 0644)
-		fmt.Println("Creating file:", partFileName)
-		buffer := make([]byte, bufferSize)
-		j := 1
-		for j <= nTimes {
-			_, inFileErr := file.Read(buffer)
-			if inFileErr == io.EOF {
-				break
-			}
-			_, err2 := pfile.Write(buffer)
-			if err2 != nil {
-				log.Fatal(err2)
-			}
-			j++
-		}
-		partFileHash := Hasher(partFileName)
-		s := partFileName + ": " + partFileHash + "\n"
-		hashFile.WriteString(s)
-		pfile.Close()
-		i++
-	}
-	s := "Original file hash: " + Hasher(filename) + "\n"
-	hashFile.WriteString(s)
-	file.Close()
-	hashFile.Close()
-	fmt.Printf("Splitted successfully! Find the individual file hashes in %s", hashFileName)
 }

@@ -15,7 +15,7 @@ import (
 	quic "github.com/Abdoueck632/mp-quic"
 )
 
-var cmpt = 1
+var cpt = 1
 
 func main2() {
 	//sessLocalServer, streamLocalServer :=
@@ -54,7 +54,19 @@ func main() {
 	stream.Setuint64(dataMigration.WritteOffset)
 
 	time.Sleep(1 * time.Second)
-	sendFile2(stream, dataMigration, file)
+	done := make(chan bool)
+	go sendFile2(stream, dataMigration, file, done)
+
+	for {
+		select {
+		case <-done:
+			fmt.Println("Transfer complete.")
+			return
+		case <-time.After(1 * time.Second):
+			fmt.Println("Still transferring...")
+
+		}
+	}
 
 }
 func ReadDataMigration1(stream quic.Stream) config.DataMigration {
@@ -147,63 +159,47 @@ func createDependentConnection() {
 
 }
 
-func sendFile2(stream quic.Stream, dataMigration config.DataMigration, file *os.File) (uint64, int64) {
+func sendFile2(stream quic.Stream, dataMigration config.DataMigration, file *os.File, done chan bool) {
+	defer close(done)
 
-	/*stream, err := sess.OpenStream()
+	fileInfo, err := file.Stat()
 	utils.HandleError(err)
-	fmt.Println("A client has connected!")
-
-	*/
-
-	//fileSize := utils.FillString(strconv.FormatInt(fileInfo.Size(), 10), 10)
-	//sfileName := utils.FillString(fileInfo.Name(), 64)
-	//stream.Read(nilbuffer)
-	fmt.Println("Sending filename and filesize!")
-
-	//stream.Write([]byte(fileSize))
-	//stream.Write([]byte(fileName))
 
 	sendBuffer := make([]byte, config.BUFFERSIZE)
 	fmt.Println("Start sending file!\n")
-	var c uint64
+
 	var sentBytes int64
+	var c uint64
 	start := time.Now()
+	rateLimiter := time.NewTicker(config.THROTTLE_RATE) // Adjust THROTTLE_RATE for desired speed
 
 	for {
-		/*if sentBytes == 300*config.BUFFERSIZE {
-			break
-		}
-
-		*/
-		fmt.Println("yvvghbujnuygvfgv")
-
-		sentSize, err := file.ReadAt(sendBuffer, dataMigration.StartAt)
-
-		if sentSize == 0 {
-			if err != nil {
-				return 0, -1
+		select {
+		case <-done:
+			return
+		case <-rateLimiter.C: // Wait for rate limiter tick before reading/sending
+			sentSize, err := file.ReadAt(sendBuffer, dataMigration.StartAt)
+			if sentSize == 0 {
+				if err != nil {
+					done <- false
+					return
+				}
+				done <- true
+				return
 			}
-
+			stream.Write(sendBuffer)
+			dataMigration.StartAt += int64(sentSize) * int64(dataMigration.RelayNumber)
+			sentBytes += int64(sentSize)
+			_, _, c = stream.GetReadPosInFrame()
+			stream.Setuint64(c + uint64(sentSize))
+			fmt.Printf("\033[2K\rSent: %d:  %d / %d  \n", cpt, dataMigration.StartAt, fileInfo.Size())
 		}
-		stream.Write(sendBuffer)
-
-		sentBytes += int64(sentSize)
-
-		fmt.Printf("\033[2K\rSent: %d:: %d -> %d  \n", cmpt, dataMigration.StartAt, dataMigration.StartAt+config.BUFFERSIZE)
-		dataMigration.StartAt += int64(sentSize) + config.BUFFERSIZE
-		_, _, c = stream.GetReadPosInFrame()
-		stream.Setuint64(c + config.BUFFERSIZE)
-		fmt.Printf("-------->>>> chaine %s \n ", string(sendBuffer))
-		cmpt++
 	}
+
 	elapsed := time.Since(start)
 	fmt.Println("\nTransfer took: ", elapsed)
 
-	fmt.Println("\n\nFile has been sent, closing stream!")
-	fmt.Println("\n\n Size Send ", dataMigration.StartAt)
-	cmpt++
-	return c, dataMigration.StartAt
-
+	fmt.Println("\n\n Thioune :File has been sent, closing stream! with ", sentBytes)
 }
 
 /*
@@ -273,12 +269,6 @@ func myTrim1(dataString []byte) config.DataMigration {
 }
 
 func SetCryptoSetup2(sess quic.Session, dataMigration config.DataMigration) {
-	for {
-		if sess.GetLenPaths() >= 2 {
-
-			break
-		}
-	}
 
 	sess.SetDerivateKey(dataMigration.CrytoKey[0], dataMigration.CrytoKey[1], dataMigration.CrytoKey[2], dataMigration.CrytoKey[3])
 	//sess.SetIPAddress(dataMigration.IpAddr, 1)

@@ -12,3 +12,4 @@ new-setup-topology.py
 vendor/
 download/
 download 2/
+relay2.go

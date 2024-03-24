@@ -6,7 +6,6 @@ import (
 	"fmt"
 	"log"
 	"os"
-	"strconv"
 	"strings"
 	"time"
 
@@ -16,6 +15,7 @@ import (
 )
 
 var dataString = make([]byte, 1000)
+
 var cpt = 1
 
 type fileType struct {
@@ -30,70 +30,55 @@ type fileType struct {
 	}
 */
 func main() {
-	dataMigration := config.DataMigration{}
-
 	savePath := os.Args[1]
-	addrRelay2 := os.Args[2]
+
+	sess, stream := acceptConnection(savePath)
+
+	dataMigration := ReadDataMigration(stream)
+	fmt.Printf("Data Migration: %+v\n", dataMigration)
+
+	err := processFile(savePath, dataMigration, sess, stream)
+	utils.HandleError(err)
+
+}
+func acceptConnection(savePath string) (quic.Session, quic.Stream) {
 	fmt.Println("Saving file to: ", savePath)
 
-	fmt.Println("Attaching to: ", config.Addr)
+	// Écoute des connexions entrantes
 	listener, err := quic.ListenAddr(config.Addr, utils.GenerateTLSConfig(), config.QuicConfig)
 	utils.HandleError(err)
-	/*f, err := os.Create("relay1_SSLKEYLOGFILE.bin")
-	if err != nil {
-		utils.HandleError(err)
-	} else {
-		defer f.Close()
-	}
-
-	*/
-
 	fmt.Println("Server started! Waiting for streams from client...")
 
+	// Acceptation d'une nouvelle session
 	sess, err := listener.Accept()
 	utils.HandleError(err)
+	fmt.Println("Session created: ", sess.RemoteAddr())
 
-	fmt.Println("session created: ", sess.RemoteAddr())
-
+	// Acceptation d'un nouveau flux dans la session
 	stream, err := sess.AcceptStream()
 	utils.HandleError(err)
-
-	fmt.Println("stream created: ", stream.StreamID())
+	fmt.Println("Stream created: ", stream.StreamID())
 	fmt.Println("Connected to server, start receiving the file name and file size")
 
-	//sess.ClosePath(1)
+	return sess, stream
+}
 
-	dataMigration = ReadDataMigration(stream)
-
-	fmt.Printf(" \n dataMigration %+v \n ", dataMigration)
-
+func processFile(savePath string, dataMigration config.DataMigration, sess quic.Session, stream quic.Stream) error {
 	fmt.Println("Trying to connect to: ", dataMigration.IpAddr, "Filename ", dataMigration.FileName)
 
 	name := savePath + dataMigration.FileName
 	file, err := os.Open(name)
-	utils.HandleError(err)
-
-	fileInfo, err := file.Stat()
-	utils.HandleError(err)
-
-	// Reconfigure the existing connection
+	if err != nil {
+		return err
+	}
+	defer file.Close()
 
 	SetCryptoSetup(sess, dataMigration)
-	//stream.Setuint64(dataMigration.WritteOffset)
-
-	fileSize := utils.FillString(strconv.FormatInt(fileInfo.Size(), 10), 10)
-	fileName := utils.FillString(fileInfo.Name(), 64)
+	stream.Setuint64(dataMigration.WritteOffset)
 
 	fmt.Println("Sending filename and filesize!")
+	stream.Setuint64(dataMigration.WritteOffset)
 	time.Sleep(1 * time.Second)
-	stream.Write([]byte(fileSize))
-	stream.Write([]byte(fileName))
-	//stream.Setuint64(dataMigration.WritteOffset)
-	//_, _, dataMigration.WritteOffset = stream.GetReadPosInFrame()
-	//dataMigration.StartAt = config.BUFFERSIZE
-	//createConnectionToRelay(addrRelay2, dataMigration)
-	//time.Sleep(1 * time.Second)
-
 	done := make(chan bool)
 	go sendFile(stream, dataMigration, file, done)
 
@@ -101,7 +86,7 @@ func main() {
 		select {
 		case <-done:
 			fmt.Println("Transfer complete.")
-			return
+			return nil
 		case <-time.After(1 * time.Second):
 			fmt.Println("Still transferring...")
 
@@ -142,28 +127,6 @@ func createNewLocalConnection() {
 	streamServer.Write(dataString)
 	fmt.Println("stream created with local server...")
 	fmt.Println("Client connected with local server")
-
-	/*for {
-		if sessServer.GetLenPaths() >= 2 {
-
-			break
-		}
-	}
-	dataByte, err := json.Marshal(migration)
-	if err != nil {
-		log.Fatal(err)
-	}
-
-	//sendBuffer := make([]byte, config.BUFFERSIZE)
-	sentBytes, err := streamServer.Write([]byte(utils.FillString(string(dataByte), 1000)))
-	utils.HandleError(err)
-
-	*/
-	//fmt.Printf("Sent to local server: %d / %d  \n", sentBytes)
-
-	//	for {
-	//		time.Sleep(1000 * time.Millisecond)
-	//	}
 
 }
 func myTrim(dataString []byte) config.DataMigration {
@@ -401,7 +364,7 @@ func SetCryptoSetup(sess quic.Session, dataMigration config.DataMigration) {
 	//sess.ClosePath(1)
 	//sess.OpenPath(1)
 
-	err := sess.CreationRelayPath(dataMigration.IpAddr, fmt.Sprintf("%v", sess.LocalAddrById(1)), 2) // "10.0.2.2:4242"
+	err := sess.CreationRelayPath(dataMigration.IpAddr, fmt.Sprintf("%v", sess.LocalAddrById(1)), dataMigration.IdPathToCreate) // "10.0.2.2:4242"
 	if err != nil {
 		fmt.Println("Error ", err)
 	}
