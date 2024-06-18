@@ -18,6 +18,7 @@ import (
 )
 
 func main() {
+
 	AddrRelay1 := os.Args[1]
 	AddrRelay2 := os.Args[2]
 	dataMigration := config.DataMigration{}
@@ -31,7 +32,7 @@ func main() {
 		defer f.Close()
 	}
 
-	fmt.Println("Server started! Waiting for streams from client...")
+	fmt.Println("Server started! Waiting for streams from client ...")
 
 	sess, err := listener.Accept()
 	utils.HandleError(err)
@@ -39,7 +40,7 @@ func main() {
 	stream, err := sess.AcceptStream()
 	utils.HandleError(err)
 
-	fmt.Println("session created: ", sess.RemoteAddr())
+	fmt.Println("session created : ", sess.RemoteAddr())
 
 	//read filename of the client
 	stream.Read(filename)
@@ -68,19 +69,93 @@ func main() {
 	fileName := utils.FillString(fileInfo.Name(), 64)
 	stream.Write([]byte(fileSize))
 	stream.Write([]byte(fileName))
+	seuil := 200000
+	result := splitWindow(0, seuil, config.BUFFERSIZE, 2)
+	fmt.Println(result)
+	dataMigration.TabBuffer = result[0]
 	dataMigration.WritteOffset = 74
 	SendRelayData(AddrRelay1, dataMigration, sess, 2)
-
+	dataMigration.TabBuffer = result[1]
 	dataMigration.WritteOffset += config.BUFFERSIZE
 	dataMigration.StartAt = config.BUFFERSIZE
 	SendRelayData(AddrRelay2, dataMigration, sess, 4)
+	_, stream1 := acceptConnectionServer("0.0.0.0:4243")
+	_, stream2 := acceptConnectionServer("0.0.0.0:4244")
+	//var data = make([]byte, 30)
+	for {
+
+		//size1, _ := stream1.Read(data)
+		//if size1 > 0 {
+		seuil += 100000
+		result = splitWindow(seuil-100000, seuil, config.BUFFERSIZE, 2)
+		dataMigration.TabBuffer = result[0]
+		fmt.Println(result)
+		ack, err := json.Marshal(config.PlageBuffer{TabBuffer: result[0]})
+		if err != nil {
+			log.Fatal(err)
+		}
+		stream1.Write([]byte(utils.FillString(string(ack), 100)))
+		ack, err = json.Marshal(config.PlageBuffer{TabBuffer: result[1]})
+
+		stream2.Write([]byte(utils.FillString(string(ack), 100)))
+		//}
+		/*
+			size2, _ := stream2.Read(data)
+			if size2 > 0 {
+				seuil += 40000
+				result = splitWindow(seuil-40000, seuil, config.BUFFERSIZE, 2)
+				dataMigration.TabBuffer = result[0]
+				fmt.Println(result)
+				ack, err := json.Marshal(config.PlageBuffer{TabBuffer: result[0]})
+				if err != nil {
+					log.Fatal(err)
+				}
+				stream1.Write([]byte(utils.FillString(string(ack), 30)))
+				ack, err = json.Marshal(config.PlageBuffer{TabBuffer: result[0]})
+
+				stream2.Write([]byte(utils.FillString(string(ack), 30)))
+			}*/
+
+	}
 
 }
+func splitWindow(debut, windowSize, bufferSize, numRelays int) [][]int {
+	halfWindowSize := (debut + windowSize) / 2 // Calculer la moitié de la fenêtre
+	relays := make([][]int, numRelays)
 
+	// Pour le premier relais
+	relays[0] = []int{debut, halfWindowSize - bufferSize}
+
+	// Pour le deuxième relais
+	relays[1] = []int{halfWindowSize, windowSize - bufferSize}
+
+	return relays
+}
+func acceptConnectionServer(addr string) (quic.Session, quic.Stream) {
+
+	// Écoute des connexions entrantes
+	listener, err := quic.ListenAddr(addr, utils.GenerateTLSConfig(), config.QuicConfig)
+	utils.HandleError(err)
+	fmt.Println("Server started! Waiting for streams from client...")
+
+	// Acceptation d'une nouvelle session
+	sess, err := listener.Accept()
+	utils.HandleError(err)
+	fmt.Println("Session created: ", sess.RemoteAddr())
+
+	// Acceptation d'un nouveau flux dans la session
+	stream, err := sess.AcceptStream()
+	utils.HandleError(err)
+	fmt.Println("Stream created: ", stream.StreamID())
+	fmt.Println("Connected to server, start receiving the file name and file size")
+	var data = make([]byte, 10)
+	stream.Read(data)
+	return sess, stream
+}
 func SendRelayData(relayaddr string, dataMigration config.DataMigration, sess quic.Session, idpath int) {
 
 	dataMigration.IpAddr = fmt.Sprintf("%v", sess.RemoteAddrById(1))
-
+	dataMigration.IdRelay++
 	dataMigration.Once, dataMigration.Obit, dataMigration.Id = sess.GetCryptoSetup().GetOncesObitID()
 	dataMigration.RelayNumber = 2
 	sessServer, err := quic.DialAddr(relayaddr, &tls.Config{InsecureSkipVerify: true}, config.QuicConfig)
@@ -113,6 +188,7 @@ func SendRelayData(relayaddr string, dataMigration config.DataMigration, sess qu
 
 	streamServer.Write([]byte(utils.FillString(string(dataByte), 1000)))
 	fmt.Println("%+v", dataMigration)
+	sess.SetIPAddress("172.10.15.56:4242", 0)
 
 }
 func verifyOrder(sess quic.Session, otherIV []byte) bool {

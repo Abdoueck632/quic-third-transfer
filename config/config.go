@@ -9,7 +9,7 @@ import (
 // BUFFERSIZE is the
 // size of max packet size
 const BUFFERSIZE = 1000
-const THROTTLE_RATE = 100 * time.Millisecond
+const THROTTLE_RATE = 50 * time.Millisecond
 
 // PORT the default port for communication
 const PORT = "4242"
@@ -47,4 +47,13 @@ type DataMigration struct {
 	RelayNumber     int
 	DataBeforeSend  uint64
 	IdPathToCreate  int
+	TabBuffer       []int
+	IdRelay         int
+}
+type Ack struct {
+	Offset  uint64
+	IdRelay int
+}
+type PlageBuffer struct {
+	TabBuffer []int
 }

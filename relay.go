@@ -15,8 +15,10 @@ import (
 )
 
 var dataString = make([]byte, 1000)
+var ackImprimes = []uint64{0}
 
-var cpt = 1
+// var cpt = 1
+var tabBuffer []int
 
 type fileType struct {
 	size int64
@@ -31,21 +33,39 @@ type fileType struct {
 */
 func main() {
 	savePath := os.Args[1]
+	serverAddr := os.Args[2]
 
-	sess, stream := acceptConnection(savePath)
+	//,
+	sessClient, streamClient := acceptConnection(savePath, config.Addr)
 
-	dataMigration := ReadDataMigration(stream)
+	dataMigration := ReadDataMigration(streamClient)
+	fmt.Printf("%+v", dataMigration)
+	//sessServer, _ := acceptConnection(savePath, "0.0.0.0:4243")
+	//ReadDataMigration(streamClient)
+
+	_, streamServer := createConnexion(serverAddr)
+	err := processFile(savePath, &dataMigration, sessClient, streamClient, streamServer)
+	utils.HandleError(err)
 	fmt.Printf("Data Migration: %+v\n", dataMigration)
 
-	err := processFile(savePath, dataMigration, sess, stream)
+}
+func createConnexion(addr string) (quic.Session, quic.Stream) {
+	sess, err := quic.DialAddr(addr, &tls.Config{InsecureSkipVerify: true}, config.QuicConfig)
 	utils.HandleError(err)
 
+	stream, err1 := sess.OpenStream()
+
+	utils.HandleError(err1)
+	fmt.Println("A server has connected!")
+
+	stream.Write([]byte(utils.FillString("Ack", 10)))
+	return sess, stream
 }
-func acceptConnection(savePath string) (quic.Session, quic.Stream) {
+func acceptConnection(savePath string, addr string) (quic.Session, quic.Stream) {
 	fmt.Println("Saving file to: ", savePath)
 
 	// Écoute des connexions entrantes
-	listener, err := quic.ListenAddr(config.Addr, utils.GenerateTLSConfig(), config.QuicConfig)
+	listener, err := quic.ListenAddr(addr, utils.GenerateTLSConfig(), config.QuicConfig)
 	utils.HandleError(err)
 	fmt.Println("Server started! Waiting for streams from client...")
 
@@ -62,10 +82,18 @@ func acceptConnection(savePath string) (quic.Session, quic.Stream) {
 
 	return sess, stream
 }
+func contains(slice []uint64, x uint64) bool {
+	for _, v := range slice {
+		if v == x {
+			return true
+		}
+	}
 
-func processFile(savePath string, dataMigration config.DataMigration, sess quic.Session, stream quic.Stream) error {
+	return false
+}
+func processFile(savePath string, dataMigration *config.DataMigration, sess quic.Session, stream quic.Stream, streamServer quic.Stream) error {
 	fmt.Println("Trying to connect to: ", dataMigration.IpAddr, "Filename ", dataMigration.FileName)
-
+	dataMigration.TabBuffer = generateBufferIndices(dataMigration.TabBuffer[0], dataMigration.TabBuffer[1], config.BUFFERSIZE)
 	name := savePath + dataMigration.FileName
 	file, err := os.Open(name)
 	if err != nil {
@@ -73,23 +101,74 @@ func processFile(savePath string, dataMigration config.DataMigration, sess quic.
 	}
 	defer file.Close()
 
-	SetCryptoSetup(sess, dataMigration)
+	SetCryptoSetup(sess, *dataMigration)
 	stream.Setuint64(dataMigration.WritteOffset)
 
 	fmt.Println("Sending filename and filesize!")
 	stream.Setuint64(dataMigration.WritteOffset)
 	time.Sleep(1 * time.Second)
 	done := make(chan bool)
-	go sendFile(stream, dataMigration, file, done)
+	//iteration := 0
+	buffer := make([]byte, 100)
+	// Fonction pour afficher les nouveaux ACK
+	/*printNewAcks := func() {
+		for {
+			iteration++
+			paquets := sess.GetAckPaquet()
+			//fmt.Println(sess.GetAckPaquet())
+
+			for _, paquet := range paquets {
+				//streamServer.Write([]byte(utils.FillString("Ngagne SECK", 30)))
+				if paquet.Ack == true {
+					//fmt.Println(paquet.Offset)
+					//fmt.Println(ackImprimes)
+					if contains(ackImprimes, uint64(paquet.Offset)) == false {
+						ackImprimes = append(ackImprimes, uint64(paquet.Offset))
+						fmt.Println("1fhffffftgffttyddyttyy")
+
+						ack, err := json.Marshal(config.Ack{Offset: uint64(paquet.Offset),
+							IdRelay: dataMigration.IdRelay})
+						if err != nil {
+							log.Fatal(err)
+						}
+						streamServer.Write([]byte(utils.FillString(string(ack), 30)))
+
+					}
+				}
+			}
+		}
+	}*/
+	receivedck := func() {
+		for {
+			if size, _ := streamServer.Read(buffer); size > 0 {
+				plageBuffer := config.PlageBuffer{}
+				js := strings.Trim(string(buffer), ":")
+
+				json.Unmarshal([]byte(js), &plageBuffer)
+				fmt.Println("plageBuffer ", plageBuffer.TabBuffer)
+				//fmt.Println("ma generation  ...", generateBufferIndices(plageBuffer.TabBuffer[0], plageBuffer.TabBuffer[1], config.BUFFERSIZE))
+				tab := generateBufferIndices(plageBuffer.TabBuffer[0], plageBuffer.TabBuffer[1], config.BUFFERSIZE)
+				//fmt.Println("Tab ", tab)
+
+				dataMigration.TabBuffer = append(dataMigration.TabBuffer, tab...)
+				fmt.Println("++")
+				//fmt.Println("TabBuffer ", dataMigration.TabBuffer)
+
+			}
+
+		}
+	}
+
+	//go printNewAcks()
+	go receivedck()
+	go sendFile(stream, sess, dataMigration, file, done, streamServer)
 
 	for {
 		select {
 		case <-done:
 			fmt.Println("Transfer complete.")
+			fmt.Println("la nouvelle structure", sess.GetAckPaquet())
 			return nil
-		case <-time.After(1 * time.Second):
-			fmt.Println("Still transferring...")
-
 		}
 	}
 
@@ -114,6 +193,13 @@ func ReadDataMigration(stream quic.Stream) config.DataMigration {
 	stream.Read(data)
 
 	return myTrim(data)
+}
+func generateBufferIndices(start, end, bufferSize int) []int {
+	indices := []int{}
+	for i := start; i <= end; i += bufferSize {
+		indices = append(indices, i)
+	}
+	return indices
 }
 func createNewLocalConnection() {
 	fmt.Println("createNewLocalConnection")
@@ -142,17 +228,17 @@ func myTrim(dataString []byte) config.DataMigration {
 	return dataMigration
 }
 
-func sendFile(stream quic.Stream, dataMigration config.DataMigration, file *os.File, done chan bool) {
+func sendFile(stream quic.Stream, sess quic.Session, dataMigration *config.DataMigration, file *os.File, done chan bool, streamServer quic.Stream) {
 	defer close(done)
 
-	fileInfo, err := file.Stat()
-	utils.HandleError(err)
+	//fileInfo, err := file.Stat()
+	//utils.HandleError(err)
 
 	sendBuffer := make([]byte, config.BUFFERSIZE)
 	fmt.Println("Start sending file!\n")
-
+	indice := 0
 	var sentBytes int64
-	var c uint64
+	//var c uint64
 	start := time.Now()
 	rateLimiter := time.NewTicker(config.THROTTLE_RATE) // Adjust THROTTLE_RATE for desired speed
 
@@ -161,21 +247,33 @@ func sendFile(stream quic.Stream, dataMigration config.DataMigration, file *os.F
 		case <-done:
 			return
 		case <-rateLimiter.C: // Wait for rate limiter tick before reading/sending
-			sentSize, err := file.ReadAt(sendBuffer, dataMigration.StartAt)
-			if sentSize == 0 {
-				if err != nil {
-					done <- false
+			if indice < len(dataMigration.TabBuffer) {
+				sentSize, err := file.ReadAt(sendBuffer, int64(dataMigration.TabBuffer[indice]))
+				if sentSize == 0 {
+					if err != nil {
+						done <- false
+						return
+					}
+					done <- true
 					return
 				}
-				done <- true
-				return
+				stream.Setuint64(uint64(74 + dataMigration.TabBuffer[indice]))
+				stream.Write(sendBuffer)
+				//dataMigration.StartAt += int64(sentSize) * int64(dataMigration.RelayNumber)
+				//sentBytes += int64(sentSize)
+				//_, _, c = stream.GetReadPosInFrame()
+				//stream.Setuint64(c + uint64(sentSize))
+				indice++
+				//fmt.Printf("\033[2K\rSent: %d:  %d / %d  \n", cpt, dataMigration.StartAt, fileInfo.Size())
+				//fmt.Println("la nouvelle structure", sess.GetAckPaquet())
+			} else {
+				//data := make([]byte, 10)
+				//data = []byte(utils.FillString("sync", 10))
+				//streamServer.Write(data)
+				fmt.Println("Pas de données")
+				fmt.Println("tp", dataMigration.TabBuffer)
+
 			}
-			stream.Write(sendBuffer)
-			dataMigration.StartAt += int64(sentSize) * int64(dataMigration.RelayNumber)
-			sentBytes += int64(sentSize)
-			_, _, c = stream.GetReadPosInFrame()
-			stream.Setuint64(c + uint64(sentSize))
-			fmt.Printf("\033[2K\rSent: %d:  %d / %d  \n", cpt, dataMigration.StartAt, fileInfo.Size())
 		}
 	}
 
@@ -183,6 +281,9 @@ func sendFile(stream quic.Stream, dataMigration config.DataMigration, file *os.F
 	fmt.Println("\nTransfer took: ", elapsed)
 
 	fmt.Println("\n\n Thioune :File has been sent, closing stream! with ", sentBytes)
+}
+func sendBuffer(stream quic.Stream) {
+
 }
 
 func createSession(add string) (quic.Session, quic.Stream, error) {
@@ -238,32 +339,6 @@ func sendDataToRelay(streamToRelay quic.Stream, dataMigration config.DataMigrati
 	streamToRelay.Write([]byte(utils.FillString(string(dataByte), 1000)))
 
 }
-
-/*
-func GetPacketNumber(sess quic.Session) map[string]uint64 {
-	path := sess.GetpathsAndLen()
-	packetSent, a, b, c, d, e := path.GetlastSentPacketNumber()
-	largesObse, lowerLimit, packetRcv, lastAck := path.GetRcvPacketNumber()
-	LowerlastAckRcv, larglastAckRcv, _ := lastAck.GetAckedFrame()
-	packetNumber := make(map[string]uint64)
-	packetNumber["lastSentPacketNumberSend"] = uint64(a)
-	packetNumber["LargestAckedSend"] = uint64(b)
-	packetNumber["largestReceivedPacketWithAckSend"] = uint64(c)
-	packetNumber["lastRcvdPacketNumberPath"] = uint64(d)
-	packetNumber["largestRcvdPacketNumberPath"] = uint64(e)
-	packetNumber["largestObservedRcv"] = uint64(largesObse)
-	packetNumber["lowerLimitRcv"] = uint64(lowerLimit)
-	packetNumber["packetsRcv"] = packetRcv
-	packetNumber["packetsSent"] = packetSent
-	packetNumber["LarglastAckRcv"] = uint64(larglastAckRcv)
-	packetNumber["LowerlastAckRcv"] = uint64(LowerlastAckRcv)
-
-	packetNumber["peek"] = uint64(path.GetpacketNumberGenerator().Peek())
-
-	return packetNumber
-}
-
-*/
 
 func sendFile3(stream quic.Stream, dataMigration config.DataMigration, name string) {
 
