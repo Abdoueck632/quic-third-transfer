@@ -65,16 +65,16 @@ Once our topology is well set up, we will have to turn on our different machines
  After we will check the file transfer system on our different machines
  
  * On the server host 
-  ```sh
-   go run server.go IPAddressRelay1:4242 
+  ```sh 
+   go run server.go IPAddressRelay1:4242 IPAddressRelay2:4242
   ```
   * On the relay1 host
   ```sh
-   go run relay.go ./storage-server/ IPAddressRelay2:4242 
+   go run relay.go ./storage-server/ IPAddressServer:4243 
   ```
   * On the relay2 host
   ```sh
-   go run relay.go ./storage-server/
+   go run relay.go ./storage-server/ IPAddressServer:4244
   ```
   * On the client host
   ```sh
